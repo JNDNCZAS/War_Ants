@@ -1,0 +1,262 @@
+[gd_scene load_steps=7 format=3 uid="uid://cwpakpjdji7u1"]
+
+[ext_resource type="PackedScene" uid="uid://cf7pk035e6ogr" path="res://scenes/AntGroup.tscn" id="1_rvslj"]
+[ext_resource type="Script" uid="uid://npxj262gdt0f" path="res://scenes/GameController.gd" id="2_0bbpv"]
+[ext_resource type="Script" uid="uid://csfytaon5khe8" path="res://scripts/camera_2d.gd" id="3_0bbpv"]
+[ext_resource type="Script" uid="uid://bsanlfib51a5q" path="res://scenes/ui.gd" id="4_rarhs"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_rarhs"]
+vertices = PackedVector2Array(2094.95, 416.883, 3181.4, 456.523, 3330.76, 463.461, 3369.68, 1397.91, 3245.17, 1399.09, 188, 484, 450, 420, 1980.04, 406.109, 450, 314, 576, 255, 1978.07, -46.2813, 1994.94, 275.391, 1979.49, 279.047, 3171.11, -35.9219, 4173.11, -29.0625, 3334.23, 314.32, 3171.37, -33.5, 4196.88, 2091.09, 3467.07, 2095.6, 3374.14, 1535.46, 1834.94, -46.3203, 1834.19, -47.8203, 1878.06, -47.3516, 3190.42, 309.711, 3354.48, 1530.5, 3356.53, 1538.09, -12.6719, 2070.08, -6.10156, 2017.88, 3242.82, 1537.67, 2107.01, 297.539, 2003.34, 292.297, 576, 149, 344, 420, 188, 378, 344, 314, 1978.05, -49.75, -0.078125, -2.22656, 470, 149, 470, 255, 82, 484, -17.4063, 2016.03, 82, 378, 3467.45, 2097.92)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6), PackedInt32Array(7, 0, 6, 8), PackedInt32Array(9, 10, 11, 12, 8), PackedInt32Array(13, 14, 15, 16), PackedInt32Array(14, 17, 18, 19, 3), PackedInt32Array(15, 14, 3, 2), PackedInt32Array(20, 21, 22), PackedInt32Array(16, 15, 23), PackedInt32Array(24, 25, 18, 26, 27, 28), PackedInt32Array(16, 23, 1, 29, 10), PackedInt32Array(10, 29, 30, 11), PackedInt32Array(22, 10, 9, 31, 20), PackedInt32Array(0, 29, 1), PackedInt32Array(32, 6, 5), PackedInt32Array(32, 5, 33, 34), PackedInt32Array(22, 35, 10), PackedInt32Array(36, 20, 31, 37), PackedInt32Array(12, 7, 8), PackedInt32Array(38, 9, 8, 34), PackedInt32Array(39, 27, 40, 36, 41), PackedInt32Array(17, 42, 18), PackedInt32Array(25, 19, 18), PackedInt32Array(5, 4, 28, 27, 39), PackedInt32Array(34, 33, 41, 36, 37, 38)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-10, -12, 1988, -60, 1990, 397, 2086, 406, 2096, 307, 1997, 302, 1818, -58, 3218, -43, 3200, 317, 3192, 447, 3321, 453, 3324, 324, 3199, 320, 3160, -46, 4183, -39, 4207, 2101, 3459, 2108, 3364, 1531, 3360, 1408, 3255, 1409, 3253, 1527, 3362, 1520, 3521, 2106, -24, 2080, 178, 474, 354, 410, 440, 410, 440, 324, 354, 324, 378, 257, 480, 245, 566, 245, 566, 159, 480, 159, 480, 245, 354, 324, 354, 410, 279, 546, -28, 2080, 178, 474, 178, 388, 92, 388, 92, 474, 178, 474, -28, 2084)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rvslj"]
+size = Vector2(80, 80)
+
+[node name="Main" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_top = -38.0
+offset_right = 4096.0
+offset_bottom = 2099.0
+color = Color(0.268556, 0.556872, 0.197729, 1)
+
+[node name="SpawnZone" type="Polygon2D" parent="."]
+color = Color(0.84358, 0.372955, 0.950157, 1)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(0, 2)
+navigation_polygon = SubResource("NavigationPolygon_rarhs")
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(523, 204)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/StaticBody2D"]
+shape = SubResource("RectangleShape2D_rvslj")
+
+[node name="ColorRect" type="ColorRect" parent="Obstacles/StaticBody2D"]
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="Obstacles/StaticBody2D"]
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(397, 369)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_rvslj")
+
+[node name="ColorRect" type="ColorRect" parent="Obstacles/StaticBody2D2"]
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="Obstacles/StaticBody2D2"]
+radius = 40.54
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(135, 433)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_rvslj")
+
+[node name="ColorRect" type="ColorRect" parent="Obstacles/StaticBody2D3"]
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="Obstacles/StaticBody2D3"]
+radius = 40.54
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(2041, 357)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/StaticBody2D4"]
+shape = SubResource("RectangleShape2D_rvslj")
+
+[node name="ColorRect" type="ColorRect" parent="Obstacles/StaticBody2D4"]
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="Obstacles/StaticBody2D4"]
+radius = 40.54
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(3260, 391)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/StaticBody2D5"]
+shape = SubResource("RectangleShape2D_rvslj")
+
+[node name="ColorRect" type="ColorRect" parent="Obstacles/StaticBody2D5"]
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="Obstacles/StaticBody2D5"]
+radius = 40.54
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(572, 1281)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/StaticBody2D6"]
+shape = SubResource("RectangleShape2D_rvslj")
+
+[node name="ColorRect" type="ColorRect" parent="Obstacles/StaticBody2D6"]
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="Obstacles/StaticBody2D6"]
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(446, 1446)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/StaticBody2D7"]
+shape = SubResource("RectangleShape2D_rvslj")
+
+[node name="ColorRect" type="ColorRect" parent="Obstacles/StaticBody2D7"]
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="Obstacles/StaticBody2D7"]
+radius = 40.54
+
+[node name="StaticBody2D8" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(184, 1510)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/StaticBody2D8"]
+shape = SubResource("RectangleShape2D_rvslj")
+
+[node name="ColorRect" type="ColorRect" parent="Obstacles/StaticBody2D8"]
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="Obstacles/StaticBody2D8"]
+radius = 40.54
+
+[node name="StaticBody2D9" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(2090, 1434)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/StaticBody2D9"]
+shape = SubResource("RectangleShape2D_rvslj")
+
+[node name="ColorRect" type="ColorRect" parent="Obstacles/StaticBody2D9"]
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="Obstacles/StaticBody2D9"]
+radius = 40.54
+
+[node name="StaticBody2D10" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(3309, 1468)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/StaticBody2D10"]
+shape = SubResource("RectangleShape2D_rvslj")
+
+[node name="ColorRect" type="ColorRect" parent="Obstacles/StaticBody2D10"]
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="Obstacles/StaticBody2D10"]
+radius = 40.54
+
+[node name="AntGroups" type="Node2D" parent="."]
+
+[node name="AntGroup" parent="AntGroups" instance=ExtResource("1_rvslj")]
+position = Vector2(166, 199)
+color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
+
+[node name="AntGroup2" parent="AntGroups" instance=ExtResource("1_rvslj")]
+position = Vector2(233, 215)
+
+[node name="AntGroup3" parent="AntGroups" instance=ExtResource("1_rvslj")]
+position = Vector2(165, 141)
+
+[node name="AntGroup4" parent="AntGroups" instance=ExtResource("1_rvslj")]
+position = Vector2(77, 252)
+color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
+
+[node name="AntGroup5" parent="AntGroups" instance=ExtResource("1_rvslj")]
+position = Vector2(68, 204)
+color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
+
+[node name="AntGroup6" parent="AntGroups" instance=ExtResource("1_rvslj")]
+position = Vector2(72, 292)
+color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
+
+[node name="AntGroup7" parent="AntGroups" instance=ExtResource("1_rvslj")]
+position = Vector2(212, 141)
+color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
+
+[node name="AntGroup8" parent="AntGroups" instance=ExtResource("1_rvslj")]
+position = Vector2(119, 160)
+color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
+
+[node name="AntGroup9" parent="AntGroups" instance=ExtResource("1_rvslj")]
+position = Vector2(263, 166)
+color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
+
+[node name="AntGroup10" parent="AntGroups" instance=ExtResource("1_rvslj")]
+position = Vector2(164, 235)
+color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
+
+[node name="SelectionRect" type="ColorRect" parent="."]
+mouse_filter = 2
+color = Color(0.113725, 0.0156863, 1, 0.388235)
+metadata/_edit_use_anchors_ = true
+
+[node name="GameController" type="Node" parent="."]
+script = ExtResource("2_0bbpv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(877, 442)
+script = ExtResource("3_0bbpv")
+speed = 800.0
+margin = 80.0
+map_limit_left = -500.0
+map_limit_top = -500.0
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("4_rarhs")
+
+[node name="SpawnButton" type="Button" parent="UI"]
+offset_left = 80.0
+offset_top = 80.0
+offset_right = 202.0
+offset_bottom = 111.0
+text = "Generar grupo
+"
