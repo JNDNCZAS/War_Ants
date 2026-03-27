@@ -8,7 +8,6 @@
 [node name="AntGroup" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_o5gkr")
-SPEED = 100.0
 color_normal = Color(0.411765, 0.0196078, 0.164706, 1)
 color_selected = Color(0.662745, 0.0588235, 0.282353, 1)
 

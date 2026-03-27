@@ -2,7 +2,7 @@ extends Node
 
 @onready var ant_groups_container = $"../AntGroups"
 @onready var selection_rect_node: ColorRect = $"../SelectionRect"
-@onready var nav_region: NavigationRegion2D = $"../NavigationRegion2D"
+#@onready var nav_region: NavigationRegion2D = $"../NavigationRegion2D"
 
 var selected_groups: Array = []
 var drag_start: Vector2 = Vector2.ZERO
