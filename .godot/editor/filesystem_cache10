@@ -1,0 +1,35 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1774650816
+editorconfig.txt::TextFile/TextFile::-1::1774643548::0::1::::<><><>0<>0<><>::
+gitattributes.txt::TextFile/TextFile::-1::1774643553::0::1::::<><><>0<>0<><>::
+gitignore.txt::TextFile/TextFile::-1::1774643557::0::1::::<><><>0<>0<><>::
+icon.svg::CompressedTexture2D/CompressedTexture2D::4690851303043012731::1774643563::1774643568::1::::<><><>0<>0<>efc632b8f750734244e35424deeb672b<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+::res://assets/::1774574539
+::res://assets/tiles/::1774650816
+Arbustos .png::CompressedTexture2D/CompressedTexture2D::6753547288544455155::1774650160::1774650227::1::::<><><>0<>0<>7c3433ff28a7d0f95cf8e9683aabd9f0<>res://.godot/imported/Arbustos .png-5d15d6fdd4c973ff0acd3293ad1bd6eb.ctex::
+Cespe.png::CompressedTexture2D/CompressedTexture2D::756910323585270457::1774650435::1774650470::1::::<><><>0<>0<>f3fd78bec4019f20c448c17ce9624580<>res://.godot/imported/Cespe.png-420ab03cf43ddf96530c5a94040dae32.ctex::
+Rocas.png::CompressedTexture2D/CompressedTexture2D::803906120984160472::1774650482::1774650500::1::::<><><>0<>0<>c1daac7e4ee989d8aa81082d88790804<>res://.godot/imported/Rocas.png-5ff2b851988ea626f77323a0acbb6769.ctex::
+Rocas_en_agua.png::CompressedTexture2D::8363495196844844760::1774650612::1774650817::1::::<><><>0<>0<>abab20fbed306a76d20be8e00e21530d<>res://.godot/imported/Rocas_en_agua.png-3cb913930ae041d194c62ea84425f03e.ctex::
+Rock1.png::CompressedTexture2D/CompressedTexture2D::6170115755319462265::1774574566::1774574566::1::::<><><>0<>0<>757562312460eb0cc9f87f03cc836eb4<>res://.godot/imported/Rock1.png-ae0d78ca413a46f601b6cff78e3aa91d.ctex::
+Rock2.png::CompressedTexture2D/CompressedTexture2D::2251878930899591559::1774574566::1774574566::1::::<><><>0<>0<>071bc397b3812632f247c00477f31b35<>res://.godot/imported/Rock2.png-019d540f433d9ca70c1ecc0694518893.ctex::
+Rock3.png::CompressedTexture2D/CompressedTexture2D::642475651148209216::1774574566::1774574566::1::::<><><>0<>0<>682a902cbe72ea35ec80372f571a8e1c<>res://.godot/imported/Rock3.png-fa3030b89ecaf80fdf38366cb06746af.ctex::
+Rock4.png::CompressedTexture2D/CompressedTexture2D::2346214881167888197::1774574566::1774574566::1::::<><><>0<>0<>8e5d1856dac2761ca373ec1251eaab11<>res://.godot/imported/Rock4.png-d8c46d14cd0f95c19a750dfc130a6315.ctex::
+Tilemap_color1.png::CompressedTexture2D/CompressedTexture2D::1615048071664108213::1774569820::1774574551::1::::<><><>0<>0<>6cc112e8b5780cbea627c53f32ec7fb1<>res://.godot/imported/Tilemap_color1.png-39e5ec799264542f0cd000df244f9dc6.ctex::
+Tilemap_color2.png::CompressedTexture2D/CompressedTexture2D::2650337388951761988::1774569820::1774574551::1::::<><><>0<>0<>2034e41da6bfbbba7896cbc5971efdf0<>res://.godot/imported/Tilemap_color2.png-da2fe017bf10a3b51b589123d615aa94.ctex::
+Tilemap_color3.png::CompressedTexture2D/CompressedTexture2D::5289467099981210902::1774569820::1774574551::1::::<><><>0<>0<>156e11c908d1f64c0820d8a5ffeb13e7<>res://.godot/imported/Tilemap_color3.png-33dfa7ccf19c4fe4150b7dfc6b7f7171.ctex::
+Tilemap_color4.png::CompressedTexture2D/CompressedTexture2D::8843383040956062760::1774569820::1774574551::1::::<><><>0<>0<>3886ebf19729a3c389b37ebbcf07e181<>res://.godot/imported/Tilemap_color4.png-c8df56b3f415710e3dcc091b499c3f3c.ctex::
+Tilemap_color5.png::CompressedTexture2D/CompressedTexture2D::3665039557198668927::1774569820::1774574551::1::::<><><>0<>0<>b4062affa9f8e0e651493a778d71a987<>res://.godot/imported/Tilemap_color5.png-21136db84b8dd7ac0276f621a895cdf6.ctex::
+Water Background color.png::CompressedTexture2D/CompressedTexture2D::516390577737435624::1774569820::1774574551::1::::<><><>0<>0<>ddd3d25fa1ec779f5595268098644773<>res://.godot/imported/Water Background color.png-baecde6c57291acb84de40f16687bd17.ctex::
+Water Rocks_01.png::CompressedTexture2D/CompressedTexture2D::5545057107213489544::1774574586::1774574586::1::::<><><>0<>0<>c67d5dd881b15313441554ae8d8b6357<>res://.godot/imported/Water Rocks_01.png-1b56503effbd6b0e9f232427c4585a71.ctex::
+Water Rocks_02.png::CompressedTexture2D/CompressedTexture2D::5980063578370921251::1774574586::1774574586::1::::<><><>0<>0<>ac3c5c3528d808a0c0923c350513c755<>res://.godot/imported/Water Rocks_02.png-64f927a8fc6598d686d1581573caea56.ctex::
+Water Rocks_03.png::CompressedTexture2D/CompressedTexture2D::5066213776580916785::1774574586::1774574586::1::::<><><>0<>0<>26e880f1bf505e5e8f0017ea7854184a<>res://.godot/imported/Water Rocks_03.png-6683909b21e9cf918ca51ac5f27c5816.ctex::
+Water Rocks_04.png::CompressedTexture2D/CompressedTexture2D::6416565760250501927::1774574586::1774574586::1::::<><><>0<>0<>f4ea112867db344f17bb059e23306a15<>res://.godot/imported/Water Rocks_04.png-1aecb24514682bb136276860e295af21.ctex::
+::res://scenes/::1774650031
+AntGroup.tscn::PackedScene/PackedScene::5190775644244742925::1774649371::0::1::::<><><>0<>0<><>::uid://dk4v4ujn4nhwt::::res://scripts/AntGroup.gd<>uid://0aq4iv5uqa6x::::res://scripts/SelectionRing.gd
+Main.tscn::PackedScene/PackedScene::6347980253575037490::1774650031::0::1::::<><><>0<>0<><>::uid://drqgnox860mtc::::res://assets/tiles/Bushe4.png<>uid://cf7pk035e6ogr::::res://scenes/AntGroup.tscn<>uid://npxj262gdt0f::::res://scripts/GameController.gd<>uid://clacjsfl0su1e::::res://assets/tiles/Water Rocks_01.png<>uid://csfytaon5khe8::::res://scripts/camera_2d.gd<>uid://crg11kdgo3px0::::res://assets/tiles/Water Rocks_02.png<>uid://cegd2hvnhdp5r::::res://assets/tiles/Water Rocks_03.png<>uid://bsanlfib51a5q::::res://scripts/ui.gd<>uid://cxoh5vdfkw45h::::res://assets/tiles/Water Rocks_04.png<>uid://xaluujsccco8::::res://assets/tiles/Tilemap_color1.png<>uid://ct5351hdm4xkb::::res://assets/tiles/Rock1.png<>uid://7c3d8idwome6::::res://assets/tiles/Rock2.png<>uid://jfhqlae82s13::::res://assets/tiles/Rock3.png<>uid://8or20wd3i2o4::::res://assets/tiles/Rock4.png<>uid://cr3gcpri86bxk::::res://assets/tiles/Bushe1.png<>uid://s302fyi0x3jd::::res://assets/tiles/Bushe2.png<>uid://bhtli1i253idq::::res://assets/tiles/Bushe3.png
+::res://scripts/::1774649371
+AntGroup.gd::GDScript/GDScript::7922345352198874931::1774643679::0::1::::AntGroup<>CharacterBody2D<><>0<>0<><>::
+camera_2d.gd::GDScript/GDScript::6048053601810085781::1774649371::0::1::::<>Camera2D<><>0<>0<><>::
+GameController.gd::GDScript/GDScript::944834663838396347::1774583483::0::1::::<>Node<><>0<>0<><>::
+SelectionRing.gd::GDScript/GDScript::1755744804876428277::1774643696::0::1::::<>Node2D<><>0<>0<><>::
+ui.gd::GDScript/GDScript::3650629108878336348::1774643713::0::1::::<>CanvasLayer<><>0<>0<><>::

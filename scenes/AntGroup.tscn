@@ -6,6 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rh8na"]
 
 [node name="AntGroup" type="CharacterBody2D"]
+show_behind_parent = true
 collision_layer = 2
 script = ExtResource("1_o5gkr")
 color_normal = Color(0.411765, 0.0196078, 0.164706, 1)
