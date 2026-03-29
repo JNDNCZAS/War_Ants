@@ -45,6 +45,8 @@ script = ExtResource("1_o5gkr")
 shape = SubResource("RectangleShape2D_rh8na")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+debug_use_custom = true
 
 [node name="SelectionRing" type="Node2D" parent="."]
 script = ExtResource("2_5etio")

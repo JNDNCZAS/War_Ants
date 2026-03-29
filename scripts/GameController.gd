@@ -2,22 +2,33 @@ extends Node
 
 @onready var ant_groups_container = $"../AntGroups"
 @onready var selection_rect_node: ColorRect = $"../SelectionRect"
-#@onready var nav_region: NavigationRegion2D = $"../NavigationRegion2D"
 
 var selected_groups: Array = []
 var drag_start: Vector2 = Vector2.ZERO
 var is_dragging: bool = false
 const DRAG_THRESHOLD = 6.0
 
+var patrol_mode: bool = false
+var patrol_points: Array = []
+
 func _ready():
 	selection_rect_node.visible = false
-	
-   
+
 func _input(event):
-	if event is InputEventMouseButton:
+	if event is InputEventKey:
+		_handle_key(event)
+	elif event is InputEventMouseButton:
 		_handle_mouse_button(event)
 	elif event is InputEventMouseMotion:
 		_handle_mouse_motion(event)
+
+func _handle_key(event: InputEventKey):
+	if event.keycode == KEY_Z and not event.pressed:
+		if patrol_points.size() > 0 and selected_groups.size() > 0:
+			for group in selected_groups:
+				group.set_patrol(patrol_points.duplicate())
+			print("patrulla enviada a ", selected_groups.size(), " grupos con ", patrol_points.size(), " puntos")
+		patrol_points.clear()
 
 func _handle_mouse_button(event: InputEventMouseButton):
 	var world_pos = _to_world(event.position)
@@ -35,18 +46,13 @@ func _handle_mouse_button(event: InputEventMouseButton):
 			selection_rect_node.visible = false
 
 	elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-		if event.double_click:
+		if Input.is_key_pressed(KEY_Z) and selected_groups.size() > 0:
+			patrol_points.append(world_pos)
+			print("punto agregado: ", world_pos, " total puntos: ", patrol_points.size())
+		elif event.double_click:
 			_call_all_groups(world_pos)
 		elif selected_groups.size() > 0:
 			_issue_move_order(world_pos)
-
-func _call_all_groups(world_pos: Vector2):
-	var all_groups = ant_groups_container.get_children()
-	var count = all_groups.size()
-	for i in count:
-		var offset = _formation_offset(i, count)
-		all_groups[i].move_to(world_pos + offset)
-	_update_selection_label()
 
 func _handle_mouse_motion(event: InputEventMouseMotion):
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
@@ -64,7 +70,7 @@ func _handle_single_click(world_pos: Vector2, event: InputEventMouseButton):
 			_toggle_select(group)
 			break
 	_update_selection_label()
-	
+
 func _finish_drag_selection(end_pos: Vector2):
 	var rect = Rect2(drag_start, Vector2.ZERO).expand(end_pos)
 	if not Input.is_key_pressed(KEY_SHIFT):
@@ -79,6 +85,14 @@ func _issue_move_order(world_pos: Vector2):
 	for i in count:
 		var offset = _formation_offset(i, count)
 		selected_groups[i].move_to(world_pos + offset)
+
+func _call_all_groups(world_pos: Vector2):
+	var all_groups = ant_groups_container.get_children()
+	var count = all_groups.size()
+	for i in count:
+		var offset = _formation_offset(i, count)
+		all_groups[i].move_to(world_pos + offset)
+	_update_selection_label()
 
 func _formation_offset(index: int, total: int) -> Vector2:
 	if total == 1:
@@ -115,10 +129,9 @@ func _update_selection_rect(start: Vector2, end: Vector2):
 	selection_rect_node.position = rect.position
 	selection_rect_node.size = rect.size
 
-func _to_world(screen_pos: Vector2) -> Vector2:
-	return get_viewport().get_canvas_transform().affine_inverse() * screen_pos
-
-
 func _update_selection_label():
 	var label = get_node("../UI/SelectionLabel")
 	label.text = "Seleccionadas: " + str(selected_groups.size())
+
+func _to_world(screen_pos: Vector2) -> Vector2:
+	return get_viewport().get_canvas_transform().affine_inverse() * screen_pos

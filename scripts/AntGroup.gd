@@ -4,11 +4,17 @@ extends CharacterBody2D
 const SPEED = 120.0
 const ARRIVAL_THRESHOLD = 8.0
 
+enum Estado { ESPERANDO, PATRULLANDO }
+
 @export var color_normal: Color = Color(1, 1, 1, 1)
-@export var color_selected: Color = Color(0.6, 1.0, 0.6, 1.0)
+@export var color_selected: Color = Color(1, 1, 1, 1)
 
 var selected: bool = false
 var moving: bool = false
+var estado_actual: Estado = Estado.ESPERANDO
+
+var patrol_points: Array = []
+var patrol_index: int = 0
 
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var sprite: AnimatedSprite2D = $Sprite
@@ -22,29 +28,57 @@ func _ready():
 	sprite.play("walk")
 
 func _physics_process(delta):
-	if not moving:
+	match estado_actual:
+		Estado.ESPERANDO:
+			_tick_esperando()
+		Estado.PATRULLANDO:
+			_tick_patrullando()
+
+func _tick_esperando():
+	if moving:
+		if nav_agent.is_navigation_finished():
+			moving = false
+			sprite.stop()
+			return
+		var next = nav_agent.get_next_path_position()
+		var direction = (next - global_position).normalized()
+		velocity = direction * SPEED
+		move_and_slide()
+		if direction != Vector2.ZERO:
+			sprite.rotation = direction.angle() - PI / 2
+			sprite.play("walk")
+	else:
 		sprite.stop()
+
+func _tick_patrullando():
+	if patrol_points.is_empty():
 		return
 	if nav_agent.is_navigation_finished():
-		moving = false
-		sprite.stop()
-		return
-
+		patrol_index = (patrol_index + 1) % patrol_points.size()
+		nav_agent.target_position = patrol_points[patrol_index]
 	var next = nav_agent.get_next_path_position()
 	var direction = (next - global_position).normalized()
 	velocity = direction * SPEED
 	move_and_slide()
-
-	# apunta el sprite en la dirección de movimiento
 	if direction != Vector2.ZERO:
-		sprite.rotation = direction.angle() - PI/2
+		sprite.rotation = direction.angle() - PI / 2
 		sprite.play("walk")
 
 func move_to(pos: Vector2):
+	estado_actual = Estado.ESPERANDO
+	patrol_points.clear()
 	moving = true
 	nav_agent.target_position = pos
 
+func set_patrol(points: Array):
+	if points.is_empty():
+		return
+	patrol_points = points
+	patrol_index = 0
+	estado_actual = Estado.PATRULLANDO
+	nav_agent.target_position = patrol_points[0]
+
 func set_selected(value: bool):
 	selected = value
-	selection_ring.visible = value
-	sprite.modulate = Color(1, 1, 1, 1)  # siempre color original, sin tinte
+	sprite.modulate = Color(1, 1, 1, 1)
+	selection_ring.set_selected(value)
