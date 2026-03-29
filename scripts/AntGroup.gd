@@ -18,7 +18,6 @@ func _ready():
 	await get_tree().physics_frame
 	nav_agent.path_desired_distance = ARRIVAL_THRESHOLD
 	nav_agent.target_desired_distance = ARRIVAL_THRESHOLD
-	sprite.offset = Vector2(0,0)
 	set_selected(false)
 	sprite.play("walk")
 
@@ -48,4 +47,4 @@ func move_to(pos: Vector2):
 func set_selected(value: bool):
 	selected = value
 	selection_ring.visible = value
-	sprite.modulate = color_selected if value else color_normal
+	sprite.modulate = Color(1, 1, 1, 1)  # siempre color original, sin tinte
