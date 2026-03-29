@@ -12,6 +12,11 @@ var spawn_polygon: Array = [
 @onready var spawn_button: Button = $SpawnButton
 @onready var ant_groups_container = get_tree().get_root().get_node("Main/AntGroups")
 @onready var spawn_zone: Polygon2D = get_tree().get_root().get_node("Main/SpawnZone")
+@onready var selection_label: Label = $SelectionLabel
+@onready var total_label: Label = $TotalLabel
+
+func _process(_delta):
+	total_label.text = "Grupos en mapa: " + str(ant_groups_container.get_child_count())
 
 func _ready():
 	spawn_button.pressed.connect(_on_spawn_pressed)

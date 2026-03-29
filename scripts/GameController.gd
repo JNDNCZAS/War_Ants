@@ -46,6 +46,7 @@ func _call_all_groups(world_pos: Vector2):
 	for i in count:
 		var offset = _formation_offset(i, count)
 		all_groups[i].move_to(world_pos + offset)
+	_update_selection_label()
 
 func _handle_mouse_motion(event: InputEventMouseMotion):
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
@@ -62,7 +63,8 @@ func _handle_single_click(world_pos: Vector2, event: InputEventMouseButton):
 		if world_pos.distance_to(group.global_position) < 18.0:
 			_toggle_select(group)
 			break
-
+	_update_selection_label()
+	
 func _finish_drag_selection(end_pos: Vector2):
 	var rect = Rect2(drag_start, Vector2.ZERO).expand(end_pos)
 	if not Input.is_key_pressed(KEY_SHIFT):
@@ -70,6 +72,7 @@ func _finish_drag_selection(end_pos: Vector2):
 	for group in ant_groups_container.get_children():
 		if rect.has_point(group.global_position):
 			_select(group)
+	_update_selection_label()
 
 func _issue_move_order(world_pos: Vector2):
 	var count = selected_groups.size()
@@ -104,6 +107,7 @@ func _deselect_all():
 	for group in selected_groups:
 		group.set_selected(false)
 	selected_groups.clear()
+	_update_selection_label()
 
 func _update_selection_rect(start: Vector2, end: Vector2):
 	var rect = Rect2(start, Vector2.ZERO).expand(end)
@@ -113,5 +117,8 @@ func _update_selection_rect(start: Vector2, end: Vector2):
 
 func _to_world(screen_pos: Vector2) -> Vector2:
 	return get_viewport().get_canvas_transform().affine_inverse() * screen_pos
-	
-	
+
+
+func _update_selection_label():
+	var label = get_node("../UI/SelectionLabel")
+	label.text = "Seleccionadas: " + str(selected_groups.size())

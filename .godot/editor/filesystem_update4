@@ -2,3 +2,5 @@ res://scenes/Main.tscn
 res://assets/tiles/Fondos.tres
 res://scenes/AntGroup.tscn
 res://scripts/AntGroup.gd
+res://scripts/GameController.gd
+res://scripts/ui.gd
