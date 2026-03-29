@@ -395,52 +395,40 @@ color = Color(0, 1, 0, 0)
 
 [node name="AntGroup" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(166, 199)
-color_normal = null
 color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
 
 [node name="AntGroup2" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(233, 215)
-color_normal = null
-color_selected = null
 
 [node name="AntGroup3" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(165, 141)
-color_normal = null
-color_selected = null
 
 [node name="AntGroup4" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(77, 252)
-color_normal = null
 color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
 
 [node name="AntGroup5" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(68, 204)
-color_normal = null
 color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
 
 [node name="AntGroup6" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(72, 292)
-color_normal = null
 color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
 
 [node name="AntGroup7" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(212, 141)
-color_normal = null
 color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
 
 [node name="AntGroup8" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(119, 160)
-color_normal = null
 color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
 
 [node name="AntGroup9" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(263, 166)
-color_normal = null
 color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
 
 [node name="AntGroup10" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(164, 235)
-color_normal = null
 color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
 
 [node name="SelectionRect" type="ColorRect" parent="."]
