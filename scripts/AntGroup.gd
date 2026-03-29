@@ -15,6 +15,7 @@ var estado_actual: Estado = Estado.ESPERANDO
 
 var patrol_points: Array = []
 var patrol_index: int = 0
+var patrol_direction: int = 1
 
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var sprite: AnimatedSprite2D = $Sprite
@@ -54,7 +55,13 @@ func _tick_patrullando():
 	if patrol_points.is_empty():
 		return
 	if nav_agent.is_navigation_finished():
-		patrol_index = (patrol_index + 1) % patrol_points.size()
+		patrol_index += patrol_direction
+		if patrol_index >= patrol_points.size():
+			patrol_direction = -1
+			patrol_index = patrol_points.size() - 2
+		elif patrol_index < 0:
+			patrol_direction = 1
+			patrol_index = 1
 		nav_agent.target_position = patrol_points[patrol_index]
 	var next = nav_agent.get_next_path_position()
 	var direction = (next - global_position).normalized()
