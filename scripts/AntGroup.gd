@@ -22,7 +22,8 @@ var patrol_direction: int = 1
 
 @export var stats: AntStats
 
-var vida_actual: float = 0.0
+var integrantes_actuales: int = 0
+var daño_acumulado: float = 0.0
 var carga_actual: float = 0.0
 
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
@@ -37,7 +38,7 @@ func _ready():
 	sprite.play("walk")
 	_actualizar_color_estado()
 	if stats:
-		vida_actual= stats.vida
+		integrantes_actuales = stats.integrantes_max
 
 func _physics_process(delta):
 	match estado_actual:
@@ -122,3 +123,16 @@ func set_selected(value: bool):
 	selected = value
 	sprite.modulate = Color(1, 1, 1, 1)
 	selection_ring.set_selected(value)
+	
+
+func recibir_daño(cantidad: float):
+	if not stats:
+		return
+	daño_acumulado += cantidad * stats.defensa
+	while daño_acumulado >= stats.vida_por_hormiga:
+		daño_acumulado -= stats.vida_por_hormiga
+		integrantes_actuales -= 1
+		if integrantes_actuales <= 0:
+			integrantes_actuales = 0
+			queue_free()
+			return

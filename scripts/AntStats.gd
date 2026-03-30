@@ -6,8 +6,9 @@ extends Resource
 @export var casta: String = ""
 
 @export var velocidad: float = 100.0
-@export var vida: float = 100.0
+@export var integrantes_max: int = 50
+@export var vida_por_hormiga: float = 10.0
 @export var daño: float = 10.0
-@export var defensa: float = 5.0
+@export var defensa: float = 0.8
 @export var capacidad_carga: float = 10.0
 @export var reduccion_velocidad_carga: float = 0.5

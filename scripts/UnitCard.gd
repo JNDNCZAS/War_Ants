@@ -4,7 +4,7 @@ extends Control
 @onready var tooltip: PanelContainer = $Tooltip
 @onready var label_nombre: Label = $Tooltip/VBoxContainer/LabelNombre
 @onready var label_especie: Label = $Tooltip/VBoxContainer/LabelEspecie
-@onready var label_vida: Label = $Tooltip/VBoxContainer/LabelVida
+@onready var label_vida: Label = $Tooltip/VBoxContainer/LabelIntegrantes
 @onready var label_velocidad: Label = $Tooltip/VBoxContainer/LabelVelocidad
 @onready var label_daño: Label = $Tooltip/VBoxContainer/LabelDaño
 @onready var label_defensa: Label = $Tooltip/VBoxContainer/LabelDefensa
@@ -28,7 +28,7 @@ func setup(group):
 	if group.stats:
 		label_nombre.text = group.stats.nombre
 		label_especie.text = group.stats.especie
-		label_vida.text = "Vida: " + str(group.stats.vida)
+		label_vida.text = "Integrantes: " + str(group.integrantes_actuales)
 		label_velocidad.text = "Velocidad: " + str(group.stats.velocidad)
 		label_daño.text = "Daño: " + str(group.stats.daño)
 		label_defensa.text = "Defensa: " + str(group.stats.defensa)

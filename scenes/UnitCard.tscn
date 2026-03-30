@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b8hcppamrot2i"]
 
-[ext_resource type="Script" uid="uid://bc6e2piya3smi" path="res://UnitCard.gd" id="1_8172u"]
+[ext_resource type="Script" uid="uid://bc6e2piya3smi" path="res://scripts/UnitCard.gd" id="1_8172u"]
 
 [node name="UnitCard" type="Control"]
 custom_minimum_size = Vector2(80, 80)
@@ -43,7 +43,7 @@ layout_mode = 2
 [node name="LabelEspecie" type="Label" parent="Tooltip/VBoxContainer"]
 layout_mode = 2
 
-[node name="LabelVida" type="Label" parent="Tooltip/VBoxContainer"]
+[node name="LabelIntegrantes" type="Label" parent="Tooltip/VBoxContainer"]
 layout_mode = 2
 
 [node name="LabelVelocidad" type="Label" parent="Tooltip/VBoxContainer"]

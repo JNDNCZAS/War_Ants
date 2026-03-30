@@ -1,15 +1,16 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1774892316
+::res://::1774902079
 editorconfig.txt::TextFile/TextFile::-1::1774643548::0::1::::<><><>0<>0<><>::
 gitattributes.txt::TextFile/TextFile::-1::1774643553::0::1::::<><><>0<>0<><>::
 gitignore.txt::TextFile/TextFile::-1::1774643557::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D/CompressedTexture2D::4690851303043012731::1774643563::1774643568::1::::<><><>0<>0<>efc632b8f750734244e35424deeb672b<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+UnitCard.gd::GDScript::2591085967051776328::1774902079::0::1::::<>Control<><>0<>0<><>::
 ::res://assets/::1774574539
-::res://assets/tiles/::1774810821
+::res://assets/tiles/::1774892327
 Ants (1).png::CompressedTexture2D/CompressedTexture2D::1860029017497516782::1774667160::1774667160::1::::<><><>0<>0<>c88000f1d0e796d967c7fbdbe33c0466<>res://.godot/imported/Ants (1).png-9b0503ae13fc4b0da53bf99618f66507.ctex::
 Arbustos .png::CompressedTexture2D/CompressedTexture2D::6753547288544455155::1774650160::1774650227::1::::<><><>0<>0<>7c3433ff28a7d0f95cf8e9683aabd9f0<>res://.godot/imported/Arbustos .png-5d15d6fdd4c973ff0acd3293ad1bd6eb.ctex::
 Cespe.png::CompressedTexture2D/CompressedTexture2D::756910323585270457::1774650435::1774650470::1::::<><><>0<>0<>f3fd78bec4019f20c448c17ce9624580<>res://.godot/imported/Cespe.png-420ab03cf43ddf96530c5a94040dae32.ctex::
-Fondos.tres::TileSet::8597386336237253510::1774810821::0::1::::<><><>0<>0<><>::uid://c3hp64lhsg8lj::::res://assets/tiles/Arbustos .png<>uid://k1wg5a3q1bg0::::res://assets/tiles/Cespe.png<>uid://lpohmd3jah01::::res://assets/tiles/Rocas.png<>uid://drflsq3g24l0c::::res://assets/tiles/Rocas_en_agua.png
+Fondos.tres::TileSet::8597386336237253510::1774892327::0::1::::<><><>0<>0<><>::uid://c3hp64lhsg8lj::::res://assets/tiles/Arbustos .png<>uid://k1wg5a3q1bg0::::res://assets/tiles/Cespe.png<>uid://lpohmd3jah01::::res://assets/tiles/Rocas.png<>uid://drflsq3g24l0c::::res://assets/tiles/Rocas_en_agua.png
 Rocas.png::CompressedTexture2D/CompressedTexture2D::803906120984160472::1774650482::1774650500::1::::<><><>0<>0<>c1daac7e4ee989d8aa81082d88790804<>res://.godot/imported/Rocas.png-5ff2b851988ea626f77323a0acbb6769.ctex::
 Rocas_en_agua.png::CompressedTexture2D/CompressedTexture2D::8363495196844844760::1774650612::1774650817::1::::<><><>0<>0<>abab20fbed306a76d20be8e00e21530d<>res://.godot/imported/Rocas_en_agua.png-3cb913930ae041d194c62ea84425f03e.ctex::
 Water Background color.png::CompressedTexture2D/CompressedTexture2D::516390577737435624::1774569820::1774574551::1::::<><><>0<>0<>ddd3d25fa1ec779f5595268098644773<>res://.godot/imported/Water Background color.png-baecde6c57291acb84de40f16687bd17.ctex::
@@ -39,13 +40,14 @@ solenopsis_obrera_diminuta.tres::Resource/AntStats::4318118654371045794::1774840
 solenopsis_obrera_mayor.tres::Resource/AntStats::7016337801507383507::1774840174::0::1::::<><><>0<>0<><>::uid://hyfgvjeyutgd::::res://scripts/AntStats.gd
 solenopsis_obrera_menor.tres::Resource/AntStats::1021142434059602053::1774840174::0::1::::<><><>0<>0<><>::uid://hyfgvjeyutgd::::res://scripts/AntStats.gd
 solenopsis_reina.tres::Resource/AntStats::3060673972145929006::1774840174::0::1::::<><><>0<>0<><>::uid://hyfgvjeyutgd::::res://scripts/AntStats.gd
-::res://scenes/::1774841898
-AntGroup.tscn::PackedScene::5190775644244742925::1774841888::0::1::::<><><>0<>0<><>::uid://dk4v4ujn4nhwt::::res://scripts/AntGroup.gd<>uid://0aq4iv5uqa6x::::res://scripts/SelectionRing.gd<>uid://1ran2r5kiwbu::::res://assets/tiles/Ants (1).png
-Main.tscn::PackedScene::6347980253575037490::1774841898::0::1::::<><><>0<>0<><>::uid://c3hp64lhsg8lj::::res://assets/tiles/Arbustos .png<>uid://cf7pk035e6ogr::::res://scenes/AntGroup.tscn<>uid://duqvxxtsnwwqo::::res://assets/tiles/Fondos.tres<>uid://npxj262gdt0f::::res://scripts/GameController.gd<>uid://k1wg5a3q1bg0::::res://assets/tiles/Cespe.png<>uid://csfytaon5khe8::::res://scripts/camera_2d.gd<>uid://bsanlfib51a5q::::res://scripts/ui.gd<>uid://c2poig6dxpose::::res://data/stats/atta_obrera_menor.tres<>uid://na31xh8fyot1::::res://data/stats/atta_reina.tres<>uid://4mik4f7ggkjr::::res://data/stats/atta_obrera_minima.tres<>uid://15u8ig1d6emw::::res://data/stats/atta_macho.tres
-::res://scripts/::1774840174
+::res://scenes/::1774902243
+AntGroup.tscn::PackedScene::5190775644244742925::1774902243::0::1::::<><><>0<>0<><>::uid://dk4v4ujn4nhwt::::res://scripts/AntGroup.gd<>uid://0aq4iv5uqa6x::::res://scripts/SelectionRing.gd<>uid://1ran2r5kiwbu::::res://assets/tiles/Ants (1).png
+Main.tscn::PackedScene::6347980253575037490::1774902243::0::1::::<><><>0<>0<><>::uid://c3hp64lhsg8lj::::res://assets/tiles/Arbustos .png<>uid://cf7pk035e6ogr::::res://scenes/AntGroup.tscn<>uid://duqvxxtsnwwqo::::res://assets/tiles/Fondos.tres<>uid://npxj262gdt0f::::res://scripts/GameController.gd<>uid://k1wg5a3q1bg0::::res://assets/tiles/Cespe.png<>uid://csfytaon5khe8::::res://scripts/camera_2d.gd<>uid://bsanlfib51a5q::::res://scripts/ui.gd<>uid://c2poig6dxpose::::res://data/stats/atta_obrera_menor.tres<>uid://na31xh8fyot1::::res://data/stats/atta_reina.tres<>uid://4mik4f7ggkjr::::res://data/stats/atta_obrera_minima.tres<>uid://15u8ig1d6emw::::res://data/stats/atta_macho.tres
+UnitCard.tscn::PackedScene::4717252177339462634::1774904810::0::1::::<><><>0<>0<><>::uid://bc6e2piya3smi::::res://UnitCard.gd
+::res://scripts/::1774895385
 AntGroup.gd::GDScript::7922345352198874931::1774840174::0::1::::AntGroup<>CharacterBody2D<><>0<>0<><>::
 AntStats.gd::GDScript::541182388399137787::1774833409::0::1::::AntStats<>Resource<><>0<>0<><>::
 camera_2d.gd::GDScript/GDScript::6048053601810085781::1774649371::0::1::::<>Camera2D<><>0<>0<><>::
-GameController.gd::GDScript/GDScript::944834663838396347::1774757249::0::1::::<>Node<><>0<>0<><>::
+GameController.gd::GDScript::944834663838396347::1774895385::0::1::::<>Node<><>0<>0<><>::
 SelectionRing.gd::GDScript/GDScript::1755744804876428277::1774758615::0::1::::<>Node2D<><>0<>0<><>::
-ui.gd::GDScript/GDScript::3650629108878336348::1774754974::0::1::::<>CanvasLayer<><>0<>0<><>::
+ui.gd::GDScript::3650629108878336348::1774895385::0::1::::<>CanvasLayer<><>0<>0<><>::
