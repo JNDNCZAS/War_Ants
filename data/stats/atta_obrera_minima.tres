@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AntStats" load_steps=2 format=3 uid="uid://4mik4f7ggkjr"]
+
+[ext_resource type="Script" uid="uid://hyfgvjeyutgd" path="res://scripts/AntStats.gd" id="1_6ebvq"]
+
+[resource]
+script = ExtResource("1_6ebvq")
+nombre = "Obrera Mínima"
+especie = "Atta cephalotes"
+casta = "obrera_minima"
+velocidad = 80.0
+vida = 30.0
+"daño" = 2.0
+defensa = 3.0
+capacidad_carga = 5.0
+reduccion_velocidad_carga = 0.9
+metadata/_custom_type_script = "uid://hyfgvjeyutgd"

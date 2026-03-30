@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AntStats" load_steps=2 format=3 uid="uid://oruvh1nwlcla"]
+
+[ext_resource type="Script" uid="uid://hyfgvjeyutgd" path="res://scripts/AntStats.gd" id="1_fssqf"]
+
+[resource]
+script = ExtResource("1_fssqf")
+nombre = "Supersoldado"
+especie = "Atta cephalotes"
+casta = "supersoldado"
+velocidad = 70.0
+vida = 120.0
+"daño" = 25.0
+defensa = 20.0
+capacidad_carga = 50.0
+reduccion_velocidad_carga = 0.5
+metadata/_custom_type_script = "uid://hyfgvjeyutgd"

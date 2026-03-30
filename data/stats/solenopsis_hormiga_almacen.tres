@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AntStats" load_steps=2 format=3 uid="uid://cq5unr5u27vv1"]
+
+[ext_resource type="Script" uid="uid://hyfgvjeyutgd" path="res://scripts/AntStats.gd" id="1_xs3lp"]
+
+[resource]
+script = ExtResource("1_xs3lp")
+nombre = "Hormiga Almacén"
+especie = "Solenopsis invicta"
+casta = "hormiga_almacen"
+velocidad = 60.0
+vida = 50.0
+"daño" = 2.0
+defensa = 5.0
+capacidad_carga = 50.0
+reduccion_velocidad_carga = 0.4
+metadata/_custom_type_script = "uid://hyfgvjeyutgd"

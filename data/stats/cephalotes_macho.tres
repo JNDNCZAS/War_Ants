@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AntStats" load_steps=2 format=3 uid="uid://yo6i7m7bg48m"]
+
+[ext_resource type="Script" uid="uid://hyfgvjeyutgd" path="res://scripts/AntStats.gd" id="1_l4viw"]
+
+[resource]
+script = ExtResource("1_l4viw")
+nombre = "Macho"
+especie = "Cephalotes varians"
+casta = "macho"
+velocidad = 110.0
+vida = 20.0
+"daño" = 1.0
+defensa = 2.0
+capacidad_carga = 1.0
+reduccion_velocidad_carga = 0.95
+metadata/_custom_type_script = "uid://hyfgvjeyutgd"

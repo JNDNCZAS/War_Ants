@@ -20,6 +20,11 @@ var patrol_points: Array = []
 var patrol_index: int = 0
 var patrol_direction: int = 1
 
+@export var stats: AntStats
+
+var vida_actual: float = 0.0
+var carga_actual: float = 0.0
+
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var selection_ring: Node2D = $SelectionRing
@@ -31,6 +36,8 @@ func _ready():
 	set_selected(false)
 	sprite.play("walk")
 	_actualizar_color_estado()
+	if stats:
+		vida_actual= stats.vida
 
 func _physics_process(delta):
 	match estado_actual:
@@ -54,7 +61,7 @@ func _tick_esperando():
 			return
 		var next = nav_agent.get_next_path_position()
 		var direction = (next - global_position).normalized()
-		velocity = direction * SPEED
+		velocity = direction * stats.velocidad if stats else direction * 100.0
 		move_and_slide()
 		if direction != Vector2.ZERO:
 			sprite.rotation = direction.angle() - PI / 2
@@ -71,7 +78,7 @@ func _tick_patrullando():
 			return
 		var next = nav_agent.get_next_path_position()
 		var direction = (next - global_position).normalized()
-		velocity = direction * SPEED
+		velocity = direction * stats.velocidad if stats else direction * 100.0
 		move_and_slide()
 		if direction != Vector2.ZERO:
 			sprite.rotation = direction.angle() - PI / 2

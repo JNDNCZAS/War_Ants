@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AntStats" load_steps=2 format=3 uid="uid://bxcaqkt7m10b4"]
+
+[ext_resource type="Script" uid="uid://hyfgvjeyutgd" path="res://scripts/AntStats.gd" id="1_5rtbt"]
+
+[resource]
+script = ExtResource("1_5rtbt")
+nombre = "Soldado Tapón"
+especie = "Cephalotes varians"
+casta = "soldado_tapon"
+velocidad = 50.0
+vida = 100.0
+"daño" = 5.0
+defensa = 35.0
+capacidad_carga = 5.0
+reduccion_velocidad_carga = 0.9
+metadata/_custom_type_script = "uid://hyfgvjeyutgd"

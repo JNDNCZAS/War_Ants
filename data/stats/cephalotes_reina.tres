@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AntStats" load_steps=2 format=3 uid="uid://h60vj70jlrv5"]
+
+[ext_resource type="Script" uid="uid://hyfgvjeyutgd" path="res://scripts/AntStats.gd" id="1_b28g8"]
+
+[resource]
+script = ExtResource("1_b28g8")
+nombre = "Reina"
+especie = "Cephalotes varians"
+casta = "reina"
+velocidad = 40.0
+vida = 400.0
+"daño" = 5.0
+defensa = 40.0
+capacidad_carga = 5.0
+reduccion_velocidad_carga = 0.9
+metadata/_custom_type_script = "uid://hyfgvjeyutgd"

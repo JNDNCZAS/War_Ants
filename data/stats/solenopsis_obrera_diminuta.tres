@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AntStats" load_steps=2 format=3 uid="uid://b2ry1vs5df12m"]
+
+[ext_resource type="Script" uid="uid://hyfgvjeyutgd" path="res://scripts/AntStats.gd" id="1_j3orx"]
+
+[resource]
+script = ExtResource("1_j3orx")
+nombre = "Obrera Diminuta"
+especie = "Solenopsis invicta"
+casta = "obrera_diminuta"
+velocidad = 100.0
+vida = 25.0
+"daño" = 4.0
+defensa = 3.0
+capacidad_carga = 8.0
+reduccion_velocidad_carga = 0.85
+metadata/_custom_type_script = "uid://hyfgvjeyutgd"

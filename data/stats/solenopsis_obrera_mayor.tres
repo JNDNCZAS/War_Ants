@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AntStats" load_steps=2 format=3 uid="uid://c671b8u6xod5l"]
+
+[ext_resource type="Script" uid="uid://hyfgvjeyutgd" path="res://scripts/AntStats.gd" id="1_nujt5"]
+
+[resource]
+script = ExtResource("1_nujt5")
+nombre = "Obrera Mayor"
+especie = "Solenopsis invicta"
+casta = "obrera_mayor"
+velocidad = 100.0
+vida = 70.0
+"daño" = 15.0
+defensa = 10.0
+capacidad_carga = 25.0
+reduccion_velocidad_carga = 0.65
+metadata/_custom_type_script = "uid://hyfgvjeyutgd"

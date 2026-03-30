@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AntStats" load_steps=2 format=3 uid="uid://bpldjtb3npytf"]
+
+[ext_resource type="Script" uid="uid://hyfgvjeyutgd" path="res://scripts/AntStats.gd" id="1_j15yg"]
+
+[resource]
+script = ExtResource("1_j15yg")
+nombre = "Reina"
+especie = "Oecophylla smaragdina"
+casta = "reina"
+velocidad = 40.0
+vida = 450.0
+"daño" = 8.0
+defensa = 25.0
+capacidad_carga = 5.0
+reduccion_velocidad_carga = 0.9
+metadata/_custom_type_script = "uid://hyfgvjeyutgd"

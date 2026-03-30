@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AntStats" load_steps=2 format=3 uid="uid://5xvdlqe1s57a"]
+
+[ext_resource type="Script" uid="uid://hyfgvjeyutgd" path="res://scripts/AntStats.gd" id="1_61qsw"]
+
+[resource]
+script = ExtResource("1_61qsw")
+nombre = "Macho"
+especie = "Solenopsis invicta"
+casta = "macho"
+velocidad = 120.0
+vida = 20.0
+"daño" = 1.0
+defensa = 1.0
+capacidad_carga = 1.0
+reduccion_velocidad_carga = 0.95
+metadata/_custom_type_script = "uid://hyfgvjeyutgd"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AntStats" load_steps=2 format=3 uid="uid://bq358mcotstd1"]
+
+[ext_resource type="Script" uid="uid://hyfgvjeyutgd" path="res://scripts/AntStats.gd" id="1_r2wv0"]
+
+[resource]
+script = ExtResource("1_r2wv0")
+nombre = "Obrera Menor"
+especie = "Oecophylla smaragdina"
+casta = "obrera_menor"
+velocidad = 110.0
+vida = 40.0
+"daño" = 6.0
+defensa = 5.0
+capacidad_carga = 10.0
+reduccion_velocidad_carga = 0.75
+metadata/_custom_type_script = "uid://hyfgvjeyutgd"

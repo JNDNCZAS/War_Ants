@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AntStats" load_steps=2 format=3 uid="uid://ph88gbvhm6r5"]
+
+[ext_resource type="Script" uid="uid://hyfgvjeyutgd" path="res://scripts/AntStats.gd" id="1_sn6rg"]
+
+[resource]
+script = ExtResource("1_sn6rg")
+nombre = "Vigilante"
+especie = "Atta cephalotes"
+casta = "vigilante"
+velocidad = 100.0
+vida = 20.0
+"daño" = 5.0
+defensa = 2.0
+capacidad_carga = 2.0
+reduccion_velocidad_carga = 0.95
+metadata/_custom_type_script = "uid://hyfgvjeyutgd"

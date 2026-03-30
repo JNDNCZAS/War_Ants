@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AntStats" load_steps=2 format=3 uid="uid://bc34uyyi8tif5"]
+
+[ext_resource type="Script" uid="uid://hyfgvjeyutgd" path="res://scripts/AntStats.gd" id="1_rlnuh"]
+
+[resource]
+script = ExtResource("1_rlnuh")
+nombre = "Obrera Mayor"
+especie = "Atta cephalotes"
+casta = "obrera_mayor"
+velocidad = 90.0
+vida = 80.0
+"daño" = 15.0
+defensa = 12.0
+capacidad_carga = 40.0
+reduccion_velocidad_carga = 0.6
+metadata/_custom_type_script = "uid://hyfgvjeyutgd"
