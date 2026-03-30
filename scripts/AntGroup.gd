@@ -62,7 +62,7 @@ func _tick_esperando():
 			return
 		var next = nav_agent.get_next_path_position()
 		var direction = (next - global_position).normalized()
-		velocity = direction * stats.velocidad if stats else direction * 100.0
+		velocity = direction * (stats.velocidad if stats else SPEED)
 		move_and_slide()
 		if direction != Vector2.ZERO:
 			sprite.rotation = direction.angle() - PI / 2
@@ -71,6 +71,8 @@ func _tick_esperando():
 		sprite.stop()
 
 func _tick_patrullando():
+	print("velocidad stats: ", stats.velocidad if stats else "sin stats")
+	print("velocity actual: ", velocity)
 	if patrol_points.is_empty():
 		return
 	if patrol_points.size() == 1:
@@ -79,7 +81,7 @@ func _tick_patrullando():
 			return
 		var next = nav_agent.get_next_path_position()
 		var direction = (next - global_position).normalized()
-		velocity = direction * stats.velocidad if stats else direction * 100.0
+		velocity = direction * (stats.velocidad if stats else SPEED)
 		move_and_slide()
 		if direction != Vector2.ZERO:
 			sprite.rotation = direction.angle() - PI / 2
@@ -96,7 +98,7 @@ func _tick_patrullando():
 		nav_agent.target_position = patrol_points[patrol_index]
 	var next = nav_agent.get_next_path_position()
 	var direction = (next - global_position).normalized()
-	velocity = direction * SPEED
+	velocity = direction * (stats.velocidad if stats else SPEED)
 	move_and_slide()
 	if direction != Vector2.ZERO:
 		sprite.rotation = direction.angle() - PI / 2

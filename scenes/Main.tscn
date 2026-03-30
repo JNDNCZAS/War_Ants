@@ -423,7 +423,7 @@ stats = ExtResource("7_wp0k4")
 [node name="AntGroup6" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(72, 292)
 color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
-stats = ExtResource("7_wp0k4")
+stats = ExtResource("6_wp0k4")
 
 [node name="AntGroup7" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(212, 141)
