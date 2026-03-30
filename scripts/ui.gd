@@ -14,6 +14,9 @@ var spawn_polygon: Array = [
 @onready var spawn_zone: Polygon2D = get_tree().get_root().get_node("Main/SpawnZone")
 @onready var selection_label: Label = $SelectionLabel
 @onready var total_label: Label = $TotalLabel
+const UnitCardScene = preload("res://scenes/UnitCard.tscn")
+
+@onready var unit_container: HBoxContainer = $BottomPanel/UnitContainer
 
 func _process(_delta):
 	total_label.text = "Grupos en mapa: " + str(ant_groups_container.get_child_count())
@@ -63,3 +66,12 @@ func _polygon_center(polygon: Array) -> Vector2:
 	for point in polygon:
 		center += point
 	return center / polygon.size()
+
+
+func _actualizar_panel(selected_groups: Array):
+	for child in unit_container.get_children():
+		child.queue_free()
+	for group in selected_groups:
+		var card = UnitCardScene.instantiate()
+		unit_container.add_child(card)
+		card.setup(group)

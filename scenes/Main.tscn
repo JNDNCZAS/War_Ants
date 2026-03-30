@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://cwpakpjdji7u1"]
+[gd_scene load_steps=16 format=4 uid="uid://cwpakpjdji7u1"]
 
 [ext_resource type="Texture2D" uid="uid://c3hp64lhsg8lj" path="res://assets/tiles/Arbustos .png" id="1_q8u5g"]
 [ext_resource type="PackedScene" uid="uid://cf7pk035e6ogr" path="res://scenes/AntGroup.tscn" id="1_rvslj"]
@@ -7,7 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://k1wg5a3q1bg0" path="res://assets/tiles/Cespe.png" id="2_lhr70"]
 [ext_resource type="Script" uid="uid://csfytaon5khe8" path="res://scripts/camera_2d.gd" id="3_0bbpv"]
 [ext_resource type="Script" uid="uid://bsanlfib51a5q" path="res://scripts/ui.gd" id="4_rarhs"]
-[ext_resource type="Resource" uid="uid://bc34uyyi8tif5" path="res://data/stats/atta_obrera_mayor.tres" id="5_jlsqs"]
+[ext_resource type="Resource" uid="uid://c2poig6dxpose" path="res://data/stats/atta_obrera_menor.tres" id="5_lhr70"]
+[ext_resource type="Resource" uid="uid://na31xh8fyot1" path="res://data/stats/atta_reina.tres" id="6_wp0k4"]
+[ext_resource type="Resource" uid="uid://4mik4f7ggkjr" path="res://data/stats/atta_obrera_minima.tres" id="7_wp0k4"]
+[ext_resource type="Resource" uid="uid://15u8ig1d6emw" path="res://data/stats/atta_macho.tres" id="8_bjd11"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c01mt"]
 texture = ExtResource("2_lhr70")
@@ -397,50 +400,50 @@ color = Color(0, 1, 0, 0)
 [node name="AntGroup" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(166, 199)
 color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
-stats = ExtResource("5_jlsqs")
+stats = ExtResource("5_lhr70")
 
 [node name="AntGroup2" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(233, 215)
-stats = ExtResource("5_jlsqs")
+stats = ExtResource("6_wp0k4")
 
 [node name="AntGroup3" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(165, 141)
-stats = ExtResource("5_jlsqs")
+stats = ExtResource("7_wp0k4")
 
 [node name="AntGroup4" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(77, 252)
 color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
-stats = ExtResource("5_jlsqs")
+stats = ExtResource("8_bjd11")
 
 [node name="AntGroup5" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(68, 204)
 color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
-stats = ExtResource("5_jlsqs")
+stats = ExtResource("7_wp0k4")
 
 [node name="AntGroup6" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(72, 292)
 color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
-stats = ExtResource("5_jlsqs")
+stats = ExtResource("7_wp0k4")
 
 [node name="AntGroup7" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(212, 141)
 color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
-stats = ExtResource("5_jlsqs")
+stats = ExtResource("7_wp0k4")
 
 [node name="AntGroup8" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(119, 160)
 color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
-stats = ExtResource("5_jlsqs")
+stats = ExtResource("7_wp0k4")
 
 [node name="AntGroup9" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(263, 166)
 color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
-stats = ExtResource("5_jlsqs")
+stats = ExtResource("7_wp0k4")
 
 [node name="AntGroup10" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(164, 235)
 color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
-stats = ExtResource("5_jlsqs")
+stats = ExtResource("7_wp0k4")
 
 [node name="SelectionRect" type="ColorRect" parent="."]
 mouse_filter = 2
@@ -482,3 +485,17 @@ offset_top = 140.0
 offset_right = 226.0
 offset_bottom = 163.0
 text = "Grupos en mapa: 0"
+
+[node name="BottomPanel" type="PanelContainer" parent="UI"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(0, 100)
+
+[node name="UnitContainer" type="HBoxContainer" parent="UI/BottomPanel"]
+layout_mode = 2
+alignment = 1

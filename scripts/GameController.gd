@@ -2,6 +2,7 @@ extends Node
 
 @onready var ant_groups_container = $"../AntGroups"
 @onready var selection_rect_node: ColorRect = $"../SelectionRect"
+@onready var ui = $"../UI"
 
 var selected_groups: Array = []
 var drag_start: Vector2 = Vector2.ZERO
@@ -70,6 +71,7 @@ func _handle_single_click(world_pos: Vector2, event: InputEventMouseButton):
 			_toggle_select(group)
 			break
 	_update_selection_label()
+	ui._actualizar_panel(selected_groups)
 
 func _finish_drag_selection(end_pos: Vector2):
 	var rect = Rect2(drag_start, Vector2.ZERO).expand(end_pos)
@@ -79,6 +81,7 @@ func _finish_drag_selection(end_pos: Vector2):
 		if rect.has_point(group.global_position):
 			_select(group)
 	_update_selection_label()
+	ui._actualizar_panel(selected_groups)
 
 func _issue_move_order(world_pos: Vector2):
 	var count = selected_groups.size()
@@ -122,6 +125,7 @@ func _deselect_all():
 		group.set_selected(false)
 	selected_groups.clear()
 	_update_selection_label()
+	ui._actualizar_panel(selected_groups)
 
 func _update_selection_rect(start: Vector2, end: Vector2):
 	var rect = Rect2(start, Vector2.ZERO).expand(end)
