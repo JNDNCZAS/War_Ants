@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://brqdbwlrrmerw"]
 
-[ext_resource type="Script" uid="uid://bmnei8lsckhx1" path="res://AntHill.gd" id="1_ysn4t"]
+[ext_resource type="Script" uid="uid://bmnei8lsckhx1" path="res://scripts/AntHill.gd" id="1_ysn4t"]
 [ext_resource type="Texture2D" uid="uid://cyb03ix8kuksd" path="res://assets/Anthill.png" id="2_cnsje"]
 
 [node name="Anthill" type="Area2D"]

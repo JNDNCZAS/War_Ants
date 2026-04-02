@@ -1,7 +1,16 @@
 extends Control
 
+#==================================================
+# REFERENCIAS A NODOS VISUALES PRINCIPALES
+#==================================================
+
 @onready var texture_rect: TextureRect = $CardBG/TextureRect
 @onready var tooltip: PanelContainer = $Tooltip
+
+#==================================================
+# REFERENCIAS A LABELS DEL TOOLTIP
+#==================================================
+
 @onready var label_nombre: Label = $Tooltip/VBoxContainer/LabelNombre
 @onready var label_especie: Label = $Tooltip/VBoxContainer/LabelEspecie
 @onready var label_vida: Label = $Tooltip/VBoxContainer/LabelIntegrantes
@@ -11,7 +20,12 @@ extends Control
 @onready var label_carga: Label = $Tooltip/VBoxContainer/LabelCarga
 @onready var label_reduccion: Label = $Tooltip/VBoxContainer/LabelReduccion
 
+#==================================================
+# DATOS ASOCIADOS
+#==================================================
+
 var ant_group = null
+
 
 func _ready():
 	tooltip.top_level = true

@@ -10,3 +10,4 @@ res://scripts/AntGroup.gd
 res://AntHill.gd
 res://scripts/ui.gd
 res://scripts/camera_2d.gd
+res://scripts/UnitCard.gd
