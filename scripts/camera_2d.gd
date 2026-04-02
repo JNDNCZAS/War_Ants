@@ -1,14 +1,32 @@
 extends Camera2D
 
+#==================================================
+# CONFIGURACIÓN DE MOVIMIENTO
+#==================================================
+
 @export var speed: float = 600.0
+
+#==================================================
+# LÍMITES DEL MAPA (CONFIGURABLES)
+#==================================================
+
 @export var map_limit_left: float = 0.0
 @export var map_limit_top: float = 0.0
 @export var map_limit_right: float = 4096.0
 @export var map_limit_bottom: float = 2048.0
 
+#==================================================
+# CONFIGURACIÓN DE ZOOM
+#==================================================
+
 @export var zoom_speed: float = 0.1
 @export var zoom_min: float = 0.5
 @export var zoom_max: float = 2.0
+
+#==================================================
+# LÍMITES INTERNOS CALCULADOS
+# (dependen del tamaño de pantalla)
+#==================================================
 
 var _limit_left: float
 var _limit_top: float

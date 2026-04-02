@@ -1,43 +1,75 @@
 class_name AntGroup
 extends CharacterBody2D
 
+#==================================================
+# CONSTANTES
+#==================================================
+
 const SPEED = 120.0
 const ARRIVAL_THRESHOLD = 8.0
 
-enum Estado { ESPERANDO, PATRULLANDO, RECOLECTANDO, TRANSPORTANDO }
-
-const COLOR_ESPERANDO    = Color(1, 1, 0, 0.9)
-const COLOR_PATRULLANDO  = Color(0, 0.6, 1, 0.9)
-const COLOR_RECOLECTANDO = Color(0, 1, 0.2, 0.9)
+const COLOR_ESPERANDO     = Color(1, 1, 0, 0.9)
+const COLOR_PATRULLANDO   = Color(0, 0.6, 1, 0.9)
+const COLOR_RECOLECTANDO  = Color(0, 1, 0.2, 0.9)
 const COLOR_TRANSPORTANDO = Color(1, 0.5, 0, 0.9)
 
-var target_tree = null
-var target_anthill = null
-var hojas_cargadas: float = 0.0
-var timer_recoleccion: float = 0.0
-var timer_descarga: float = 0.0
+#==================================================
+# ENUMS
+#==================================================
+
+enum Estado {ESPERANDO, PATRULLANDO, RECOLECTANDO, TRANSPORTANDO}
+
+#==================================================
+# VARIABLES EXPORTADAS
+#==================================================
 
 @export var color_normal: Color = Color(1, 1, 1, 1)
 @export var color_selected: Color = Color(1, 1, 1, 1)
-
-var selected: bool = false
-var moving: bool = false
-var estado_actual: Estado = Estado.ESPERANDO
-
-var patrol_points: Array = []
-var patrol_index: int = 0
-var patrol_direction: int = 1
-
 @export var stats: AntStats
 
-var integrantes_actuales: int = 0
-var daño_acumulado: float = 0.0
-var carga_actual: float = 0.0
+#==================================================
+# REFERENCIAS A NODOS
+#==================================================
 
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var selection_ring: Node2D = $SelectionRing
 
+#==================================================
+# ESTADO GENERAL
+#==================================================
+
+var estado_actual: Estado = Estado.ESPERANDO
+var selected: bool = false
+var moving: bool = false
+
+#==================================================
+# PATRULLA
+#==================================================
+
+var patrol_points: Array = []
+var patrol_index: int = 0
+var patrol_direction: int = 1
+
+#==================================================
+# RECOLECCIÓN Y TRANSPORTE
+#==================================================
+
+var target_tree = null
+var target_anthill = null
+
+var hojas_cargadas: float = 0.0
+var carga_actual: float = 0.0
+
+var timer_recoleccion: float = 0.0
+var timer_descarga: float = 0.0
+
+#==================================================
+# VIDA Y COMBATE
+#==================================================
+
+var integrantes_actuales: int = 0
+var daño_acumulado: float = 0.0
 func _ready():
 	await get_tree().physics_frame
 	nav_agent.path_desired_distance = ARRIVAL_THRESHOLD

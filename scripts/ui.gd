@@ -1,6 +1,15 @@
 extends CanvasLayer
 
+#==================================================
+# PRELOADS
+#==================================================
+
 const AntGroupScene = preload("res://scenes/AntGroup.tscn")
+const UnitCardScene = preload("res://scenes/UnitCard.tscn")
+
+#==================================================
+# CONFIGURACIÓN DE SPAWN
+#==================================================
 
 var spawn_polygon: Array = [
 	Vector2(100, 100),
@@ -9,17 +18,28 @@ var spawn_polygon: Array = [
 	Vector2(100, 300)
 ]
 
+#==================================================
+# REFERENCIAS A NODOS UI
+#==================================================
+
+@onready var label_hojas: Label = $ResourcePanel/VBoxContainer/LabelHojas
 @onready var spawn_button: Button = $SpawnButton
-@onready var ant_groups_container = get_tree().get_root().get_node("Main/AntGroups")
-@onready var spawn_zone: Polygon2D = get_tree().get_root().get_node("Main/SpawnZone")
 @onready var selection_label: Label = $SelectionLabel
 @onready var total_label: Label = $TotalLabel
-const UnitCardScene = preload("res://scenes/UnitCard.tscn")
-
 @onready var unit_container: HBoxContainer = $BottomPanel/UnitContainer
+
+#==================================================
+# REFERENCIAS A NODOS DEL MUNDO
+#==================================================
+
+@onready var ant_groups_container = get_tree().get_root().get_node("Main/AntGroups")
+@onready var spawn_zone: Polygon2D = get_tree().get_root().get_node("Main/SpawnZone")
+@onready var anthill = get_tree().get_first_node_in_group("anthill")
 
 func _process(_delta):
 	total_label.text = "Grupos en mapa: " + str(ant_groups_container.get_child_count())
+	if anthill:
+		label_hojas.text = "Hojas: " + str(anthill.hojas_almacenadas)
 
 func _ready():
 	spawn_button.pressed.connect(_on_spawn_pressed)

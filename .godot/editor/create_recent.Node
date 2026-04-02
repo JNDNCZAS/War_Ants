@@ -1,3 +1,6 @@
+Label
+VBoxContainer
+PanelContainer
 Node2D
 CollisionPolygon2D
 Sprite2D
@@ -6,10 +9,6 @@ Area2D
 AnimatedSprite2D
 StaticBody2D
 ColorRect
-PanelContainer
 Control
-Label
-VBoxContainer
 TextureRect
 HBoxContainer
-CharacterBody2D

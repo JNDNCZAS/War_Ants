@@ -1,19 +1,42 @@
 extends Node
 
+#==================================================
+# CONSTANTES
+#==================================================
+
+const DRAG_THRESHOLD = 6.0
+
+#==================================================
+# REFERENCIAS A NODOS
+#==================================================
+
 @onready var ant_groups_container = $"../AntGroups"
 @onready var selection_rect_node: ColorRect = $"../SelectionRect"
 @onready var ui = $"../UI"
-
-var selected_groups: Array = []
-var drag_start: Vector2 = Vector2.ZERO
-var is_dragging: bool = false
-const DRAG_THRESHOLD = 6.0
-
-var harvest_mode: bool = false
 @onready var anthill = get_tree().get_first_node_in_group("anthill")
 
+#==================================================
+# SELECCIÓN DE GRUPOS
+#==================================================
+
+var selected_groups: Array = []
+
+var drag_start: Vector2 = Vector2.ZERO
+var is_dragging: bool = false
+
+#==================================================
+# MODOS DE CONTROL
+#==================================================
+
+var harvest_mode: bool = false
 var patrol_mode: bool = false
+
+#==================================================
+# SISTEMA DE PATRULLA
+#==================================================
+
 var patrol_points: Array = []
+
 
 func _ready():
 	selection_rect_node.visible = false
