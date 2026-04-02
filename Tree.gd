@@ -1,4 +1,4 @@
-class_name Tree
+class_name AntTree
 extends StaticBody2D
 
 @export var nombre: String = "Árbol"

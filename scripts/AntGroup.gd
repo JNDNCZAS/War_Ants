@@ -203,6 +203,7 @@ func _iniciar_recoleccion():
 	if target_tree == null:
 		return
 	estado_actual = Estado.RECOLECTANDO
+	nav_agent.target_desired_distance = 60
 	nav_agent.target_position = target_tree.global_position
 	_actualizar_color_estado()
 
@@ -210,6 +211,7 @@ func _iniciar_transporte():
 	if target_anthill == null:
 		return
 	estado_actual = Estado.TRANSPORTANDO
+	nav_agent.target_desired_distance = ARRIVAL_THRESHOLD
 	nav_agent.target_position = target_anthill.global_position
 	_actualizar_color_estado()
 

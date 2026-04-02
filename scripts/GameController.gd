@@ -55,7 +55,7 @@ func _handle_mouse_button(event: InputEventMouseButton):
 			selection_rect_node.visible = false
 	elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 		if Input.is_key_pressed(KEY_Z) and selected_groups.size() > 0:
-		   patrol_points.append(world_pos)
+			patrol_points.append(world_pos)
 		elif harvest_mode and selected_groups.size() > 0:
 			_handle_harvest_click(world_pos)
 		elif event.double_click:
