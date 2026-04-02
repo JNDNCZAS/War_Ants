@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://cwpakpjdji7u1"]
+[gd_scene load_steps=18 format=4 uid="uid://cwpakpjdji7u1"]
 
 [ext_resource type="Texture2D" uid="uid://c3hp64lhsg8lj" path="res://assets/tiles/Arbustos .png" id="1_q8u5g"]
 [ext_resource type="PackedScene" uid="uid://cf7pk035e6ogr" path="res://scenes/AntGroup.tscn" id="1_rvslj"]
@@ -11,6 +11,8 @@
 [ext_resource type="Resource" uid="uid://na31xh8fyot1" path="res://data/stats/atta_reina.tres" id="6_wp0k4"]
 [ext_resource type="Resource" uid="uid://4mik4f7ggkjr" path="res://data/stats/atta_obrera_minima.tres" id="7_wp0k4"]
 [ext_resource type="Resource" uid="uid://15u8ig1d6emw" path="res://data/stats/atta_macho.tres" id="8_bjd11"]
+[ext_resource type="PackedScene" uid="uid://brqdbwlrrmerw" path="res://scenes/AntHill.tscn" id="12_qmy6f"]
+[ext_resource type="PackedScene" uid="uid://6wnafppble4s" path="res://scenes/tree.tscn" id="13_mwfav"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c01mt"]
 texture = ExtResource("2_lhr70")
@@ -499,3 +501,21 @@ pivot_offset = Vector2(0, 100)
 [node name="UnitContainer" type="HBoxContainer" parent="UI/BottomPanel"]
 layout_mode = 2
 alignment = 1
+
+[node name="Anthill" parent="." groups=["anthill"] instance=ExtResource("12_qmy6f")]
+position = Vector2(159, 513)
+scale = Vector2(0.5, 0.5)
+
+[node name="Trees" type="Node2D" parent="."]
+
+[node name="Tree" parent="Trees" groups=["trees"] instance=ExtResource("13_mwfav")]
+position = Vector2(899, 276)
+scale = Vector2(0.6, 0.6)
+
+[node name="Tree2" parent="Trees" groups=["trees"] instance=ExtResource("13_mwfav")]
+position = Vector2(956, 545)
+scale = Vector2(0.6, 0.6)
+
+[node name="Tree3" parent="Trees" groups=["trees"] instance=ExtResource("13_mwfav")]
+position = Vector2(902, 703)
+scale = Vector2(0.6, 0.6)

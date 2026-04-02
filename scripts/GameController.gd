@@ -9,6 +9,9 @@ var drag_start: Vector2 = Vector2.ZERO
 var is_dragging: bool = false
 const DRAG_THRESHOLD = 6.0
 
+var harvest_mode: bool = false
+@onready var anthill = get_tree().get_first_node_in_group("anthill")
+
 var patrol_mode: bool = false
 var patrol_points: Array = []
 
@@ -30,6 +33,11 @@ func _handle_key(event: InputEventKey):
 				group.set_patrol(patrol_points.duplicate())
 			print("patrulla enviada a ", selected_groups.size(), " grupos con ", patrol_points.size(), " puntos")
 		patrol_points.clear()
+	if event.keycode == KEY_R:
+		if event.pressed and selected_groups.size() > 0:
+			harvest_mode = true
+		elif not event.pressed:
+			harvest_mode = false
 
 func _handle_mouse_button(event: InputEventMouseButton):
 	var world_pos = _to_world(event.position)
@@ -45,6 +53,15 @@ func _handle_mouse_button(event: InputEventMouseButton):
 				_handle_single_click(world_pos, event)
 			is_dragging = false
 			selection_rect_node.visible = false
+	elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+		if Input.is_key_pressed(KEY_Z) and selected_groups.size() > 0:
+		   patrol_points.append(world_pos)
+		elif harvest_mode and selected_groups.size() > 0:
+			_handle_harvest_click(world_pos)
+		elif event.double_click:
+			_call_all_groups(world_pos)
+		elif selected_groups.size() > 0:
+			_issue_move_order(world_pos)
 
 	elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 		if Input.is_key_pressed(KEY_Z) and selected_groups.size() > 0:
@@ -139,3 +156,13 @@ func _update_selection_label():
 
 func _to_world(screen_pos: Vector2) -> Vector2:
 	return get_viewport().get_canvas_transform().affine_inverse() * screen_pos
+	
+	
+func _handle_harvest_click(world_pos: Vector2):
+	var trees = get_tree().get_nodes_in_group("trees")
+	for tree in trees:
+		if world_pos.distance_to(tree.global_position) < 120.0:
+			for group in selected_groups:
+				group.iniciar_recoleccion(tree, anthill)
+			harvest_mode = false
+			return

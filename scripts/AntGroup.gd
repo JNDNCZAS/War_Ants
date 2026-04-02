@@ -4,10 +4,18 @@ extends CharacterBody2D
 const SPEED = 120.0
 const ARRIVAL_THRESHOLD = 8.0
 
-enum Estado { ESPERANDO, PATRULLANDO }
+enum Estado { ESPERANDO, PATRULLANDO, RECOLECTANDO, TRANSPORTANDO }
 
-const COLOR_ESPERANDO  = Color(1, 1, 0, 0.9)      # amarillo
-const COLOR_PATRULLANDO = Color(0, 0.6, 1, 0.9)   # azul
+const COLOR_ESPERANDO    = Color(1, 1, 0, 0.9)
+const COLOR_PATRULLANDO  = Color(0, 0.6, 1, 0.9)
+const COLOR_RECOLECTANDO = Color(0, 1, 0.2, 0.9)
+const COLOR_TRANSPORTANDO = Color(1, 0.5, 0, 0.9)
+
+var target_tree = null
+var target_anthill = null
+var hojas_cargadas: float = 0.0
+var timer_recoleccion: float = 0.0
+var timer_descarga: float = 0.0
 
 @export var color_normal: Color = Color(1, 1, 1, 1)
 @export var color_selected: Color = Color(1, 1, 1, 1)
@@ -46,6 +54,10 @@ func _physics_process(delta):
 			_tick_esperando()
 		Estado.PATRULLANDO:
 			_tick_patrullando()
+		Estado.RECOLECTANDO:
+			_tick_recolectando(delta)
+		Estado.TRANSPORTANDO:
+			_tick_transportando(delta)
 
 func _actualizar_color_estado():
 	match estado_actual:
@@ -53,6 +65,10 @@ func _actualizar_color_estado():
 			selection_ring.set_estado_color(COLOR_ESPERANDO)
 		Estado.PATRULLANDO:
 			selection_ring.set_estado_color(COLOR_PATRULLANDO)
+		Estado.RECOLECTANDO:
+			selection_ring.set_estado_color(COLOR_RECOLECTANDO)
+		Estado.TRANSPORTANDO:
+			selection_ring.set_estado_color(COLOR_TRANSPORTANDO)
 
 func _tick_esperando():
 	if moving:
@@ -138,3 +154,66 @@ func recibir_daño(cantidad: float):
 			integrantes_actuales = 0
 			queue_free()
 			return
+
+func _tick_recolectando(delta):
+	if target_tree == null:
+		estado_actual = Estado.ESPERANDO
+		_actualizar_color_estado()
+		return
+	if not nav_agent.is_navigation_finished():
+		var next = nav_agent.get_next_path_position()
+		var direction = (next - global_position).normalized()
+		velocity = direction * (stats.velocidad if stats else SPEED)
+		move_and_slide()
+		if direction != Vector2.ZERO:
+			sprite.rotation = direction.angle() - PI / 2
+			sprite.play("walk")
+	else:
+		sprite.stop()
+		timer_recoleccion += delta
+		if timer_recoleccion >= stats.tiempo_recoleccion:
+			timer_recoleccion = 0.0
+			hojas_cargadas = stats.capacidad_carga
+			_iniciar_transporte()
+
+func _tick_transportando(delta):
+	if target_anthill == null:
+		estado_actual = Estado.ESPERANDO
+		_actualizar_color_estado()
+		return
+	if not nav_agent.is_navigation_finished():
+		var speed = (stats.velocidad if stats else SPEED) * stats.reduccion_velocidad_carga
+		var next = nav_agent.get_next_path_position()
+		var direction = (next - global_position).normalized()
+		velocity = direction * speed
+		move_and_slide()
+		if direction != Vector2.ZERO:
+			sprite.rotation = direction.angle() - PI / 2
+			sprite.play("walk")
+	else:
+		sprite.stop()
+		timer_descarga += delta
+		if timer_descarga >= stats.tiempo_descarga:
+			timer_descarga = 0.0
+			target_anthill.agregar_hojas(hojas_cargadas)
+			hojas_cargadas = 0.0
+			_iniciar_recoleccion()
+
+func _iniciar_recoleccion():
+	if target_tree == null:
+		return
+	estado_actual = Estado.RECOLECTANDO
+	nav_agent.target_position = target_tree.global_position
+	_actualizar_color_estado()
+
+func _iniciar_transporte():
+	if target_anthill == null:
+		return
+	estado_actual = Estado.TRANSPORTANDO
+	nav_agent.target_position = target_anthill.global_position
+	_actualizar_color_estado()
+
+func iniciar_recoleccion(tree, anthill):
+	target_tree = tree
+	target_anthill = anthill
+	_iniciar_recoleccion()

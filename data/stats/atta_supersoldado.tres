@@ -14,4 +14,6 @@ vida_por_hormiga = 60.0
 defensa = 0.35
 capacidad_carga = 50.0
 reduccion_velocidad_carga = 0.5
+tiempo_recoleccion = 5.0
+tiempo_descarga = 2.5
 metadata/_custom_type_script = "uid://hyfgvjeyutgd"

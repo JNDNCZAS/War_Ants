@@ -1,3 +1,10 @@
+Node2D
+CollisionPolygon2D
+Sprite2D
+CollisionShape2D
+Area2D
+AnimatedSprite2D
+StaticBody2D
 ColorRect
 PanelContainer
 Control
@@ -5,10 +12,4 @@ Label
 VBoxContainer
 TextureRect
 HBoxContainer
-AnimatedSprite2D
-CollisionShape2D
 CharacterBody2D
-Sprite2D
-Node2D
-TileMapLayer
-Polygon2D

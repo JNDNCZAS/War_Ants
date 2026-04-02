@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://brqdbwlrrmerw"]
+
+[ext_resource type="Script" uid="uid://bmnei8lsckhx1" path="res://AntHill.gd" id="1_ysn4t"]
+[ext_resource type="Texture2D" uid="uid://cyb03ix8kuksd" path="res://assets/Anthill.png" id="2_cnsje"]
+
+[node name="Anthill" type="Area2D"]
+script = ExtResource("1_ysn4t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_cnsje")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -3)
+polygon = PackedVector2Array(-63, -8, -12, -47, 13, -49, 39, -25, 64, -6, 76, 7, 94, 21, 108, 39, 75, 47, -20, 49, -71, 49, -123, 38, -101, 29)
