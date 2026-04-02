@@ -13,7 +13,10 @@ config_version=5
 config/name="click"
 run/main_scene="uid://cwpakpjdji7u1"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+
+[autoload]
+
+StatsLoader="*res://scripts/StatsLoader.gd"
 
 [display]
 

@@ -56,7 +56,8 @@ func _on_spawn_pressed():
 	var group = AntGroupScene.instantiate()
 	group.global_position = pos
 	ant_groups_container.add_child(group)
-
+	group.stats = StatsLoader.stats_aleatorio()
+	
 func _random_point_in_polygon(polygon: Array) -> Vector2:
 	var min_x = polygon[0].x
 	var max_x = polygon[0].x
