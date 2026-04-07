@@ -1,48 +1,41 @@
-# War Ants
+# Proyecto War_Ants
 
-## Description
-War Ants is an exciting strategy game where players control a colony of ants and engage in battles against rival colonies. Players must manage their resources, gather food, and build defenses while also planning their attacks.
+## Descripción
+War_Ants es un juego estratégico en tiempo real donde los jugadores controlan colonias de hormigas y deben competir por recursos en un entorno dinámico y en constante cambio. 
 
-## Features
-- **Strategic Gameplay**: Develop strategies to overcome enemy colonies.
-- **Resource Management**: Gather food and build your army.
-- **Unique Ant Types**: Different ant species with unique abilities.
-- **Multiplayer Mode**: Compete against friends and other players online.
+## Características
+- Juego multijugador en línea con hasta 4 jugadores.
+- Variedad de tipos de hormigas con habilidades únicas.
+- Mapa generado proceduralmente que ofrece nuevas experiencias en cada partida.
+- Recursos limitados que fomentan la estrategia y la competición.
 
-## Installation Instructions
-1. Clone the repository:
+## Instalación
+1. Clona el repositorio:
    ```bash
    git clone https://github.com/JNDNCZAS/War_Ants.git
    ```
-2. Navigate to the project directory:
+2. Navega al directorio del proyecto:
    ```bash
    cd War_Ants
    ```
-3. Install the required dependencies:
+3. Instala las dependencias:
    ```bash
    npm install
    ```
-4. Start the game:
+4. Ejecuta el juego:
    ```bash
    npm start
    ```
 
-## Gameplay Controls
-- **WASD:** Move your colony.
-- **Mouse Click:** Select and command ants.
-- **1-9:** Activate special abilities.
+## Controles
+- **W, A, S, D:** Mover la cámara.
+- **Mouse:** Seleccionar hormigas y objetivos.
+- **Espacio:** Pausa el juego.
 
-## Project Structure
-```
-War_Ants/
-├── src/
-│   ├── assets/
-│   ├── components/
-│   └── styles/
-├── public/
-├── package.json
-└── README.md
-```
+## Estructura
+- `src/`: Contiene el código fuente del juego.
+- `assets/`: Recursos gráficos y de audio.
+- `docs/`: Documentación sobre el desarrollo y el juego.
 
-## Current Status
-The project is currently under development. New features and optimizations are planned for future updates.
+## Estado Actual
+El proyecto se encuentra en la fase beta, con características básicas implementadas y pruebas en curso. Se esperan actualizaciones regulares para mejorar el equilibrio del juego y añadir nuevas funcionalidades.
