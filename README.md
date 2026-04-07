@@ -1,41 +1,29 @@
 # Proyecto War_Ants
 
 ## Descripción
-War_Ants es un juego estratégico en tiempo real donde los jugadores controlan colonias de hormigas y deben competir por recursos en un entorno dinámico y en constante cambio. 
+War_Ants es un juego estratégico en tiempo real donde podras controlar tu propia colonia de hormigas y llevarla a conquistar el mundo... o tal vez un parte del mismo.
 
 ## Características
-- Juego multijugador en línea con hasta 4 jugadores.
-- Variedad de tipos de hormigas con habilidades únicas.
-- Mapa generado proceduralmente que ofrece nuevas experiencias en cada partida.
+- Historia unica para cada colonia.
+- Diversidad de especies y castas, cada una diseñada para cumplir un pequeño rol en el enorme hormiguero.
 - Recursos limitados que fomentan la estrategia y la competición.
 
 ## Instalación
-1. Clona el repositorio:
-   ```bash
-   git clone https://github.com/JNDNCZAS/War_Ants.git
-   ```
-2. Navega al directorio del proyecto:
-   ```bash
-   cd War_Ants
-   ```
-3. Instala las dependencias:
-   ```bash
-   npm install
-   ```
-4. Ejecuta el juego:
-   ```bash
-   npm start
-   ```
+Por ahora unicamente descarga o clona el repositorio, pasalo a la carpeta de proyectos de Godot, importalo al mismo y ejecutalo desde el editor.
 
 ## Controles
 - **W, A, S, D:** Mover la cámara.
 - **Mouse:** Seleccionar hormigas y objetivos.
-- **Espacio:** Pausa el juego.
+- **Rueda del mouse:** Zoom.
+- **R:** Para indicar ordenes de recoleccion.
+- **Z:** Para ordenar patrullar un camino o punto especifico.
 
 ## Estructura
-- `src/`: Contiene el código fuente del juego.
-- `assets/`: Recursos gráficos y de audio.
+- `assets/`: Recursos gráficos y tilesets. 
+- `data/stats`: Archivos con las propiedades de cada casta de hormigas.
 - `docs/`: Documentación sobre el desarrollo y el juego.
+- `scenes/`: Escenas creadas y utilizadas.
+- `scripts/`: scripts de todos los nodos y escenas.
 
 ## Estado Actual
-El proyecto se encuentra en la fase beta, con características básicas implementadas y pruebas en curso. Se esperan actualizaciones regulares para mejorar el equilibrio del juego y añadir nuevas funcionalidades.
+El proyecto tiene dos semanas de haberse iniciado, ya se cuenta con documentacion biologica sobre las especies y castas agregadas, y se estudiand posibles nuevas adiciones al repertorio de espcies. A nivel tecnico se han implementado 2 sistemas basicos (Recoleccion y patrulla), sin embargo se esta trabajando en pulir estos sistemas, esperen actualizaciones con redularidad.
