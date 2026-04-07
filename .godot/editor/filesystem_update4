@@ -1,14 +1,6 @@
-res://scenes/Main.tscn
-res://assets/tiles/Fondos.tres
 res://scenes/AntGroup.tscn
+res://assets/tiles/Fondos.tres
+res://scenes/Main.tscn
 res://scenes/UnitCard.tscn
 res://scenes/tree.tscn
 res://scenes/AntHill.tscn
-res://scripts/GameController.gd
-res://Tree.gd
-res://scripts/AntGroup.gd
-res://AntHill.gd
-res://scripts/ui.gd
-res://scripts/camera_2d.gd
-res://scripts/UnitCard.gd
-res://scripts/StatsLoader.gd

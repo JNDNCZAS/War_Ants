@@ -45,6 +45,8 @@ script = ExtResource("1_o5gkr")
 shape = SubResource("RectangleShape2D_rh8na")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
 
 [node name="SelectionRing" type="Node2D" parent="."]
 script = ExtResource("2_5etio")
@@ -53,3 +55,6 @@ script = ExtResource("2_5etio")
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_wmtvo")
 animation = &"walk"
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+radius = 20.0

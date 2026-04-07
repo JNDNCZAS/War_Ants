@@ -96,3 +96,5 @@ sprite_frames = SubResource("SpriteFrames_2bmcu")
 animation = &"idle"
 frame_progress = 0.420661
 offset = Vector2(0, -50)
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]

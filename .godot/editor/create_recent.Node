@@ -1,3 +1,4 @@
+NavigationObstacle2D
 Label
 VBoxContainer
 PanelContainer
@@ -11,4 +12,3 @@ StaticBody2D
 ColorRect
 Control
 TextureRect
-HBoxContainer
