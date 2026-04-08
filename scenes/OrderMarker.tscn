@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://8lpcdsp05bb7"]
+
+[ext_resource type="Script" uid="uid://c7cp0uafq5dp8" path="res://scripts/OrderMarker.gd" id="1_nwepi"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8dfcr"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"appear",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_nwepi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8dfcr")
+animation = &"appear"

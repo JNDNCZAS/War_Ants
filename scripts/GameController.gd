@@ -5,7 +5,7 @@ extends Node
 #==================================================
 
 const DRAG_THRESHOLD = 6.0
-
+const OrderMarkerScene = preload("res://scenes/OrderMarker.tscn")
 #==================================================
 # REFERENCIAS A NODOS
 #==================================================
@@ -128,6 +128,7 @@ func _issue_move_order(world_pos: Vector2):
 	for i in count:
 		var offset = _formation_offset(i, count)
 		selected_groups[i].move_to(world_pos + offset)
+	_mostrar_marcador(world_pos)
 
 func _call_all_groups(world_pos: Vector2):
 	var all_groups = ant_groups_container.get_children()
@@ -135,6 +136,7 @@ func _call_all_groups(world_pos: Vector2):
 	for i in count:
 		var offset = _formation_offset(i, count)
 		all_groups[i].move_to(world_pos + offset)
+	_mostrar_marcador(world_pos)
 	_update_selection_label()
 
 func _formation_offset(index: int, total: int) -> Vector2:
@@ -187,5 +189,12 @@ func _handle_harvest_click(world_pos: Vector2):
 		if world_pos.distance_to(tree.global_position) < 120.0:
 			for group in selected_groups:
 				group.iniciar_recoleccion(tree, anthill)
+			_mostrar_marcador(world_pos)
 			harvest_mode = false
 			return
+			
+			
+func _mostrar_marcador(pos: Vector2):
+	var marker = OrderMarkerScene.instantiate()
+	marker.global_position = pos
+	get_tree().get_root().get_node("Main").add_child(marker)

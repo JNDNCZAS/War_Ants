@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://6wnafppble4s"]
+[gd_scene load_steps=12 format=3 uid="uid://6wnafppble4s"]
 
 [ext_resource type="Script" uid="uid://ck8uay3o2nu8g" path="res://scripts/Tree.gd" id="1_vplca"]
 [ext_resource type="Texture2D" uid="uid://0uiqb5tj0u3y" path="res://assets/tiles/Tree1.png" id="2_viusy"]
@@ -67,12 +67,6 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vplca"]
-size = Vector2(0, 0)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_viusy"]
-radius = 15.0
-
 [node name="Tree" type="StaticBody2D"]
 collision_mask = 0
 script = ExtResource("1_vplca")
@@ -84,13 +78,6 @@ animation = &"idle"
 frame_progress = 0.420661
 offset = Vector2(0, -50)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3, 30)
-shape = SubResource("RectangleShape2D_vplca")
-
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CapsuleShape2D_viusy")

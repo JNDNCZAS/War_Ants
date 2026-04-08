@@ -4,3 +4,6 @@ res://scenes/Main.tscn
 res://scenes/AntGroup.tscn
 res://scenes/UnitCard.tscn
 res://scenes/AntHill.tscn
+res://scripts/GameController.gd
+res://OrderMarker.gd
+res://scenes/OrderMarker.tscn

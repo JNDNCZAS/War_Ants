@@ -50,7 +50,6 @@ neighbor_distance = 10.0
 max_neighbors = 4
 time_horizon_agents = 5.0
 time_horizon_obstacles = 5.0
-debug_enabled = true
 
 [node name="SelectionRing" type="Node2D" parent="."]
 script = ExtResource("2_5etio")
