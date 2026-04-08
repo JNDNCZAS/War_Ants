@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="AntStats" load_steps=2 format=3 uid="uid://bjuu4aiivubus"]
+[gd_resource type="Resource" script_class="AntStats" load_steps=3 format=3 uid="uid://bjuu4aiivubus"]
 
 [ext_resource type="Script" uid="uid://hyfgvjeyutgd" path="res://scripts/AntStats.gd" id="1_4av45"]
+[ext_resource type="SpriteFrames" uid="uid://cj8vj3wfpuipv" path="res://assets/Animations/Ants/Animation_4.tres" id="2_dgojl"]
 
 [resource]
 script = ExtResource("1_4av45")
@@ -16,4 +17,5 @@ capacidad_carga = 5.0
 reduccion_velocidad_carga = 0.9
 tiempo_recoleccion = 10.0
 tiempo_descarga = 5.0
+sprite_frames = ExtResource("2_dgojl")
 metadata/_custom_type_script = "uid://hyfgvjeyutgd"

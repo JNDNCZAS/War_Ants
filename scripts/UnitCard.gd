@@ -6,7 +6,7 @@ extends Control
 
 @onready var texture_rect: TextureRect = $CardBG/TextureRect
 @onready var tooltip: PanelContainer = $Tooltip
-
+@export var stats: AntStats
 #==================================================
 # REFERENCIAS A LABELS DEL TOOLTIP
 #==================================================

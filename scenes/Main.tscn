@@ -447,11 +447,6 @@ position = Vector2(164, 235)
 color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
 stats = ExtResource("7_wp0k4")
 
-[node name="SelectionRect" type="ColorRect" parent="."]
-mouse_filter = 2
-color = Color(0.113725, 0.0156863, 1, 0.388235)
-metadata/_edit_use_anchors_ = true
-
 [node name="GameController" type="Node" parent="."]
 script = ExtResource("2_0bbpv")
 
@@ -537,3 +532,8 @@ scale = Vector2(0.6, 0.6)
 [node name="Tree3" parent="Trees" groups=["trees"] instance=ExtResource("13_mwfav")]
 position = Vector2(902, 703)
 scale = Vector2(0.6, 0.6)
+
+[node name="SelectionRect" type="ColorRect" parent="."]
+mouse_filter = 2
+color = Color(0.113725, 0.0156863, 1, 0.388235)
+metadata/_edit_use_anchors_ = true

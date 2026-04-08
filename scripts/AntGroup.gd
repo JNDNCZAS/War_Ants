@@ -70,6 +70,8 @@ var timer_descarga: float = 0.0
 
 var integrantes_actuales: int = 0
 var daño_acumulado: float = 0.0
+
+
 func _ready():
 	await get_tree().physics_frame
 	nav_agent.path_desired_distance = ARRIVAL_THRESHOLD
@@ -79,6 +81,8 @@ func _ready():
 	_actualizar_color_estado()
 	if stats:
 		integrantes_actuales = stats.integrantes_max
+		if stats.sprite_frames:
+			sprite.sprite_frames = stats.sprite_frames
 
 func _physics_process(delta):
 	match estado_actual:

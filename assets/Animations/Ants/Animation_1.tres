@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://mpmki1gopdhh"]
+
+[ext_resource type="Texture2D" uid="uid://1ran2r5kiwbu" path="res://assets/tiles/Ants (1).png" id="1_awn3u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2e2ya"]
+atlas = ExtResource("1_awn3u")
+region = Rect2(0, 20, 90, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awibp"]
+atlas = ExtResource("1_awn3u")
+region = Rect2(90, 20, 90, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odglx"]
+atlas = ExtResource("1_awn3u")
+region = Rect2(180, 20, 90, 90)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2e2ya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awibp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odglx")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]

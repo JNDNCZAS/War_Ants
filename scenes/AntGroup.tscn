@@ -58,6 +58,8 @@ script = ExtResource("2_5etio")
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_wmtvo")
 animation = &"walk"
+frame = 2
+frame_progress = 0.22781
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 radius = 11.0
