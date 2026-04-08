@@ -64,7 +64,6 @@ func _handle_key(event: InputEventKey):
 
 func _handle_mouse_button(event: InputEventMouseButton):
 	var world_pos = _to_world(event.position)
-
 	if event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			drag_start = world_pos
@@ -79,6 +78,7 @@ func _handle_mouse_button(event: InputEventMouseButton):
 	elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 		if Input.is_key_pressed(KEY_Z) and selected_groups.size() > 0:
 			patrol_points.append(world_pos)
+			_mostrar_marcador(world_pos)
 		elif harvest_mode and selected_groups.size() > 0:
 			_handle_harvest_click(world_pos)
 		elif event.double_click:
