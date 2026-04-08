@@ -1,6 +1,6 @@
-res://scenes/AntGroup.tscn
+res://scenes/tree.tscn
 res://assets/tiles/Fondos.tres
 res://scenes/Main.tscn
+res://scenes/AntGroup.tscn
 res://scenes/UnitCard.tscn
-res://scenes/tree.tscn
 res://scenes/AntHill.tscn

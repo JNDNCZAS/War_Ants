@@ -3,13 +3,6 @@
 [ext_resource type="Script" uid="uid://ck8uay3o2nu8g" path="res://scripts/Tree.gd" id="1_vplca"]
 [ext_resource type="Texture2D" uid="uid://0uiqb5tj0u3y" path="res://assets/tiles/Tree1.png" id="2_viusy"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vplca"]
-size = Vector2(38, 46)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_viusy"]
-radius = 65.0
-height = 168.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_qd6xs"]
 atlas = ExtResource("2_viusy")
 region = Rect2(0, 0, 192, 256)
@@ -74,9 +67,22 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vplca"]
+size = Vector2(0, 0)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_viusy"]
+radius = 15.0
+
 [node name="Tree" type="StaticBody2D"]
 collision_mask = 0
 script = ExtResource("1_vplca")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -2)
+sprite_frames = SubResource("SpriteFrames_2bmcu")
+animation = &"idle"
+frame_progress = 0.420661
+offset = Vector2(0, -50)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(3, 30)
@@ -87,14 +93,4 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(3, -25)
 shape = SubResource("CapsuleShape2D_viusy")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, -2)
-sprite_frames = SubResource("SpriteFrames_2bmcu")
-animation = &"idle"
-frame_progress = 0.420661
-offset = Vector2(0, -50)
-
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]

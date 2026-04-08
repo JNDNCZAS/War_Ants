@@ -1,0 +1,22 @@
+ecribo esto el 6 de abril del 25, estoy trabajando en el sistema de navegacion de las hormigas
+aun no logro solucionar el problema de que las hormigas no rodean los arbol cuando caminan, simplmente se chocan contra ellos
+pienso en dos soluciones
+1) sustituir los tiles donde estan los arboles por tiles de no navegacion, y que cuando el arbol caiga se reemplaze por un sprite de un tronco cortado
+2) implementar el sistema de "teletransprotacion", si la hormiga entra detras el arbol pasa a otro mapa donde cosecha laas hojas del mismo, luego baja y pasa al mapa general
+
+Otro problema a solucionar es el movimiento de las hormigas, por ahora se mueven como agentes eficientes,
+buscan el camino mas corto, no tienen pequeñas divagaciones como las hormigas reales, me enfrento a un dilema, 
+hacer que las hormigas se muevan como el mundo real y sacrificar control y eficiencia por realismo,
+o dejarlo como esta y sacrificar realismo por eficiencia y control.
+
+En cualquiera de los dos casos me enfreto a otro problema, que se acrecenta mas en el segundo caso a comparacion del primero
+las hormigas son "intangibles" unas con otras, se solapan y toman todas el mismo camino en algunas situacuiones,
+aunque algunas con mas rapidas que otras y las podrian rodear, se sienten ajenas unas a otras, no como la colonia que son,
+no parece que se comuniquen entre si, cada una actua por separado, creeria que eso se podria solucionar cambiando las rutas de navegacion cada cierto tiempo
+chatgpt me dio algunas indicaciones para que las hormigas no se solapen unas con otras, pero no parece funcionar, tal vez tengo cosas mal configuradas.
+
+apartir de la proxima sesion empezare a leer el texto de la secion anterior para ver en que punto quede, y escribir los abances al final de la sesion, me dara mejor organizacion
+
+Se viene trabajo pesado, probar, ajustar y tomar desiciones, ojala avance rapido en las proximas sesiones.
+
+Hoy almenos hice un commit, algo es algo
