@@ -40,3 +40,6 @@ res://scripts/camera_2d.gd
 res://scripts/UnitCard.gd
 res://MainMenu.gd
 res://scenes/MainMenu.tscn
+res://scripts/MainMenu.gd
+res://scenes/Credits.tscn
+res://scripts/Credits.gd

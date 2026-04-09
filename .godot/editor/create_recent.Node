@@ -1,10 +1,10 @@
-TextureRect
-PanelContainer
 Button
 VBoxContainer
-Label
 ColorRect
+Label
 Control
+TextureRect
+PanelContainer
 AnimatedSprite2D
 Node2D
 NavigationObstacle2D
@@ -12,4 +12,3 @@ CollisionPolygon2D
 Sprite2D
 CollisionShape2D
 Area2D
-StaticBody2D

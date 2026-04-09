@@ -1,11 +1,10 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1775693774
+::res://::1775694685
 editorconfig.txt::TextFile/TextFile::-1::1775524221::0::1::::<><><>0<>0<><>::
 gitattributes.txt::TextFile/TextFile::-1::1775524221::0::1::::<><><>0<>0<><>::
 gitignore.txt::TextFile/TextFile::-1::1775524221::0::1::::<><><>0<>0<><>::
 mensajes_para_mi.txt::TextFile/TextFile::-1::1775529948::0::1::::<><><>0<>0<><>::
 README.md::TextFile/TextFile::-1::1775620054::0::1::::<><><>0<>0<><>::
-MainMenu.gd::GDScript::4151002159560653991::1775693722::0::1::::<>Control<><>0<>0<><>::
 ::res://assets/::1775688582
 Anthill.png::CompressedTexture2D/CompressedTexture2D::6461006376732371119::1775524224::1775524224::1::::<><><>0<>0<>453def9fdc0b8d815db9f505de09e3d8<>res://.godot/imported/Anthill.png-d46b744771c8043f713d30aee7537268.ctex::
 ::res://assets/Animations/::1775688620
@@ -57,20 +56,23 @@ solenopsis_reina.tres::Resource/AntStats::3060673972145929006::1775688955::0::1:
 ARCHITECTURE.md::TextFile/TextFile::-1::1775620054::0::1::::<><><>0<>0<><>::
 GAMEPLAY.md::TextFile/TextFile::-1::1775620054::0::1::::<><><>0<>0<><>::
 SETUP.md::TextFile/TextFile::-1::1775620054::0::1::::<><><>0<>0<><>::
-::res://scenes/::1775694033
-AntGroup.tscn::PackedScene::5190775644244742925::1775694033::0::1::::<><><>0<>0<><>::uid://dk4v4ujn4nhwt::::res://scripts/AntGroup.gd<>uid://0aq4iv5uqa6x::::res://scripts/SelectionRing.gd<>uid://1ran2r5kiwbu::::res://assets/tiles/Ants (1).png
-AntHill.tscn::PackedScene::3612846179678960824::1775694033::0::1::::<><><>0<>0<><>::uid://bmnei8lsckhx1::::res://scripts/AntHill.gd<>uid://cyb03ix8kuksd::::res://assets/Anthill.png
-Main.tscn::PackedScene::6347980253575037490::1775694032::0::1::::<><><>0<>0<><>::uid://c3hp64lhsg8lj::::res://assets/tiles/Arbustos .png<>uid://cf7pk035e6ogr::::res://scenes/AntGroup.tscn<>uid://duqvxxtsnwwqo::::res://assets/tiles/Fondos.tres<>uid://npxj262gdt0f::::res://scripts/GameController.gd<>uid://k1wg5a3q1bg0::::res://assets/tiles/Cespe.png<>uid://csfytaon5khe8::::res://scripts/camera_2d.gd<>uid://bsanlfib51a5q::::res://scripts/ui.gd<>uid://c2poig6dxpose::::res://data/stats/atta_obrera_menor.tres<>uid://na31xh8fyot1::::res://data/stats/atta_reina.tres<>uid://4mik4f7ggkjr::::res://data/stats/atta_obrera_minima.tres<>uid://15u8ig1d6emw::::res://data/stats/atta_macho.tres<>uid://brqdbwlrrmerw::::res://scenes/AntHill.tscn<>uid://6wnafppble4s::::res://scenes/tree.tscn
-OrderMarker.tscn::PackedScene::2339854507921682982::1775694033::0::1::::<><><>0<>0<><>::uid://c7cp0uafq5dp8::::res://scripts/OrderMarker.gd
-MainMenu.tscn::PackedScene::4108554664984670450::1775694685::0::1::::<><><>0<>0<><>::uid://b0e1ntmgknril::::res://MainMenu.gd
-tree.tscn::PackedScene::2222060070746405636::1775694033::0::1::::<><><>0<>0<><>::uid://ck8uay3o2nu8g::::res://scripts/Tree.gd<>uid://0uiqb5tj0u3y::::res://assets/tiles/Tree1.png
-UnitCard.tscn::PackedScene::4717252177339462634::1775694033::0::1::::<><><>0<>0<><>::uid://bc6e2piya3smi::::res://scripts/UnitCard.gd
-::res://scripts/::1775690153
+::res://scenes/::1775702081
+AntGroup.tscn::PackedScene::5190775644244742925::1775702080::0::1::::<><><>0<>0<><>::uid://dk4v4ujn4nhwt::::res://scripts/AntGroup.gd<>uid://0aq4iv5uqa6x::::res://scripts/SelectionRing.gd<>uid://1ran2r5kiwbu::::res://assets/tiles/Ants (1).png
+AntHill.tscn::PackedScene::3612846179678960824::1775702080::0::1::::<><><>0<>0<><>::uid://bmnei8lsckhx1::::res://scripts/AntHill.gd<>uid://cyb03ix8kuksd::::res://assets/Anthill.png
+Main.tscn::PackedScene::6347980253575037490::1775702080::0::1::::<><><>0<>0<><>::uid://c3hp64lhsg8lj::::res://assets/tiles/Arbustos .png<>uid://cf7pk035e6ogr::::res://scenes/AntGroup.tscn<>uid://duqvxxtsnwwqo::::res://assets/tiles/Fondos.tres<>uid://npxj262gdt0f::::res://scripts/GameController.gd<>uid://k1wg5a3q1bg0::::res://assets/tiles/Cespe.png<>uid://csfytaon5khe8::::res://scripts/camera_2d.gd<>uid://bsanlfib51a5q::::res://scripts/ui.gd<>uid://c2poig6dxpose::::res://data/stats/atta_obrera_menor.tres<>uid://na31xh8fyot1::::res://data/stats/atta_reina.tres<>uid://4mik4f7ggkjr::::res://data/stats/atta_obrera_minima.tres<>uid://15u8ig1d6emw::::res://data/stats/atta_macho.tres<>uid://brqdbwlrrmerw::::res://scenes/AntHill.tscn<>uid://6wnafppble4s::::res://scenes/tree.tscn
+MainMenu.tscn::PackedScene::4108554664984670450::1775702080::0::1::::<><><>0<>0<><>::uid://b0e1ntmgknril::::res://scripts/MainMenu.gd<>uid://fqbhvpbtewa6::::res://assets/tiles/Bugs (1).png
+OrderMarker.tscn::PackedScene::2339854507921682982::1775702080::0::1::::<><><>0<>0<><>::uid://c7cp0uafq5dp8::::res://scripts/OrderMarker.gd
+Credits.tscn::PackedScene::2971728924852162565::1775702081::0::1::::<><><>0<>0<><>::
+Credits.gd::GDScript::7084505916275220741::1775702147::0::1::::<>Control<><>0<>0<><>::
+tree.tscn::PackedScene::2222060070746405636::1775702080::0::1::::<><><>0<>0<><>::uid://ck8uay3o2nu8g::::res://scripts/Tree.gd<>uid://0uiqb5tj0u3y::::res://assets/tiles/Tree1.png
+UnitCard.tscn::PackedScene::4717252177339462634::1775702080::0::1::::<><><>0<>0<><>::uid://bc6e2piya3smi::::res://scripts/UnitCard.gd
+::res://scripts/::1775702080
 AntGroup.gd::GDScript/GDScript::7922345352198874931::1775688106::0::1::::AntGroup<>CharacterBody2D<><>0<>0<><>::
 AntHill.gd::GDScript/GDScript::3255782623558887348::1775524225::0::1::::Anthill<>Area2D<><>0<>0<><>::
 AntStats.gd::GDScript/GDScript::541182388399137787::1775688106::0::1::::AntStats<>Resource<><>0<>0<><>::
 camera_2d.gd::GDScript::6048053601810085781::1775690153::0::1::::<>Camera2D<><>0<>0<><>::
 GameController.gd::GDScript/GDScript::944834663838396347::1775686772::0::1::::<>Node<><>0<>0<><>::
+MainMenu.gd::GDScript::4151002159560653991::1775702080::0::1::::<>Control<><>0<>0<><>::
 OrderMarker.gd::GDScript/GDScript::7023969569767221819::1775620515::0::1::::<>Node2D<><>0<>0<><>::
 SelectionRing.gd::GDScript/GDScript::1755744804876428277::1775524225::0::1::::<>Node2D<><>0<>0<><>::
 StatsLoader.gd::GDScript/GDScript::4239464380422226973::1775524225::0::1::::<>Node<><>0<>0<><>::

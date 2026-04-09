@@ -1,11 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://byshkbdh6bvta"]
+[gd_scene load_steps=3 format=3 uid="uid://byshkbdh6bvta"]
 
 [ext_resource type="Script" uid="uid://b0e1ntmgknril" path="res://scripts/MainMenu.gd" id="1_yqorp"]
+[ext_resource type="Texture2D" uid="uid://fqbhvpbtewa6" path="res://assets/tiles/Bugs (1).png" id="2_0ykhv"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 1800.0
+offset_right = 1726.0
 offset_bottom = 900.0
 script = ExtResource("1_yqorp")
 
@@ -24,8 +25,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -140.5
+offset_top = 40.0
 offset_right = 140.5
-offset_bottom = 88.0
+offset_bottom = 128.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 64
 text = "War Ants"
@@ -77,14 +79,15 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -460.0
-offset_top = -90.0
-offset_right = -420.0
-offset_bottom = -90.0
+offset_left = -440.0
+offset_top = -340.0
+offset_right = -40.0
+offset_bottom = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 
 [node name="NewsImagen" type="TextureRect" parent="NewsPanel"]
 layout_mode = 2
+texture = ExtResource("2_0ykhv")
 expand_mode = 2
 stretch_mode = 5
