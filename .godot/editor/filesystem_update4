@@ -38,3 +38,5 @@ res://data/stats/solenopsis_obrera_menor.tres
 res://data/stats/solenopsis_reina.tres
 res://scripts/camera_2d.gd
 res://scripts/UnitCard.gd
+res://MainMenu.gd
+res://scenes/MainMenu.tscn

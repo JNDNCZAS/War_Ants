@@ -1,0 +1,90 @@
+[gd_scene load_steps=2 format=3 uid="uid://byshkbdh6bvta"]
+
+[ext_resource type="Script" uid="uid://b0e1ntmgknril" path="res://MainMenu.gd" id="1_yqorp"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1800.0
+offset_bottom = 900.0
+script = ExtResource("1_yqorp")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101961, 0.180392, 0.101961, 1)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -140.5
+offset_right = 140.5
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "War Ants"
+horizontal_alignment = 1
+
+[node name="ButtonContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -90.0
+offset_right = 90.0
+offset_bottom = -34.0
+grow_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="ButtonJugar" type="Button" parent="ButtonContainer"]
+custom_minimum_size = Vector2(200, 45)
+layout_mode = 2
+text = "Jugar"
+
+[node name="ButtonConfiguraciones" type="Button" parent="ButtonContainer"]
+custom_minimum_size = Vector2(200, 45)
+layout_mode = 2
+text = "Configuraciones"
+
+[node name="ButtonWiki" type="Button" parent="ButtonContainer"]
+custom_minimum_size = Vector2(200, 45)
+layout_mode = 2
+text = "Wiki"
+
+[node name="ButtonCreditos" type="Button" parent="ButtonContainer"]
+custom_minimum_size = Vector2(200, 45)
+layout_mode = 2
+text = "Creditos"
+
+[node name="ButtonSalir" type="Button" parent="ButtonContainer"]
+custom_minimum_size = Vector2(200, 45)
+layout_mode = 2
+text = "Salir"
+
+[node name="NewsPanel" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(400, 300)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -460.0
+offset_top = -90.0
+offset_right = -420.0
+offset_bottom = -90.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="NewsImagen" type="TextureRect" parent="NewsPanel"]
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 5
