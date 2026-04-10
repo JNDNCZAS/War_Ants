@@ -1,8 +1,8 @@
+ColorRect
+Control
 Button
 VBoxContainer
-ColorRect
 Label
-Control
 TextureRect
 PanelContainer
 AnimatedSprite2D

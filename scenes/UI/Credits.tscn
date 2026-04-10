@@ -1,13 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://bilr7abuspbub"]
 
-[ext_resource type="Script" uid="uid://c7611owhi882d" path="res://scripts/Credits.gd" id="1_hi4w3"]
+[ext_resource type="Script" uid="uid://c7611owhi882d" path="res://scripts/Credits.gd" id="1_uuxl4"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1726.0
 offset_bottom = 900.0
-script = ExtResource("1_hi4w3")
+script = ExtResource("1_uuxl4")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -79,3 +79,5 @@ grow_vertical = 0
 custom_minimum_size = Vector2(200, 45)
 layout_mode = 2
 text = "Atras"
+
+[connection signal="pressed" from="Buttoncontainer/ButtonBack" to="." method="_on_back_pressed"]

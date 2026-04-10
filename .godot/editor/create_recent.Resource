@@ -1,2 +1,3 @@
+ColorPalette
 SpriteFrames
 AntStats

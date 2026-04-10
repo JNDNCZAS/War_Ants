@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://byshkbdh6bvta"]
 
-[ext_resource type="Script" uid="uid://b0e1ntmgknril" path="res://scripts/MainMenu.gd" id="1_yqorp"]
-[ext_resource type="Texture2D" uid="uid://fqbhvpbtewa6" path="res://assets/tiles/Bugs (1).png" id="2_0ykhv"]
+[ext_resource type="Script" uid="uid://b0e1ntmgknril" path="res://scripts/MainMenu.gd" id="1_58fj5"]
+[ext_resource type="Texture2D" uid="uid://fqbhvpbtewa6" path="res://assets/tiles/Bugs (1).png" id="2_3h7gc"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1726.0
 offset_bottom = 900.0
-script = ExtResource("1_yqorp")
+script = ExtResource("1_58fj5")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -88,6 +88,12 @@ grow_vertical = 0
 
 [node name="NewsImagen" type="TextureRect" parent="NewsPanel"]
 layout_mode = 2
-texture = ExtResource("2_0ykhv")
+texture = ExtResource("2_3h7gc")
 expand_mode = 2
 stretch_mode = 5
+
+[connection signal="pressed" from="ButtonContainer/ButtonJugar" to="." method="_on_jugar_pressed"]
+[connection signal="pressed" from="ButtonContainer/ButtonConfiguraciones" to="." method="_on_config_pressed"]
+[connection signal="pressed" from="ButtonContainer/ButtonWiki" to="." method="_on_wiki_pressed"]
+[connection signal="pressed" from="ButtonContainer/ButtonCreditos" to="." method="_on_credi_pressed"]
+[connection signal="pressed" from="ButtonContainer/ButtonSalir" to="." method="_on_salir_pressed"]
