@@ -23,3 +23,6 @@ res://scenes/UI/Wiki.tscn
 res://scenes/UI/Config.tscn
 res://scripts/Config.gd
 res://scripts/Wiki.gd
+res://scenes/UI/UnitCard.tscn
+res://scripts/ui.gd
+res://scripts/AntGroup.gd

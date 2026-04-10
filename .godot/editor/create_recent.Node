@@ -1,10 +1,10 @@
+PanelContainer
+TextureRect
 ColorRect
 Control
 Button
 VBoxContainer
 Label
-TextureRect
-PanelContainer
 AnimatedSprite2D
 Node2D
 NavigationObstacle2D

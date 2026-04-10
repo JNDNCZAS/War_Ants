@@ -239,7 +239,7 @@ func _iniciar_recoleccion():
 	if target_tree == null:
 		return
 	estado_actual = Estado.RECOLECTANDO
-	nav_agent.target_desired_distance = 60
+	nav_agent.target_desired_distance = 2
 	nav_agent.target_position = target_tree.global_position
 	_actualizar_color_estado()
 

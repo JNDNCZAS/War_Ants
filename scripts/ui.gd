@@ -5,7 +5,7 @@ extends CanvasLayer
 #==================================================
 
 const AntGroupScene = preload("res://scenes/AntGroup.tscn")
-const UnitCardScene = preload("res://scenes/UnitCard.tscn")
+const UnitCardScene = preload("res://scenes/UI/UnitCard.tscn")
 
 #==================================================
 # CONFIGURACIÓN DE SPAWN

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b8hcppamrot2i"]
 
-[ext_resource type="Script" uid="uid://bc6e2piya3smi" path="res://scripts/UnitCard.gd" id="1_8172u"]
+[ext_resource type="Script" uid="uid://bc6e2piya3smi" path="res://scripts/UnitCard.gd" id="1_l45in"]
 
 [node name="UnitCard" type="Control"]
 custom_minimum_size = Vector2(80, 80)
@@ -8,7 +8,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 80.0
 offset_bottom = 80.0
-script = ExtResource("1_8172u")
+script = ExtResource("1_l45in")
 
 [node name="CardBG" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(80, 80)
