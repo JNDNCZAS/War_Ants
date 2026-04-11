@@ -115,7 +115,7 @@ func _tick_esperando():
 			return
 		var next = nav_agent.get_next_path_position()
 		var direction = (next - global_position).normalized()
-		velocity = direction * (stats.velocidad if stats else SPEED)
+		velocity = direction * _velocidad_actual()
 		move_and_slide()
 		if direction != Vector2.ZERO:
 			sprite.rotation = direction.angle() - PI / 2
@@ -134,7 +134,7 @@ func _tick_patrullando():
 			return
 		var next = nav_agent.get_next_path_position()
 		var direction = (next - global_position).normalized()
-		velocity = direction * (stats.velocidad if stats else SPEED)
+		velocity = direction * _velocidad_actual()
 		move_and_slide()
 		if direction != Vector2.ZERO:
 			sprite.rotation = direction.angle() - PI / 2
@@ -201,7 +201,7 @@ func _tick_recolectando(delta):
 		if not nav_agent.is_navigation_finished():
 			var next = nav_agent.get_next_path_position()
 			var direction = (next - global_position).normalized()
-			velocity = direction * (stats.velocidad if stats else SPEED)
+			velocity = direction * _velocidad_actual()
 			move_and_slide()
 			if direction != Vector2.ZERO:
 				sprite.rotation = direction.angle() - PI / 2
@@ -232,10 +232,9 @@ func _tick_transportando(delta):
 		_actualizar_color_estado()
 		return
 	if not nav_agent.is_navigation_finished():
-		var speed = (stats.velocidad if stats else SPEED) * stats.reduccion_velocidad_carga
 		var next = nav_agent.get_next_path_position()
 		var direction = (next - global_position).normalized()
-		velocity = direction * speed
+		velocity = direction * _velocidad_actual()
 		move_and_slide()
 		if direction != Vector2.ZERO:
 			sprite.rotation = direction.angle() - PI / 2
@@ -271,3 +270,9 @@ func iniciar_recoleccion(tree, anthill):
 	target_tree = tree
 	target_anthill = anthill
 	_iniciar_recoleccion()
+
+
+func _velocidad_actual() -> float:
+	if carga and stats:
+		return stats.velocidad * stats.reduccion_velocidad_carga
+	return stats.velocidad if stats else SPEED

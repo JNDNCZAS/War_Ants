@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cwpakpjdji7u1"]
+[gd_scene load_steps=19 format=4 uid="uid://cwpakpjdji7u1"]
 
 [ext_resource type="Texture2D" uid="uid://c3hp64lhsg8lj" path="res://assets/tiles/Arbustos .png" id="1_q8u5g"]
 [ext_resource type="PackedScene" uid="uid://cf7pk035e6ogr" path="res://scenes/AntGroup.tscn" id="1_rvslj"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://csfytaon5khe8" path="res://scripts/camera_2d.gd" id="3_0bbpv"]
 [ext_resource type="Script" uid="uid://bsanlfib51a5q" path="res://scripts/ui.gd" id="4_rarhs"]
 [ext_resource type="Resource" uid="uid://c2poig6dxpose" path="res://data/stats/atta_obrera_menor.tres" id="5_lhr70"]
+[ext_resource type="Resource" uid="uid://oruvh1nwlcla" path="res://data/stats/atta_supersoldado.tres" id="6_mwfav"]
 [ext_resource type="Resource" uid="uid://na31xh8fyot1" path="res://data/stats/atta_reina.tres" id="6_wp0k4"]
 [ext_resource type="Resource" uid="uid://4mik4f7ggkjr" path="res://data/stats/atta_obrera_minima.tres" id="7_wp0k4"]
 [ext_resource type="Resource" uid="uid://15u8ig1d6emw" path="res://data/stats/atta_macho.tres" id="8_bjd11"]
@@ -406,7 +407,7 @@ stats = ExtResource("5_lhr70")
 
 [node name="AntGroup2" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(233, 215)
-stats = ExtResource("6_wp0k4")
+stats = ExtResource("6_mwfav")
 
 [node name="AntGroup3" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(165, 141)
@@ -440,7 +441,7 @@ stats = ExtResource("7_wp0k4")
 [node name="AntGroup9" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(263, 166)
 color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
-stats = ExtResource("7_wp0k4")
+stats = ExtResource("6_mwfav")
 
 [node name="AntGroup10" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(164, 235)
