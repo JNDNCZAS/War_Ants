@@ -57,6 +57,7 @@ var patrol_direction: int = 1
 
 var target_tree = null
 var target_anthill = null
+var carga=false
 
 var hojas_cargadas: float = 0.0
 var carga_actual: float = 0.0
@@ -192,26 +193,39 @@ func recibir_daño(cantidad: float):
 			return
 
 func _tick_recolectando(delta):
-	if target_tree == null:
-		estado_actual = Estado.ESPERANDO
-		_actualizar_color_estado()
-		return
-	if not nav_agent.is_navigation_finished():
-		var next = nav_agent.get_next_path_position()
-		var direction = (next - global_position).normalized()
-		velocity = direction * (stats.velocidad if stats else SPEED)
-		move_and_slide()
-		if direction != Vector2.ZERO:
-			sprite.rotation = direction.angle() - PI / 2
-			sprite.play("walk")
-	else:
-		sprite.stop()
-		timer_recoleccion += delta
-		if timer_recoleccion >= stats.tiempo_recoleccion:
-			timer_recoleccion = 0.0
-			hojas_cargadas = stats.capacidad_carga
-			_iniciar_transporte()
-
+	if carga==false:###
+		if target_tree == null:
+			estado_actual = Estado.ESPERANDO
+			_actualizar_color_estado()
+			return
+		if not nav_agent.is_navigation_finished():
+			var next = nav_agent.get_next_path_position()
+			var direction = (next - global_position).normalized()
+			velocity = direction * (stats.velocidad if stats else SPEED)
+			move_and_slide()
+			if direction != Vector2.ZERO:
+				sprite.rotation = direction.angle() - PI / 2
+				sprite.play("walk")
+		else:
+			sprite.stop()
+			timer_recoleccion += delta
+			if timer_recoleccion >= stats.tiempo_recoleccion:
+				timer_recoleccion = 0.0
+				if target_tree == null or not is_instance_valid(target_tree):
+					estado_actual = Estado.ESPERANDO
+					_actualizar_color_estado()
+					return
+				var cantidad = target_tree.reducir_hojas(stats.capacidad_carga)
+				if cantidad <= 0:
+					estado_actual = Estado.ESPERANDO
+					_actualizar_color_estado()
+					return
+				hojas_cargadas = cantidad
+				carga=true###
+				_iniciar_transporte()
+	if carga==true:###
+		_iniciar_transporte()###
+		
 func _tick_transportando(delta):
 	if target_anthill == null:
 		estado_actual = Estado.ESPERANDO
@@ -233,6 +247,7 @@ func _tick_transportando(delta):
 			timer_descarga = 0.0
 			target_anthill.agregar_hojas(hojas_cargadas)
 			hojas_cargadas = 0.0
+			carga=false
 			_iniciar_recoleccion()
 
 func _iniciar_recoleccion():
@@ -249,6 +264,7 @@ func _iniciar_transporte():
 	estado_actual = Estado.TRANSPORTANDO
 	nav_agent.target_desired_distance = ARRIVAL_THRESHOLD
 	nav_agent.target_position = target_anthill.global_position
+	#carga=false
 	_actualizar_color_estado()
 
 func iniciar_recoleccion(tree, anthill):

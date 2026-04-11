@@ -1,4 +1,5 @@
 res://scenes/UI/MainMenu.tscn
+res://data/themes/botton_theme.tres
 res://assets/tiles/Fondos.tres
 res://assets/Animations/Ants/Animation_1.tres
 res://data/stats/atta_obrera_menor.tres
@@ -11,10 +12,5 @@ res://scenes/OrderMarker.tscn
 res://scenes/UI/Credits.tscn
 res://scenes/UI/Wiki.tscn
 res://scenes/UI/Config.tscn
-res://scripts/MainMenu.gd
 res://scenes/UI/ManiPlay.tscn
-res://scenes/UI/ManiPlay.gd
-res://data/new_button_group.tres
-res://data/main_them_button.tres
-res://data/main_theme.tres
-res://data/themes/botton_theme.tres
+res://scripts/AntGroup.gd

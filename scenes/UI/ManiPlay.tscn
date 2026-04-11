@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cma6yoqlad223"]
 
 [ext_resource type="Theme" uid="uid://bdfiiq1xftuko" path="res://data/themes/botton_theme.tres" id="1_fvpdn"]
-[ext_resource type="Script" uid="uid://dwwnf28a74rk" path="res://scenes/UI/ManiPlay.gd" id="1_i7h23"]
+[ext_resource type="Script" uid="uid://dwwnf28a74rk" path="res://scripts/ManiPlay.gd" id="1_i7h23"]
 [ext_resource type="Texture2D" uid="uid://cwb2aemwb3j2s" path="res://assets/Picture_back_ground/origbig3.png" id="1_n428t"]
 [ext_resource type="ButtonGroup" uid="uid://d21n40lwpci5w" path="res://data/button_group_gamemode.tres" id="3_078tn"]
 [ext_resource type="ButtonGroup" uid="uid://bqx75jpsf0s7y" path="res://data/button_group_map.tres" id="4_fvpdn"]
@@ -29,7 +29,7 @@ scale = Vector2(0.75, 0.75)
 layout_mode = 2
 texture = ExtResource("1_n428t")
 
-[node name="Label" type="Label" parent="."]
+[node name="Title" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -188,6 +188,24 @@ text = "Atras"
 custom_minimum_size = Vector2(200, 45)
 layout_mode = 2
 text = "Jugar"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -336.0
+offset_top = -11.5
+offset_right = 336.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.101961, 0.180392, 0.101961, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "Nota:  porfavor escoja las opciones \"historia\" y mapa 1\", de lo contrario no podra jugar."
 
 [connection signal="pressed" from="ModoGameContainer/HistoriaButton" to="." method="_on_histo_pressed"]
 [connection signal="pressed" from="ModoGameContainer/SuperButton4" to="." method="_on_super_pressed"]
