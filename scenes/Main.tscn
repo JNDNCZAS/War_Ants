@@ -461,27 +461,25 @@ map_limit_top = -500.0
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("4_rarhs")
 
-[node name="SpawnButton" type="Button" parent="UI"]
-offset_left = 80.0
-offset_top = 80.0
-offset_right = 202.0
-offset_bottom = 111.0
-text = "Generar grupo
-"
-metadata/_edit_use_anchors_ = true
-
 [node name="SelectionLabel" type="Label" parent="UI"]
-offset_left = 80.0
-offset_top = 120.0
-offset_right = 206.0
-offset_bottom = 143.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.0
+offset_right = 63.0
+offset_bottom = 23.0
+grow_horizontal = 2
 text = "Seleccionadas: 0"
 
 [node name="TotalLabel" type="Label" parent="UI"]
-offset_left = 80.0
-offset_top = 140.0
-offset_right = 226.0
-offset_bottom = 163.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -73.0
+offset_top = 20.0
+offset_right = 73.0
+offset_bottom = 43.0
+grow_horizontal = 2
 text = "Grupos en mapa: 0"
 
 [node name="BottomPanel" type="PanelContainer" parent="UI"]
@@ -515,6 +513,13 @@ layout_mode = 2
 [node name="LabelHojas" type="Label" parent="UI/ResourcePanel/VBoxContainer"]
 layout_mode = 2
 text = "Hojas: 0"
+
+[node name="CastPanel" type="PanelContainer" parent="UI"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CastContainer" type="HBoxContainer" parent="UI/CastPanel"]
+layout_mode = 2
 
 [node name="Anthill" parent="." groups=["anthill"] instance=ExtResource("12_qmy6f")]
 position = Vector2(159, 513)

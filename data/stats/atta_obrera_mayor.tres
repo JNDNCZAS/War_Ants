@@ -17,5 +17,7 @@ capacidad_carga = 40.0
 reduccion_velocidad_carga = 0.6
 tiempo_recoleccion = 2.0
 tiempo_descarga = 1.0
+costo_hojas = 80.0
+tiempo_creacion = 15.0
 sprite_frames = ExtResource("2_mns7u")
 metadata/_custom_type_script = "uid://hyfgvjeyutgd"

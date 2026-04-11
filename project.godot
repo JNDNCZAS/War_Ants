@@ -17,6 +17,8 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 [autoload]
 
 StatsLoader="*res://scripts/StatsLoader.gd"
+GameData="*res://scripts/GameData.gd"
+SpawnQueue="*res://scripts/SpawnQueue.gd"
 
 [display]
 

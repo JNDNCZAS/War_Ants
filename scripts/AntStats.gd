@@ -14,5 +14,7 @@ extends Resource
 @export var reduccion_velocidad_carga: float = 0.5
 @export var tiempo_recoleccion: float = 3.0
 @export var tiempo_descarga: float = 2.0
+@export var costo_hojas: float=50
+@export var tiempo_creacion: float = 10.0
 
 @export var sprite_frames: SpriteFrames

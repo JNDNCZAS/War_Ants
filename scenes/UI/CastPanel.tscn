@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://mj72kpflu6ne"]
+
+[ext_resource type="Script" uid="uid://rr2xln2k0ons" path="res://scripts/CastPanel.gd" id="1_s0jbq"]
+
+[node name="CastPanel" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_s0jbq")
+
+[node name="CastContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="LabelNombre" type="Label" parent="CastContainer"]
+layout_mode = 2
+
+[node name="LabelCosto" type="Label" parent="CastContainer"]
+layout_mode = 2
+
+[node name="LabelTiempo" type="Label" parent="CastContainer"]
+layout_mode = 2
+
+[node name="ButtonCrear" type="Button" parent="CastContainer"]
+layout_mode = 2
+text = "Crear casta"
