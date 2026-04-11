@@ -1,12 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://boj68bs8esh6x"]
+[gd_scene load_steps=3 format=3 uid="uid://boj68bs8esh6x"]
 
 [ext_resource type="Script" uid="uid://bvi0rgvvulvn1" path="res://scripts/Config.gd" id="1_fehc3"]
+[ext_resource type="Theme" uid="uid://bdfiiq1xftuko" path="res://data/themes/botton_theme.tres" id="1_t6vp5"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1726.0
 offset_bottom = 900.0
+theme = ExtResource("1_t6vp5")
 script = ExtResource("1_fehc3")
 
 [node name="ColorRect" type="ColorRect" parent="."]

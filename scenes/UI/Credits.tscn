@@ -1,12 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://bilr7abuspbub"]
+[gd_scene load_steps=3 format=3 uid="uid://bilr7abuspbub"]
 
 [ext_resource type="Script" uid="uid://c7611owhi882d" path="res://scripts/Credits.gd" id="1_uuxl4"]
+[ext_resource type="Theme" uid="uid://bdfiiq1xftuko" path="res://data/themes/botton_theme.tres" id="1_xdbn2"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1726.0
 offset_bottom = 900.0
+theme = ExtResource("1_xdbn2")
 script = ExtResource("1_uuxl4")
 
 [node name="Background" type="ColorRect" parent="."]

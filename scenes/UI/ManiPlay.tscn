@@ -1,0 +1,204 @@
+[gd_scene load_steps=7 format=3 uid="uid://cma6yoqlad223"]
+
+[ext_resource type="Theme" uid="uid://bdfiiq1xftuko" path="res://data/themes/botton_theme.tres" id="1_fvpdn"]
+[ext_resource type="Script" uid="uid://dwwnf28a74rk" path="res://scenes/UI/ManiPlay.gd" id="1_i7h23"]
+[ext_resource type="Texture2D" uid="uid://cwb2aemwb3j2s" path="res://assets/Picture_back_ground/origbig3.png" id="1_n428t"]
+[ext_resource type="ButtonGroup" uid="uid://d21n40lwpci5w" path="res://data/button_group_gamemode.tres" id="3_078tn"]
+[ext_resource type="ButtonGroup" uid="uid://bqx75jpsf0s7y" path="res://data/button_group_map.tres" id="4_fvpdn"]
+
+[sub_resource type="Theme" id="Theme_isaam"]
+
+[node name="Maniplay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_fvpdn")
+script = ExtResource("1_i7h23")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_top = -50.0
+offset_right = 2304.0
+offset_bottom = 1246.0
+scale = Vector2(0.75, 0.75)
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer"]
+layout_mode = 2
+texture = ExtResource("1_n428t")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -140.5
+offset_top = 40.0
+offset_right = 140.5
+offset_bottom = 128.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.101961, 0.180392, 0.101961, 1)
+theme_override_font_sizes/font_size = 64
+text = "War Ants"
+
+[node name="ModoGameContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(300, 600)
+layout_mode = 1
+offset_left = 206.5
+offset_top = 200.0
+offset_right = 506.5
+offset_bottom = 800.0
+theme_override_constants/separation = 10
+
+[node name="LabelGame" type="Label" parent="ModoGameContainer"]
+layout_mode = 2
+text = "Modo de juego"
+
+[node name="HistoriaButton" type="Button" parent="ModoGameContainer"]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+theme = SubResource("Theme_isaam")
+toggle_mode = true
+button_group = ExtResource("3_078tn")
+text = "Historia"
+alignment = 0
+
+[node name="SuperButton4" type="Button" parent="ModoGameContainer"]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("3_078tn")
+text = "Supervivencia"
+alignment = 0
+
+[node name="ReyButton2" type="Button" parent="ModoGameContainer"]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("3_078tn")
+text = "Rey del hormiguero"
+alignment = 0
+
+[node name="DiosButton5" type="Button" parent="ModoGameContainer"]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("3_078tn")
+text = "Dios hormiga"
+alignment = 0
+
+[node name="MapContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(300, 600)
+layout_mode = 1
+offset_left = 713.0
+offset_top = 200.0
+offset_right = 1013.0
+offset_bottom = 800.0
+theme_override_constants/separation = 10
+
+[node name="LabelMapa" type="Label" parent="MapContainer"]
+layout_mode = 2
+text = "Mapa"
+
+[node name="Mapa1Button" type="Button" parent="MapContainer"]
+self_modulate = Color(0.996078, 1, 1, 1)
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("4_fvpdn")
+text = "Mapa 1
+"
+alignment = 0
+
+[node name="Mapa2Button" type="Button" parent="MapContainer"]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("4_fvpdn")
+text = "Mapa 2
+"
+alignment = 0
+
+[node name="Mapa3Button" type="Button" parent="MapContainer"]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("4_fvpdn")
+text = "Mapa 3
+"
+alignment = 0
+
+[node name="Mapa4Button" type="Button" parent="MapContainer"]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("4_fvpdn")
+text = "Mapa 4
+"
+alignment = 0
+
+[node name="ConfigureContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(300, 600)
+layout_mode = 1
+offset_left = 1219.5
+offset_top = 200.0
+offset_right = 1519.5
+offset_bottom = 800.0
+theme_override_constants/separation = 10
+
+[node name="LabelOpciones" type="Label" parent="ConfigureContainer"]
+layout_mode = 2
+text = "Opciones"
+
+[node name="Opcion1Button" type="Button" parent="ConfigureContainer"]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+text = "Opcion 1"
+alignment = 0
+
+[node name="Opcion2Button" type="Button" parent="ConfigureContainer"]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+text = "Opcion 2"
+alignment = 0
+
+[node name="ButtonContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -65.0
+offset_right = 100.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="BackButton" type="Button" parent="ButtonContainer"]
+custom_minimum_size = Vector2(200, 45)
+layout_mode = 2
+text = "Atras"
+
+[node name="JugarButton" type="Button" parent="ButtonContainer"]
+custom_minimum_size = Vector2(200, 45)
+layout_mode = 2
+text = "Jugar"
+
+[connection signal="pressed" from="ModoGameContainer/HistoriaButton" to="." method="_on_histo_pressed"]
+[connection signal="pressed" from="ModoGameContainer/SuperButton4" to="." method="_on_super_pressed"]
+[connection signal="pressed" from="ModoGameContainer/ReyButton2" to="." method="_on_rey_pressed"]
+[connection signal="pressed" from="ModoGameContainer/DiosButton5" to="." method="_on_dios_pressed"]
+[connection signal="pressed" from="MapContainer/Mapa1Button" to="." method="_obtener_modo_seleccionado"]
+[connection signal="pressed" from="MapContainer/Mapa1Button" to="." method="_on_mapa1_pressed"]
+[connection signal="pressed" from="MapContainer/Mapa2Button" to="." method="_on_mapa2_pressed"]
+[connection signal="pressed" from="MapContainer/Mapa3Button" to="." method="_on_mapa3_pressed"]
+[connection signal="pressed" from="MapContainer/Mapa4Button" to="." method="_on_mapa4_pressed"]
+[connection signal="pressed" from="ConfigureContainer/Opcion1Button" to="." method="_on_opcion1_pressed"]
+[connection signal="pressed" from="ConfigureContainer/Opcion2Button" to="." method="_on_opcion2_pressed"]
+[connection signal="pressed" from="ButtonContainer/BackButton" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="ButtonContainer/JugarButton" to="." method="_on_jugar_pressed"]

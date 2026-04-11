@@ -2,7 +2,7 @@ extends Control
 
 
 func _on_jugar_pressed():
-	get_tree().change_scene_to_file("res://scenes/Main.tscn")
+	get_tree().change_scene_to_file("res://scenes/UI/ManiPlay.tscn")
 
 func _on_config_pressed():
 	get_tree().change_scene_to_file("res://scenes/UI/Config.tscn")
