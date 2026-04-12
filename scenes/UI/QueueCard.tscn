@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://buadtkg48anb"]
+
+[ext_resource type="Script" uid="uid://6ajoi6p6agcy" path="res://scripts/QueueCard.gd" id="1_2j6j8"]
+
+[node name="QueueCard" type="PanelContainer"]
+custom_minimum_size = Vector2(60, 60)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_2j6j8")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 2
+stretch_mode = 5
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+mouse_filter = 2
+max_value = 1.0
+show_percentage = false

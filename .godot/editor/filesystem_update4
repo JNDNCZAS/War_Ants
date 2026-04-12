@@ -46,3 +46,11 @@ res://scripts/SpawnQueue.gd
 res://CastPanel.gd
 res://scripts/ui.gd
 res://scenes/UI/CastPanel.tscn
+res://scenes/UI/QueueCard.tscn
+res://scenes/UI/QueueCard.gd
+res://scripts/UnitCard.gd
+res://data/stats/oecophylla_obrera_intermedia.tres
+res://scenes/UI/Insect.tscn
+res://scenes/UI/Insect.gd
+res://scenes/Insect.tscn
+res://scripts/Insect.gd

@@ -6,7 +6,7 @@ extends CanvasLayer
 const AntGroupScene = preload("res://scenes/AntGroup.tscn")
 const UnitCardScene = preload("res://scenes/UI/UnitCard.tscn")
 const CastPanelScene = preload("res://scenes/UI/CastPanel.tscn")
-
+const QueueCardScene = preload("res://scenes/UI/QueueCard.tscn")
 #==================================================
 # REFERENCIAS A NODOS UI
 #==================================================
@@ -15,6 +15,7 @@ const CastPanelScene = preload("res://scenes/UI/CastPanel.tscn")
 @onready var total_label: Label = $TotalLabel
 @onready var unit_container: HBoxContainer = $BottomPanel/UnitContainer
 @onready var cast_container: HBoxContainer = $CastPanel/CastContainer
+@onready var queue_container: HBoxContainer = $QueuePanel/QueueContainer
 
 #==================================================
 # REFERENCIAS A NODOS DEL MUNDO
@@ -28,13 +29,18 @@ const CastPanelScene = preload("res://scenes/UI/CastPanel.tscn")
 func _ready():
 	SpawnQueue.anthill = anthill
 	SpawnQueue.grupo_creado.connect(_on_grupo_creado)
+	SpawnQueue.cola_actualizada.connect(_on_cola_actualizada)
+	SpawnQueue.progreso_actualizado.connect(_on_progreso_actualizado)
 	_cargar_castas()
 
 #==================================================
 # PROCESS
 #==================================================
 func _process(_delta):
-	total_label.text = "Grupos en mapa: " + str(ant_groups_container.get_child_count())
+	var total_integrantes = 0
+	for group in ant_groups_container.get_children():
+		total_integrantes += group.integrantes_actuales
+	total_label.text = "Hormigas en mapa: " + str(total_integrantes)
 	if anthill:
 		label_hojas.text = "Hojas: " + str(anthill.hojas_almacenadas)
 
@@ -73,3 +79,17 @@ func _actualizar_panel(selected_groups: Array):
 		var card = UnitCardScene.instantiate()
 		unit_container.add_child(card)
 		card.setup(group)
+
+func _on_cola_actualizada(cola_stats: Array):
+	for child in queue_container.get_children():
+		child.queue_free()
+	for i in cola_stats.size():
+		var card = QueueCardScene.instantiate()
+		queue_container.add_child(card)
+		card.setup(cola_stats[i], i)
+		
+		
+func _on_progreso_actualizado(valor: float):
+	var cards = queue_container.get_children()
+	if cards.size() > 0:
+		cards[0].actualizar_progreso(valor)

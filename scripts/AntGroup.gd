@@ -12,12 +12,13 @@ const COLOR_ESPERANDO     = Color(1, 1, 0, 0.9)
 const COLOR_PATRULLANDO   = Color(0, 0.6, 1, 0.9)
 const COLOR_RECOLECTANDO  = Color(0, 1, 0.2, 0.9)
 const COLOR_TRANSPORTANDO = Color(1, 0.5, 0, 0.9)
+const COLOR_COMBATE       = Color(1, 0, 0, 0.9)
 
 #==================================================
 # ENUMS
 #==================================================
 
-enum Estado {ESPERANDO, PATRULLANDO, RECOLECTANDO, TRANSPORTANDO}
+enum Estado {ESPERANDO, PATRULLANDO, RECOLECTANDO, TRANSPORTANDO, COMBATE}
 
 #==================================================
 # VARIABLES EXPORTADAS
@@ -34,7 +35,8 @@ enum Estado {ESPERANDO, PATRULLANDO, RECOLECTANDO, TRANSPORTANDO}
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var selection_ring: Node2D = $SelectionRing
-
+@onready var detection_area: Area2D = $DetectionArea
+@onready var detection_shape: CollisionShape2D = $DetectionArea/DetectionShape
 #==================================================
 # ESTADO GENERAL
 #==================================================
@@ -72,6 +74,13 @@ var timer_descarga: float = 0.0
 var integrantes_actuales: int = 0
 var daño_acumulado: float = 0.0
 
+#=================================================
+#COMBATE
+#=================================================
+
+var target_insect = null
+var estado_anterior: int = -1
+var timer_ataque: float = 0.0
 
 func _ready():
 	await get_tree().physics_frame
@@ -80,12 +89,14 @@ func _ready():
 	set_selected(false)
 	sprite.play("walk")
 	_actualizar_color_estado()
+	_actualizar_radio_deteccion()
 	if stats:
 		integrantes_actuales = stats.integrantes_max
-		if stats.sprite_frames:
-			sprite.sprite_frames = stats.sprite_frames
-
+		
 func _physics_process(delta):
+	var overlapping = detection_area.get_overlapping_bodies()
+	if overlapping.size() > 0:
+		print("cuerpos en area: ", overlapping.size())
 	match estado_actual:
 		Estado.ESPERANDO:
 			_tick_esperando()
@@ -95,6 +106,8 @@ func _physics_process(delta):
 			_tick_recolectando(delta)
 		Estado.TRANSPORTANDO:
 			_tick_transportando(delta)
+		Estado.COMBATE:
+			_tick_combate(delta)
 
 func _actualizar_color_estado():
 	match estado_actual:
@@ -106,6 +119,8 @@ func _actualizar_color_estado():
 			selection_ring.set_estado_color(COLOR_RECOLECTANDO)
 		Estado.TRANSPORTANDO:
 			selection_ring.set_estado_color(COLOR_TRANSPORTANDO)
+		Estado.COMBATE:
+			selection_ring.set_estado_color(COLOR_COMBATE)
 
 func _tick_esperando():
 	if moving:
@@ -124,8 +139,6 @@ func _tick_esperando():
 		sprite.stop()
 
 func _tick_patrullando():
-	print("velocidad stats: ", stats.velocidad if stats else "sin stats")
-	print("velocity actual: ", velocity)
 	if patrol_points.is_empty():
 		return
 	if patrol_points.size() == 1:
@@ -163,6 +176,7 @@ func move_to(pos: Vector2):
 	moving = true
 	nav_agent.target_position = pos
 	_actualizar_color_estado()
+	_actualizar_radio_deteccion()
 
 func set_patrol(points: Array):
 	if points.is_empty():
@@ -173,6 +187,7 @@ func set_patrol(points: Array):
 	estado_actual = Estado.PATRULLANDO
 	nav_agent.target_position = patrol_points[0]
 	_actualizar_color_estado()
+	_actualizar_radio_deteccion()
 
 func set_selected(value: bool):
 	selected = value
@@ -249,6 +264,32 @@ func _tick_transportando(delta):
 			carga=false
 			_iniciar_recoleccion()
 
+func _tick_combate(delta):
+	if target_insect == null or not is_instance_valid(target_insect):
+		_terminar_combate()
+		return
+	timer_ataque += delta
+	var distancia = global_position.distance_to(target_insect.global_position)
+	if distancia > stats.radio_deteccion_normal * 1.5:
+		_terminar_combate()
+		return
+	if distancia > 30.0:
+		nav_agent.target_position = target_insect.global_position
+		var next = nav_agent.get_next_path_position()
+		var direction = (next - global_position).normalized()
+		velocity = direction * _velocidad_actual()
+		move_and_slide()
+		if direction != Vector2.ZERO:
+			sprite.rotation = direction.angle() - PI / 2
+			sprite.play("walk")
+	else:
+		velocity = Vector2.ZERO
+		sprite.stop()
+		if timer_ataque >= stats.velocidad_ataque:
+			timer_ataque = 0.0
+			target_insect.recibir_daño(stats.daño * integrantes_actuales * 0.1)
+
+
 func _iniciar_recoleccion():
 	if target_tree == null:
 		return
@@ -276,3 +317,42 @@ func _velocidad_actual() -> float:
 	if carga and stats:
 		return stats.velocidad * stats.reduccion_velocidad_carga
 	return stats.velocidad if stats else SPEED
+
+
+
+func _actualizar_radio_deteccion():
+	if not stats:
+		return
+	var shape = CircleShape2D.new()
+	if estado_actual == Estado.PATRULLANDO:
+		shape.radius = stats.radio_deteccion_patrulla
+	else:
+		shape.radius = stats.radio_deteccion_normal
+	detection_shape.shape = shape
+	
+func _on_body_entered(body):
+	print("BODY ENTERED: ", body.name, " clase: ", body.get_class())
+	if body is Insect and estado_actual != Estado.COMBATE:
+		_iniciar_combate(body)
+		
+		
+func _iniciar_combate(insect):
+	estado_anterior = estado_actual
+	target_insect = insect
+	insect.set_target(self)
+	estado_actual = Estado.COMBATE
+	nav_agent.target_desired_distance = ARRIVAL_THRESHOLD
+	_actualizar_color_estado()
+	call_deferred("_actualizar_radio_deteccion")  # ← cambia esto
+	
+	
+func _terminar_combate():
+	target_insect = null
+	estado_actual = estado_anterior if estado_anterior != -1 else Estado.ESPERANDO
+	estado_anterior = -1
+	timer_ataque = 0.0
+	_actualizar_color_estado()
+	call_deferred("_actualizar_radio_deteccion")  # ← cambia esto
+	
+func _on_body_exited(body):
+	print("BODY EXITED: ", body.name)

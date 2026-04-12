@@ -16,5 +16,10 @@ extends Resource
 @export var tiempo_descarga: float = 2.0
 @export var costo_hojas: float=50
 @export var tiempo_creacion: float = 10.0
+@export var radio_deteccion_normal: float= 0
+@export var radio_deteccion_patrulla: float=0
+@export var velocidad_ataque: float=0
+
+
 
 @export var sprite_frames: SpriteFrames

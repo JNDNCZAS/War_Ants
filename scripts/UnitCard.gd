@@ -35,7 +35,6 @@ func _ready():
 	tooltip.size = Vector2(160, 180)
 	custom_minimum_size = Vector2(80, 80)
 	size = Vector2(80, 80)
-	print("UnitCard size después de forzar: ", size)
 
 func setup(group):
 	ant_group = group
