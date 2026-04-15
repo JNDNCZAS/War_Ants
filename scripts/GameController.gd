@@ -126,16 +126,17 @@ func _finish_drag_selection(end_pos: Vector2):
 func _issue_move_order(world_pos: Vector2):
 	var count = selected_groups.size()
 	for i in count:
-		var offset = _formation_offset(i, count)
-		selected_groups[i].move_to(world_pos + offset)
-	_mostrar_marcador(world_pos)
+		if is_instance_valid(selected_groups[i]):
+			var offset = _formation_offset(i, count)
+			selected_groups[i].move_to(world_pos + offset)
 
 func _call_all_groups(world_pos: Vector2):
 	var all_groups = ant_groups_container.get_children()
 	var count = all_groups.size()
 	for i in count:
-		var offset = _formation_offset(i, count)
-		all_groups[i].move_to(world_pos + offset)
+		if is_instance_valid(all_groups[i]):
+			var offset = _formation_offset(i, count)
+			all_groups[i].move_to(world_pos + offset)
 	_mostrar_marcador(world_pos)
 	_update_selection_label()
 
@@ -164,7 +165,8 @@ func _toggle_select(group):
 
 func _deselect_all():
 	for group in selected_groups:
-		group.set_selected(false)
+		if is_instance_valid(group):
+			group.set_selected(false)
 	selected_groups.clear()
 	_update_selection_label()
 	ui._actualizar_panel(selected_groups)

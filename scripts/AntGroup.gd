@@ -13,7 +13,7 @@ const COLOR_PATRULLANDO   = Color(0, 0.6, 1, 0.9)
 const COLOR_RECOLECTANDO  = Color(0, 1, 0.2, 0.9)
 const COLOR_TRANSPORTANDO = Color(1, 0.5, 0, 0.9)
 const COLOR_COMBATE       = Color(1, 0, 0, 0.9)
-
+var _estado_anterior_debug: int = -1
 #==================================================
 # ENUMS
 #==================================================
@@ -82,6 +82,11 @@ var target_insect = null
 var estado_anterior: int = -1
 var timer_ataque: float = 0.0
 
+var patrol_points_anterior: Array = []
+var patrol_index_anterior: int = 0
+var patrol_direction_anterior: int = 1
+var combat_timer: float = 0.0
+
 func _ready():
 	await get_tree().physics_frame
 	nav_agent.path_desired_distance = ARRIVAL_THRESHOLD
@@ -94,19 +99,23 @@ func _ready():
 		integrantes_actuales = stats.integrantes_max
 		
 func _physics_process(delta):
-	var overlapping = detection_area.get_overlapping_bodies()
-	if overlapping.size() > 0:
-		print("cuerpos en area: ", overlapping.size())
+	if estado_actual != _estado_anterior_debug:
+		print("ESTADO CAMBIO DE ", _estado_anterior_debug, " A ", estado_actual)
+		print(get_stack())
+		_estado_anterior_debug = estado_actual
 	match estado_actual:
 		Estado.ESPERANDO:
+			#print("ejecutando ESPERANDO")
 			_tick_esperando()
 		Estado.PATRULLANDO:
+			#print("ejecutando PATRULLANDO")
 			_tick_patrullando()
 		Estado.RECOLECTANDO:
 			_tick_recolectando(delta)
 		Estado.TRANSPORTANDO:
 			_tick_transportando(delta)
 		Estado.COMBATE:
+			#print("ejecutando COMBATE")
 			_tick_combate(delta)
 
 func _actualizar_color_estado():
@@ -139,6 +148,8 @@ func _tick_esperando():
 		sprite.stop()
 
 func _tick_patrullando():
+	if estado_actual != Estado.PATRULLANDO:
+		return
 	if patrol_points.is_empty():
 		return
 	if patrol_points.size() == 1:
@@ -265,12 +276,18 @@ func _tick_transportando(delta):
 			_iniciar_recoleccion()
 
 func _tick_combate(delta):
+	combat_timer += delta
+	if combat_timer < 0.5:
+		if target_insect != null and is_instance_valid(target_insect):
+			nav_agent.target_position = target_insect.global_position
+		return
 	if target_insect == null or not is_instance_valid(target_insect):
 		_terminar_combate()
 		return
 	timer_ataque += delta
 	var distancia = global_position.distance_to(target_insect.global_position)
-	if distancia > stats.radio_deteccion_normal * 1.5:
+	var radio_limite = stats.radio_deteccion_patrulla if estado_anterior == Estado.PATRULLANDO else stats.radio_deteccion_normal * 1.5
+	if distancia > radio_limite:
 		_terminar_combate()
 		return
 	if distancia > 30.0:
@@ -331,28 +348,46 @@ func _actualizar_radio_deteccion():
 	detection_shape.shape = shape
 	
 func _on_body_entered(body):
-	print("BODY ENTERED: ", body.name, " clase: ", body.get_class())
-	if body is Insect and estado_actual != Estado.COMBATE:
+	if estado_actual == Estado.COMBATE:
+		return
+	if body is Insect:
+		print("iniciando combate")
 		_iniciar_combate(body)
 		
 		
 func _iniciar_combate(insect):
+	if estado_actual == Estado.COMBATE:
+		return
+	if insect == null or not is_instance_valid(insect):
+		return
+	combat_timer = 0.0
 	estado_anterior = estado_actual
+	if estado_actual == Estado.PATRULLANDO:
+		patrol_points_anterior = patrol_points.duplicate()
+		patrol_index_anterior = patrol_index
+		patrol_direction_anterior = patrol_direction
 	target_insect = insect
 	insect.set_target(self)
 	estado_actual = Estado.COMBATE
 	nav_agent.target_desired_distance = ARRIVAL_THRESHOLD
 	_actualizar_color_estado()
-	call_deferred("_actualizar_radio_deteccion")  # ← cambia esto
+	# eliminamos call_deferred("_actualizar_radio_deteccion") de aqui
 	
 	
 func _terminar_combate():
 	target_insect = null
-	estado_actual = estado_anterior if estado_anterior != -1 else Estado.ESPERANDO
-	estado_anterior = -1
 	timer_ataque = 0.0
+	if estado_anterior == Estado.PATRULLANDO and not patrol_points_anterior.is_empty():
+		patrol_points = patrol_points_anterior.duplicate()
+		patrol_index = patrol_index_anterior
+		patrol_direction = patrol_direction_anterior
+		estado_actual = Estado.PATRULLANDO
+		nav_agent.target_position = patrol_points[patrol_index]
+	else:
+		estado_actual = estado_anterior if estado_anterior != -1 else Estado.ESPERANDO
+	estado_anterior = -1
 	_actualizar_color_estado()
-	call_deferred("_actualizar_radio_deteccion")  # ← cambia esto
+	call_deferred("_actualizar_radio_deteccion")  # solo aqui
 	
 func _on_body_exited(body):
 	print("BODY EXITED: ", body.name)

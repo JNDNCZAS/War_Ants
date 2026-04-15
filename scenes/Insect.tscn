@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://btfto5lj8b8p3"]
+[gd_scene load_steps=9 format=3 uid="uid://btfto5lj8b8p3"]
 
 [ext_resource type="Script" uid="uid://2vf4jskuwejg" path="res://scripts/Insect.gd" id="1_r66ip"]
 [ext_resource type="Texture2D" uid="uid://fqbhvpbtewa6" path="res://assets/tiles/Bugs (1).png" id="2_a5cst"]
@@ -6,6 +6,10 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_br1dn"]
 radius = 22.8571
 height = 60.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_br1dn"]
+atlas = ExtResource("2_a5cst")
+region = Rect2(0, 0, 90, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_svhoq"]
 atlas = ExtResource("2_a5cst")
@@ -21,6 +25,14 @@ region = Rect2(180, 0, 90, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_osymg"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_br1dn")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_svhoq")
@@ -49,4 +61,4 @@ shape = SubResource("CapsuleShape2D_br1dn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_osymg")
-animation = &"walk"
+animation = &"attack"

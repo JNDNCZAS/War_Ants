@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://cma6yoqlad223"]
 
-[ext_resource type="Theme" uid="uid://bdfiiq1xftuko" path="res://data/themes/botton_theme.tres" id="1_fvpdn"]
-[ext_resource type="Script" uid="uid://dwwnf28a74rk" path="res://scripts/ManiPlay.gd" id="1_i7h23"]
-[ext_resource type="Texture2D" uid="uid://cwb2aemwb3j2s" path="res://assets/Picture_back_ground/origbig3.png" id="1_n428t"]
-[ext_resource type="ButtonGroup" uid="uid://d21n40lwpci5w" path="res://data/button_group_gamemode.tres" id="3_078tn"]
-[ext_resource type="ButtonGroup" uid="uid://bqx75jpsf0s7y" path="res://data/button_group_map.tres" id="4_fvpdn"]
+[ext_resource type="Theme" uid="uid://bdfiiq1xftuko" path="res://data/themes/botton_theme.tres" id="1_cncvv"]
+[ext_resource type="Script" uid="uid://dwwnf28a74rk" path="res://scripts/ManiPlay.gd" id="2_s4sba"]
+[ext_resource type="Texture2D" uid="uid://cwb2aemwb3j2s" path="res://assets/Picture_back_ground/origbig3.png" id="3_udg06"]
+[ext_resource type="ButtonGroup" uid="uid://d21n40lwpci5w" path="res://data/button_group_gamemode.tres" id="4_xjakd"]
+[ext_resource type="ButtonGroup" uid="uid://bqx75jpsf0s7y" path="res://data/button_group_map.tres" id="5_l2lrs"]
 
 [sub_resource type="Theme" id="Theme_isaam"]
 
@@ -15,8 +15,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_fvpdn")
-script = ExtResource("1_i7h23")
+theme = ExtResource("1_cncvv")
+script = ExtResource("2_s4sba")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
@@ -27,7 +27,7 @@ scale = Vector2(0.75, 0.75)
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer"]
 layout_mode = 2
-texture = ExtResource("1_n428t")
+texture = ExtResource("3_udg06")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
@@ -61,7 +61,7 @@ custom_minimum_size = Vector2(300, 30)
 layout_mode = 2
 theme = SubResource("Theme_isaam")
 toggle_mode = true
-button_group = ExtResource("3_078tn")
+button_group = ExtResource("4_xjakd")
 text = "Historia"
 alignment = 0
 
@@ -69,7 +69,7 @@ alignment = 0
 custom_minimum_size = Vector2(300, 30)
 layout_mode = 2
 toggle_mode = true
-button_group = ExtResource("3_078tn")
+button_group = ExtResource("4_xjakd")
 text = "Supervivencia"
 alignment = 0
 
@@ -77,7 +77,7 @@ alignment = 0
 custom_minimum_size = Vector2(300, 30)
 layout_mode = 2
 toggle_mode = true
-button_group = ExtResource("3_078tn")
+button_group = ExtResource("4_xjakd")
 text = "Rey del hormiguero"
 alignment = 0
 
@@ -85,7 +85,7 @@ alignment = 0
 custom_minimum_size = Vector2(300, 30)
 layout_mode = 2
 toggle_mode = true
-button_group = ExtResource("3_078tn")
+button_group = ExtResource("4_xjakd")
 text = "Dios hormiga"
 alignment = 0
 
@@ -107,7 +107,7 @@ self_modulate = Color(0.996078, 1, 1, 1)
 custom_minimum_size = Vector2(300, 30)
 layout_mode = 2
 toggle_mode = true
-button_group = ExtResource("4_fvpdn")
+button_group = ExtResource("5_l2lrs")
 text = "Mapa 1
 "
 alignment = 0
@@ -116,7 +116,7 @@ alignment = 0
 custom_minimum_size = Vector2(300, 30)
 layout_mode = 2
 toggle_mode = true
-button_group = ExtResource("4_fvpdn")
+button_group = ExtResource("5_l2lrs")
 text = "Mapa 2
 "
 alignment = 0
@@ -125,7 +125,7 @@ alignment = 0
 custom_minimum_size = Vector2(300, 30)
 layout_mode = 2
 toggle_mode = true
-button_group = ExtResource("4_fvpdn")
+button_group = ExtResource("5_l2lrs")
 text = "Mapa 3
 "
 alignment = 0
@@ -134,7 +134,7 @@ alignment = 0
 custom_minimum_size = Vector2(300, 30)
 layout_mode = 2
 toggle_mode = true
-button_group = ExtResource("4_fvpdn")
+button_group = ExtResource("5_l2lrs")
 text = "Mapa 4
 "
 alignment = 0
@@ -226,8 +226,8 @@ text = "Nota:  porfavor escoja las opciones \"historia\" y mapa 1\", de lo contr
 [connection signal="pressed" from="ModoGameContainer/SuperButton4" to="." method="_on_super_pressed"]
 [connection signal="pressed" from="ModoGameContainer/ReyButton2" to="." method="_on_rey_pressed"]
 [connection signal="pressed" from="ModoGameContainer/DiosButton5" to="." method="_on_dios_pressed"]
-[connection signal="pressed" from="MapContainer/Mapa1Button" to="." method="_obtener_modo_seleccionado"]
 [connection signal="pressed" from="MapContainer/Mapa1Button" to="." method="_on_mapa1_pressed"]
+[connection signal="pressed" from="MapContainer/Mapa1Button" to="." method="_obtener_modo_seleccionado"]
 [connection signal="pressed" from="MapContainer/Mapa2Button" to="." method="_on_mapa2_pressed"]
 [connection signal="pressed" from="MapContainer/Mapa3Button" to="." method="_on_mapa3_pressed"]
 [connection signal="pressed" from="MapContainer/Mapa4Button" to="." method="_on_mapa4_pressed"]

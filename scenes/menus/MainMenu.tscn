@@ -1,17 +1,17 @@
 [gd_scene load_steps=5 format=3 uid="uid://byshkbdh6bvta"]
 
-[ext_resource type="Theme" uid="uid://bdfiiq1xftuko" path="res://data/themes/botton_theme.tres" id="1_4vh8y"]
-[ext_resource type="Script" uid="uid://b0e1ntmgknril" path="res://scripts/MainMenu.gd" id="1_58fj5"]
-[ext_resource type="Texture2D" uid="uid://fqbhvpbtewa6" path="res://assets/tiles/Bugs (1).png" id="2_3h7gc"]
-[ext_resource type="Texture2D" uid="uid://cwb2aemwb3j2s" path="res://assets/Picture_back_ground/origbig3.png" id="3_3h7gc"]
+[ext_resource type="Theme" uid="uid://bdfiiq1xftuko" path="res://data/themes/botton_theme.tres" id="1_tyyoy"]
+[ext_resource type="Script" uid="uid://b0e1ntmgknril" path="res://scripts/MainMenu.gd" id="2_p0il0"]
+[ext_resource type="Texture2D" uid="uid://cwb2aemwb3j2s" path="res://assets/Picture_back_ground/origbig3.png" id="3_cty7a"]
+[ext_resource type="Texture2D" uid="uid://fqbhvpbtewa6" path="res://assets/tiles/Bugs (1).png" id="4_147xw"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1726.0
 offset_bottom = 900.0
-theme = ExtResource("1_4vh8y")
-script = ExtResource("1_58fj5")
+theme = ExtResource("1_tyyoy")
+script = ExtResource("2_p0il0")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
@@ -26,7 +26,7 @@ color = Color(0.101961, 0.180392, 0.101961, 1)
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer"]
 layout_mode = 2
-texture = ExtResource("3_3h7gc")
+texture = ExtResource("3_cty7a")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
@@ -98,7 +98,7 @@ grow_vertical = 0
 
 [node name="NewsImagen" type="TextureRect" parent="NewsPanel"]
 layout_mode = 2
-texture = ExtResource("2_3h7gc")
+texture = ExtResource("4_147xw")
 expand_mode = 2
 stretch_mode = 5
 

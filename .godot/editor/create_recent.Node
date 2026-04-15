@@ -1,9 +1,9 @@
+CollisionShape2D
 VBoxContainer
 NavigationAgent2D
 Node2D
 AnimatedSprite2D
 NavigationLink2D
-CollisionShape2D
 CharacterBody2D
 Area2D
 HBoxContainer

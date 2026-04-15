@@ -32,7 +32,7 @@ func _obtener_selecciones():
 	}
 
 func _on_back_pressed():
-	get_tree().change_scene_to_file("res://scenes/UI/MainMenu.tscn")
+	get_tree().change_scene_to_file("res://scenes/menus/MainMenu.tscn")
 	
 	
 func _on_jugar_pressed():

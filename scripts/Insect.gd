@@ -3,9 +3,9 @@ extends CharacterBody2D
 
 const SPEED = 80.0
 
-@export var vida_max: float = 1000
+@export var vida_max: float = 60
 @export var daño: float = 8.0
-@export var velocidad_ataque: float = 1.5
+@export var velocidad_ataque: float = 0.3
 
 var vida_actual: float = 0.0
 var timer_ataque: float = 0.0
@@ -50,12 +50,14 @@ func _tick_combate(delta):
 		estado = "deambulando"
 		target = null
 		_nuevo_punto_deambular()
+		sprite.play("walk")
 		return
 	var distancia = global_position.distance_to(target.global_position)
 	if distancia > 400.0:
 		estado = "deambulando"
 		target = null
 		_nuevo_punto_deambular()
+		sprite.play("walk")
 		return
 	if distancia > 30.0:
 		nav_agent.target_position = target.global_position
@@ -65,8 +67,10 @@ func _tick_combate(delta):
 		move_and_slide()
 		if direction != Vector2.ZERO:
 			sprite.rotation = direction.angle() - PI / 2
+		sprite.play("walk")
 	else:
 		velocity = Vector2.ZERO
+		sprite.play("attack")  # ← animación de ataque
 		if timer_ataque >= velocidad_ataque:
 			timer_ataque = 0.0
 			_atacar()
