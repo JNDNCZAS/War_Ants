@@ -11,11 +11,14 @@ const QueueCardScene = preload("res://scenes/UI/QueueCard.tscn")
 # REFERENCIAS A NODOS UI
 #==================================================
 @onready var label_hojas: Label = $ResourcePanel/VBoxContainer/LabelHojas
-@onready var selection_label: Label = $SelectionLabel
-@onready var total_label: Label = $TotalLabel
+@onready var selection_label: Label = $TextsContainer/SelectionLabel
+@onready var total_label: Label = $TextsContainer/TotalLabel
 @onready var unit_container: HBoxContainer = $BottomPanel/UnitContainer
 @onready var cast_container: HBoxContainer = $CastPanel/CastContainer
 @onready var queue_container: HBoxContainer = $QueuePanel/QueueContainer
+@onready var idle_label: Label = $TextsContainer/IdleLabel
+
+
 
 #==================================================
 # REFERENCIAS A NODOS DEL MUNDO
@@ -36,11 +39,16 @@ func _ready():
 #==================================================
 # PROCESS
 #==================================================
+
 func _process(_delta):
 	var total_integrantes = 0
+	var total_esperando = 0
 	for group in ant_groups_container.get_children():
 		total_integrantes += group.integrantes_actuales
+		if group.estado_actual == AntGroup.Estado.ESPERANDO:
+			total_esperando += group.integrantes_actuales
 	total_label.text = "Hormigas en mapa: " + str(total_integrantes)
+	idle_label.text = "Esperando: " + str(total_esperando)
 	if anthill:
 		label_hojas.text = "Hojas: " + str(anthill.hojas_almacenadas)
 
@@ -68,6 +76,7 @@ func _on_grupo_creado(stats: AntStats):
 	ant_groups_container.add_child(group)
 	group.stats = stats
 	group.integrantes_actuales = stats.integrantes_max
+	group.aplicar_sprite_de_stats()
 
 #==================================================
 # PANEL DE SELECCION

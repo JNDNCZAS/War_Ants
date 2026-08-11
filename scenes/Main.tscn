@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://cwpakpjdji7u1"]
+[gd_scene load_steps=17 format=4 uid="uid://cwpakpjdji7u1"]
 
 [ext_resource type="Texture2D" uid="uid://c3hp64lhsg8lj" path="res://assets/tiles/Arbustos .png" id="1_q8u5g"]
 [ext_resource type="PackedScene" uid="uid://cf7pk035e6ogr" path="res://scenes/AntGroup.tscn" id="1_rvslj"]
@@ -8,7 +8,8 @@
 [ext_resource type="Script" uid="uid://csfytaon5khe8" path="res://scripts/camera_2d.gd" id="3_0bbpv"]
 [ext_resource type="PackedScene" uid="uid://btfto5lj8b8p3" path="res://scenes/Insect.tscn" id="4_3p2gp"]
 [ext_resource type="Script" uid="uid://bsanlfib51a5q" path="res://scripts/ui.gd" id="4_rarhs"]
-[ext_resource type="Resource" uid="uid://oruvh1nwlcla" path="res://data/stats/atta_supersoldado.tres" id="6_mwfav"]
+[ext_resource type="Resource" uid="uid://chuigv8jstanr" path="res://data/stats/oecophylla_obrera_mayor.tres" id="6_wp0k4"]
+[ext_resource type="Resource" uid="uid://na31xh8fyot1" path="res://data/stats/atta_reina.tres" id="7_bjd11"]
 [ext_resource type="PackedScene" uid="uid://brqdbwlrrmerw" path="res://scenes/AntHill.tscn" id="12_qmy6f"]
 [ext_resource type="PackedScene" uid="uid://6wnafppble4s" path="res://scenes/tree.tscn" id="13_mwfav"]
 
@@ -398,7 +399,7 @@ color = Color(0, 1, 0, 0)
 [node name="Insects" type="Node2D" parent="."]
 
 [node name="Insect3" parent="Insects" instance=ExtResource("4_3p2gp")]
-position = Vector2(2104, 852)
+position = Vector2(2519, 1601)
 scale = Vector2(0.7, 0.70342)
 
 [node name="Insect4" parent="Insects" instance=ExtResource("4_3p2gp")]
@@ -412,7 +413,14 @@ position = Vector2(729, 266)
 [node name="AntGroup9" parent="AntGroups" instance=ExtResource("1_rvslj")]
 position = Vector2(555, 505)
 color_selected = Color(0.66409, 0.0582302, 0.284197, 1)
-stats = ExtResource("6_mwfav")
+stats = ExtResource("6_wp0k4")
+sincronizar_con_especie_seleccionada = true
+
+[node name="AntGroup" parent="AntGroups" instance=ExtResource("1_rvslj")]
+position = Vector2(496, 505)
+color_selected = Color(0.662745, 0.0588235, 0.282353, 1)
+stats = ExtResource("7_bjd11")
+sincronizar_con_especie_seleccionada = true
 
 [node name="GameController" type="Node" parent="."]
 script = ExtResource("2_0bbpv")
@@ -479,19 +487,23 @@ grow_vertical = 0
 [node name="QueueContainer" type="HBoxContainer" parent="UI/QueuePanel"]
 layout_mode = 2
 
-[node name="SelectionLabel" type="Label" parent="UI"]
-offset_left = 1190.0
-offset_top = 2.0
-offset_right = 1336.0
-offset_bottom = 25.0
+[node name="TextsContainer" type="VBoxContainer" parent="UI"]
+offset_left = 1200.0
+offset_top = 5.0
+offset_right = 1346.0
+offset_bottom = 82.0
+
+[node name="SelectionLabel" type="Label" parent="UI/TextsContainer"]
+layout_mode = 2
 text = "Seleccionadas: 0"
 
-[node name="TotalLabel" type="Label" parent="UI"]
-offset_left = 1190.0
-offset_top = 29.0
-offset_right = 1336.0
-offset_bottom = 52.0
+[node name="TotalLabel" type="Label" parent="UI/TextsContainer"]
+layout_mode = 2
 text = "Grupos en mapa: 0"
+
+[node name="IdleLabel" type="Label" parent="UI/TextsContainer"]
+layout_mode = 2
+text = "Esperando: 0"
 
 [node name="Anthill" parent="." groups=["anthill"] instance=ExtResource("12_qmy6f")]
 position = Vector2(159, 513)

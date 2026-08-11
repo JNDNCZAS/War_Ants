@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bdfiiq1xftuko" path="res://data/themes/botton_theme.tres" id="1_cncvv"]
 [ext_resource type="Script" uid="uid://dwwnf28a74rk" path="res://scripts/ManiPlay.gd" id="2_s4sba"]
-[ext_resource type="Texture2D" uid="uid://cwb2aemwb3j2s" path="res://assets/Picture_back_ground/origbig3.png" id="3_udg06"]
+[ext_resource type="Texture2D" uid="uid://cwb2aemwb3j2s" path="res://assets/fondos/origbig3.png" id="3_udg06"]
 [ext_resource type="ButtonGroup" uid="uid://d21n40lwpci5w" path="res://data/button_group_gamemode.tres" id="4_xjakd"]
 [ext_resource type="ButtonGroup" uid="uid://bqx75jpsf0s7y" path="res://data/button_group_map.tres" id="5_l2lrs"]
 

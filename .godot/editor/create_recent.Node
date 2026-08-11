@@ -1,5 +1,6 @@
-CollisionShape2D
 VBoxContainer
+Label
+CollisionShape2D
 NavigationAgent2D
 Node2D
 AnimatedSprite2D
@@ -11,4 +12,3 @@ PanelContainer
 ProgressBar
 TextureRect
 Button
-Label

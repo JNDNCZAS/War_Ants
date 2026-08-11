@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://btfto5lj8b8p3"]
 
 [ext_resource type="Script" uid="uid://2vf4jskuwejg" path="res://scripts/Insect.gd" id="1_r66ip"]
-[ext_resource type="Texture2D" uid="uid://fqbhvpbtewa6" path="res://assets/tiles/Bugs (1).png" id="2_a5cst"]
+[ext_resource type="Texture2D" uid="uid://fqbhvpbtewa6" path="res://assets/tiles/bugs.png" id="2_a5cst"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_br1dn"]
 radius = 22.8571

@@ -2,8 +2,8 @@
 
 [ext_resource type="Theme" uid="uid://bdfiiq1xftuko" path="res://data/themes/botton_theme.tres" id="1_tyyoy"]
 [ext_resource type="Script" uid="uid://b0e1ntmgknril" path="res://scripts/MainMenu.gd" id="2_p0il0"]
-[ext_resource type="Texture2D" uid="uid://cwb2aemwb3j2s" path="res://assets/Picture_back_ground/origbig3.png" id="3_cty7a"]
-[ext_resource type="Texture2D" uid="uid://fqbhvpbtewa6" path="res://assets/tiles/Bugs (1).png" id="4_147xw"]
+[ext_resource type="Texture2D" uid="uid://cwb2aemwb3j2s" path="res://assets/fondos/origbig3.png" id="3_cty7a"]
+[ext_resource type="Texture2D" uid="uid://fqbhvpbtewa6" path="res://assets/tiles/bugs.png" id="4_147xw"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3

@@ -27,6 +27,7 @@ enum Estado {ESPERANDO, PATRULLANDO, RECOLECTANDO, TRANSPORTANDO, COMBATE}
 @export var color_normal: Color = Color(1, 1, 1, 1)
 @export var color_selected: Color = Color(1, 1, 1, 1)
 @export var stats: AntStats
+@export var sincronizar_con_especie_seleccionada: bool = false
 
 #==================================================
 # REFERENCIAS A NODOS
@@ -88,10 +89,20 @@ var patrol_direction_anterior: int = 1
 var combat_timer: float = 0.0
 
 func _ready():
+	
+	if sincronizar_con_especie_seleccionada and GameData.especie != "":
+		var nuevas_stats = StatsLoader.stats_aleatorio_por_especie(GameData.especie)
+		if nuevas_stats:
+			stats = nuevas_stats
+	await get_tree().physics_frame
+	nav_agent.path_desired_distance = ARRIVAL_THRESHOLD
+	
+	
 	await get_tree().physics_frame
 	nav_agent.path_desired_distance = ARRIVAL_THRESHOLD
 	nav_agent.target_desired_distance = ARRIVAL_THRESHOLD
 	set_selected(false)
+	aplicar_sprite_de_stats()
 	sprite.play("walk")
 	_actualizar_color_estado()
 	_actualizar_radio_deteccion()
@@ -301,7 +312,7 @@ func _tick_combate(delta):
 			sprite.play("walk")
 	else:
 		velocity = Vector2.ZERO
-		sprite.stop()
+		sprite.play("combat")
 		if timer_ataque >= stats.velocidad_ataque:
 			timer_ataque = 0.0
 			target_insect.recibir_daño(stats.daño * integrantes_actuales * 0.1)
@@ -391,3 +402,8 @@ func _terminar_combate():
 	
 func _on_body_exited(body):
 	print("BODY EXITED: ", body.name)
+	
+	
+func aplicar_sprite_de_stats():
+	if stats and stats.sprite_frames:
+		sprite.sprite_frames = stats.sprite_frames

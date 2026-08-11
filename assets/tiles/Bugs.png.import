@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bd2p26ruyblox"
-path="res://.godot/imported/Bugs.png-1217374c9ccda30afba9449a52c4d84b.ctex"
+uid="uid://fqbhvpbtewa6"
+path="res://.godot/imported/bugs.png-1afb4736bd43376a4411789d341f13ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiles/Bugs.png"
-dest_files=["res://.godot/imported/Bugs.png-1217374c9ccda30afba9449a52c4d84b.ctex"]
+source_file="res://assets/tiles/bugs.png"
+dest_files=["res://.godot/imported/bugs.png-1afb4736bd43376a4411789d341f13ea.ctex"]
 
 [params]
 

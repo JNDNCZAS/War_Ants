@@ -178,7 +178,7 @@ func _update_selection_rect(start: Vector2, end: Vector2):
 	selection_rect_node.size = rect.size
 
 func _update_selection_label():
-	var label = get_node("../UI/SelectionLabel")
+	var label = get_node("../UI/TextsContainer/SelectionLabel")
 	label.text = "Seleccionadas: " + str(selected_groups.size())
 
 func _to_world(screen_pos: Vector2) -> Vector2:

@@ -2,68 +2,68 @@
 
 [ext_resource type="Script" uid="uid://dk4v4ujn4nhwt" path="res://scripts/AntGroup.gd" id="1_o5gkr"]
 [ext_resource type="Script" uid="uid://0aq4iv5uqa6x" path="res://scripts/SelectionRing.gd" id="2_5etio"]
-[ext_resource type="Texture2D" uid="uid://1ran2r5kiwbu" path="res://assets/tiles/Ants (1).png" id="3_5etio"]
-[ext_resource type="Texture2D" uid="uid://bd2p26ruyblox" path="res://assets/tiles/Bugs.png" id="3_udcx2"]
+[ext_resource type="Texture2D" uid="uid://1ran2r5kiwbu" path="res://assets/tiles/Ants.png" id="3_5etio"]
+[ext_resource type="Texture2D" uid="uid://c2ogdpovi8513" path="res://assets/tiles/combast/combats1.png" id="3_udcx2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rh8na"]
 size = Vector2(22, 22)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_girs3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_odglx"]
 atlas = ExtResource("3_udcx2")
 region = Rect2(0, 0, 61, 74)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wmtvo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2rue"]
 atlas = ExtResource("3_udcx2")
 region = Rect2(61, 0, 61, 74)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c1a0h"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0lam"]
 atlas = ExtResource("3_udcx2")
 region = Rect2(122, 0, 61, 74)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kjbns"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mq1kg"]
 atlas = ExtResource("3_udcx2")
 region = Rect2(183, 0, 61, 74)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5etio"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wocar"]
 atlas = ExtResource("3_5etio")
-region = Rect2(0, 18, 90, 90)
+region = Rect2(13, 29, 61, 74)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_udcx2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rm7hk"]
 atlas = ExtResource("3_5etio")
-region = Rect2(90, 18, 90, 90)
+region = Rect2(103, 29, 61, 74)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c0ckh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_v518k"]
 atlas = ExtResource("3_5etio")
-region = Rect2(180, 18, 90, 90)
+region = Rect2(193, 29, 61, 74)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wmtvo"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_girs3")
+"texture": SubResource("AtlasTexture_odglx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wmtvo")
+"texture": SubResource("AtlasTexture_c2rue")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_c1a0h")
+"texture": SubResource("AtlasTexture_f0lam")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kjbns")
+"texture": SubResource("AtlasTexture_mq1kg")
 }],
 "loop": true,
-"name": &"new_animation_1",
+"name": &"combat",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5etio")
+"texture": SubResource("AtlasTexture_wocar")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_udcx2")
+"texture": SubResource("AtlasTexture_rm7hk")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_c0ckh")
+"texture": SubResource("AtlasTexture_v518k")
 }],
 "loop": true,
 "name": &"walk",
@@ -94,7 +94,7 @@ script = ExtResource("2_5etio")
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_wmtvo")
-animation = &"walk"
+animation = &"combat"
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 radius = 11.0
