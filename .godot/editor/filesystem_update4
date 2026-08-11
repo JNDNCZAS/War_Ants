@@ -23,3 +23,7 @@ res://data/stats/atta_reina.tres
 res://data/stats/cephalotes_obrera_menor.tres
 res://scripts/ui.gd
 res://data/stats/cephalotes_obrera_mayor.tres
+res://scripts/LeafPoint.gd
+res://scripts/TreeInterior.gd
+res://scripts/Tree.gd
+res://scripts/GameController.gd

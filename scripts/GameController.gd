@@ -14,6 +14,9 @@ const OrderMarkerScene = preload("res://scenes/OrderMarker.tscn")
 @onready var selection_rect_node: ColorRect = $"../SelectionRect"
 @onready var ui = $"../UI"
 @onready var anthill = get_tree().get_first_node_in_group("anthill")
+@onready var camera_principal: Camera2D = $"../Camera2D"
+
+var arbol_interior_actual: AntTree = null
 
 #==================================================
 # SELECCIÓN DE GRUPOS
@@ -40,6 +43,11 @@ var patrol_points: Array = []
 
 func _ready():
 	selection_rect_node.visible = false
+	call_deferred("_conectar_arboles")
+
+func _conectar_arboles():
+	for tree in get_tree().get_nodes_in_group("trees"):
+		tree.interior.salir_pedido.connect(_cerrar_vista_arbol)
 
 func _input(event):
 	if event is InputEventKey:
@@ -61,6 +69,9 @@ func _handle_key(event: InputEventKey):
 			harvest_mode = true
 		elif not event.pressed:
 			harvest_mode = false
+	if event.keycode == KEY_ESCAPE and not event.pressed:
+		if arbol_interior_actual:
+			_cerrar_vista_arbol()
 
 func _handle_mouse_button(event: InputEventMouseButton):
 	var world_pos = _to_world(event.position)
@@ -110,6 +121,10 @@ func _handle_single_click(world_pos: Vector2, event: InputEventMouseButton):
 		if world_pos.distance_to(group.global_position) < 18.0:
 			_toggle_select(group)
 			break
+	for tree in get_tree().get_nodes_in_group("trees"):
+		if world_pos.distance_to(tree.global_position) < 40.0:
+			_ver_interior_arbol(tree)
+			return
 	_update_selection_label()
 	ui._actualizar_panel(selected_groups)
 
@@ -200,3 +215,17 @@ func _mostrar_marcador(pos: Vector2):
 	var marker = OrderMarkerScene.instantiate()
 	marker.global_position = pos
 	get_tree().get_root().get_node("Main").add_child(marker)
+	
+	
+func _ver_interior_arbol(tree):
+	if arbol_interior_actual == tree:
+		return
+	if arbol_interior_actual and is_instance_valid(arbol_interior_actual):
+		arbol_interior_actual.interior.ocultar_vista(camera_principal)
+	arbol_interior_actual = tree
+	tree.interior.mostrar_vista(camera_principal)
+
+func _cerrar_vista_arbol():
+	if arbol_interior_actual and is_instance_valid(arbol_interior_actual):
+		arbol_interior_actual.interior.ocultar_vista(camera_principal)
+	arbol_interior_actual = null

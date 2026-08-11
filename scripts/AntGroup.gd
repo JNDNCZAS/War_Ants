@@ -13,12 +13,17 @@ const COLOR_PATRULLANDO   = Color(0, 0.6, 1, 0.9)
 const COLOR_RECOLECTANDO  = Color(0, 1, 0.2, 0.9)
 const COLOR_TRANSPORTANDO = Color(1, 0.5, 0, 0.9)
 const COLOR_COMBATE       = Color(1, 0, 0, 0.9)
+const COLOR_SUBIENDO = Color(0.6, 1, 0.2, 0.9)
+const COLOR_EN_ARBOL = Color(0.2, 0.8, 0.2, 0.9)
+const COLOR_BAJANDO  = Color(0.6, 1, 0.2, 0.9)
+const TIEMPO_SUBIR: float = 2.0
+const TIEMPO_BAJAR: float = 2.0
 var _estado_anterior_debug: int = -1
 #==================================================
 # ENUMS
 #==================================================
 
-enum Estado {ESPERANDO, PATRULLANDO, RECOLECTANDO, TRANSPORTANDO, COMBATE}
+enum Estado {ESPERANDO, PATRULLANDO, RECOLECTANDO, SUBIENDO, EN_ARBOL, BAJANDO, TRANSPORTANDO, COMBATE}
 
 #==================================================
 # VARIABLES EXPORTADAS
@@ -88,6 +93,14 @@ var patrol_index_anterior: int = 0
 var patrol_direction_anterior: int = 1
 var combat_timer: float = 0.0
 
+#=================================================
+#RECOLECCION
+#=================================================
+
+var punto_hoja_objetivo: LeafPoint = null
+var timer_subida: float = 0.0
+var timer_bajada: float = 0.0
+
 func _ready():
 	
 	if sincronizar_con_especie_seleccionada and GameData.especie != "":
@@ -123,6 +136,12 @@ func _physics_process(delta):
 			_tick_patrullando()
 		Estado.RECOLECTANDO:
 			_tick_recolectando(delta)
+		Estado.SUBIENDO:
+			_tick_subiendo(delta)
+		Estado.EN_ARBOL:
+			_tick_en_arbol(delta)
+		Estado.BAJANDO:
+			_tick_bajando(delta)
 		Estado.TRANSPORTANDO:
 			_tick_transportando(delta)
 		Estado.COMBATE:
@@ -137,6 +156,12 @@ func _actualizar_color_estado():
 			selection_ring.set_estado_color(COLOR_PATRULLANDO)
 		Estado.RECOLECTANDO:
 			selection_ring.set_estado_color(COLOR_RECOLECTANDO)
+		Estado.SUBIENDO:
+			selection_ring.set_estado_color(COLOR_SUBIENDO)
+		Estado.EN_ARBOL:
+			selection_ring.set_estado_color(COLOR_EN_ARBOL)
+		Estado.BAJANDO:
+			selection_ring.set_estado_color(COLOR_BAJANDO)
 		Estado.TRANSPORTANDO:
 			selection_ring.set_estado_color(COLOR_TRANSPORTANDO)
 		Estado.COMBATE:
@@ -226,12 +251,14 @@ func recibir_daño(cantidad: float):
 		integrantes_actuales -= 1
 		if integrantes_actuales <= 0:
 			integrantes_actuales = 0
+			if punto_hoja_objetivo:
+				punto_hoja_objetivo.liberar_reserva()
 			queue_free()
 			return
 
 func _tick_recolectando(delta):
-	if carga==false:###
-		if target_tree == null:
+	if carga == false:
+		if target_tree == null or not is_instance_valid(target_tree):
 			estado_actual = Estado.ESPERANDO
 			_actualizar_color_estado()
 			return
@@ -245,23 +272,53 @@ func _tick_recolectando(delta):
 				sprite.play("walk")
 		else:
 			sprite.stop()
-			timer_recoleccion += delta
-			if timer_recoleccion >= stats.tiempo_recoleccion:
-				timer_recoleccion = 0.0
-				if target_tree == null or not is_instance_valid(target_tree):
-					estado_actual = Estado.ESPERANDO
-					_actualizar_color_estado()
+			if punto_hoja_objetivo == null:
+				if target_tree.interior == null:
 					return
-				var cantidad = target_tree.reducir_hojas(stats.capacidad_carga)
-				if cantidad <= 0:
-					estado_actual = Estado.ESPERANDO
-					_actualizar_color_estado()
-					return
-				hojas_cargadas = cantidad
-				carga=true###
-				_iniciar_transporte()
-	if carga==true:###
-		_iniciar_transporte()###
+				var punto = target_tree.interior.obtener_punto_libre()
+				if punto == null:
+					return # no hay hojas libres en este momento, sigue esperando
+				if punto.reservar():
+					punto_hoja_objetivo = punto
+					_iniciar_subida()
+	if carga == true:
+		_iniciar_transporte()
+		
+func _iniciar_subida():
+	estado_actual = Estado.SUBIENDO
+	timer_subida = TIEMPO_SUBIR
+	sprite.visible = false
+	_actualizar_color_estado()
+
+func _tick_subiendo(delta):
+	timer_subida -= delta
+	if timer_subida <= 0.0:
+		estado_actual = Estado.EN_ARBOL
+		timer_recoleccion = 0.0
+		_actualizar_color_estado()
+
+func _tick_en_arbol(delta):
+	if punto_hoja_objetivo == null or not is_instance_valid(punto_hoja_objetivo):
+		estado_actual = Estado.BAJANDO
+		timer_bajada = TIEMPO_BAJAR
+		_actualizar_color_estado()
+		return
+	timer_recoleccion += delta
+	if timer_recoleccion >= stats.tiempo_recoleccion:
+		timer_recoleccion = 0.0
+		hojas_cargadas = punto_hoja_objetivo.cortar()
+		carga = true
+		punto_hoja_objetivo = null
+		estado_actual = Estado.BAJANDO
+		timer_bajada = TIEMPO_BAJAR
+		_actualizar_color_estado()
+
+func _tick_bajando(delta):
+	timer_bajada -= delta
+	if timer_bajada <= 0.0:
+		sprite.visible = true
+		global_position = target_tree.global_position
+		_iniciar_transporte()
 		
 func _tick_transportando(delta):
 	if target_anthill == null:
@@ -322,6 +379,7 @@ func _iniciar_recoleccion():
 	if target_tree == null:
 		return
 	estado_actual = Estado.RECOLECTANDO
+	punto_hoja_objetivo = null
 	nav_agent.target_desired_distance = 2
 	nav_agent.target_position = target_tree.global_position
 	_actualizar_color_estado()
@@ -361,8 +419,9 @@ func _actualizar_radio_deteccion():
 func _on_body_entered(body):
 	if estado_actual == Estado.COMBATE:
 		return
+	if estado_actual in [Estado.SUBIENDO, Estado.EN_ARBOL, Estado.BAJANDO]:
+		return
 	if body is Insect:
-		print("iniciando combate")
 		_iniciar_combate(body)
 		
 		
