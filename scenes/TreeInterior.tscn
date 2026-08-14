@@ -1,0 +1,143 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjai78b40ghyy"]
+
+[ext_resource type="Script" uid="uid://urv5ikcdsjtt" path="res://scripts/TreeInterior.gd" id="1_dm40a"]
+[ext_resource type="Script" uid="uid://cbxx25ucj6pyp" path="res://scripts/LeafPoint.gd" id="2_xksh6"]
+
+[node name="TreeInterior" type="Node2D"]
+scale = Vector2(10, 10)
+script = ExtResource("1_dm40a")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -26.0
+offset_top = -49.0
+offset_right = 26.0
+offset_bottom = 61.0
+scale = Vector2(1.01644, 0.651716)
+color = Color(0.458075, 0.309407, 0.120598, 1)
+
+[node name="CamaraArbol" type="Camera2D" parent="."]
+
+[node name="Pisos" type="Node2D" parent="."]
+
+[node name="Piso1" type="Node2D" parent="Pisos"]
+position = Vector2(0, 0.6)
+
+[node name="Hoja1" type="Marker2D" parent="Pisos/Piso1"]
+position = Vector2(2.98023e-08, -0.5)
+script = ExtResource("2_xksh6")
+
+[node name="Visual" type="Polygon2D" parent="Pisos/Piso1/Hoja1"]
+position = Vector2(0, 4.76837e-07)
+color = Color(0.0480691, 0.460396, 0.0519738, 1)
+polygon = PackedVector2Array(-4, -4, 4, -4, 7, 0, 4, 3, -4, 3, -6, 0)
+
+[node name="Hoja2" type="Marker2D" parent="Pisos/Piso1"]
+position = Vector2(32.2, -0.7)
+script = ExtResource("2_xksh6")
+
+[node name="Visual" type="Polygon2D" parent="Pisos/Piso1/Hoja2"]
+position = Vector2(-0.0999994, 0.1)
+color = Color(0.0480691, 0.460396, 0.0519738, 1)
+polygon = PackedVector2Array(-4, -4, 4, -4, 7, 0, 4, 3, -4, 3, -6, 0)
+
+[node name="Hoja3" type="Marker2D" parent="Pisos/Piso1"]
+position = Vector2(-14.9, -0.6)
+script = ExtResource("2_xksh6")
+
+[node name="Visual" type="Polygon2D" parent="Pisos/Piso1/Hoja3"]
+position = Vector2(0.0999981, -0.0999994)
+color = Color(0.0480691, 0.460396, 0.0519738, 1)
+polygon = PackedVector2Array(-4, -4, 4, -4, 7, 0, 4, 3, -4, 3, -6, 0)
+
+[node name="Hoja4" type="Marker2D" parent="Pisos/Piso1"]
+position = Vector2(-32.8, -0.6)
+script = ExtResource("2_xksh6")
+
+[node name="Visual" type="Polygon2D" parent="Pisos/Piso1/Hoja4"]
+position = Vector2(-1.90735e-06, 0)
+color = Color(0.0480691, 0.460396, 0.0519738, 1)
+polygon = PackedVector2Array(-4, -4, 4, -4, 7, 0, 4, 3, -4, 3, -6, 0)
+
+[node name="Hoja5" type="Marker2D" parent="Pisos/Piso1"]
+position = Vector2(17, -0.7)
+script = ExtResource("2_xksh6")
+
+[node name="Visual" type="Polygon2D" parent="Pisos/Piso1/Hoja5"]
+position = Vector2(-0.299999, -2.98023e-08)
+color = Color(0.0480691, 0.460396, 0.0519738, 1)
+polygon = PackedVector2Array(-4, -4, 4, -4, 7, 0, 4, 3, -4, 3, -6, 0)
+
+[node name="Piso2" type="Node2D" parent="Pisos"]
+position = Vector2(-0.8, -25.3)
+
+[node name="Hoja1" type="Marker2D" parent="Pisos/Piso2"]
+position = Vector2(21.8, 5.3)
+script = ExtResource("2_xksh6")
+
+[node name="Visual" type="Polygon2D" parent="Pisos/Piso2/Hoja1"]
+position = Vector2(0.1, 0.1)
+color = Color(0.0480691, 0.460396, 0.0519738, 1)
+polygon = PackedVector2Array(-4, -4, 4, -4, 7, 0, 4, 3, -4, 3, -6, 0)
+
+[node name="Hoja2" type="Marker2D" parent="Pisos/Piso2"]
+position = Vector2(7.4, 5.3)
+script = ExtResource("2_xksh6")
+
+[node name="Visual" type="Polygon2D" parent="Pisos/Piso2/Hoja2"]
+position = Vector2(4.76837e-07, 4.76837e-07)
+color = Color(0.0480691, 0.460396, 0.0519738, 1)
+polygon = PackedVector2Array(-4, -4, 4, -4, 7, 0, 4, 3, -4, 3, -6, 0)
+
+[node name="Hoja3" type="Marker2D" parent="Pisos/Piso2"]
+position = Vector2(-19.7, 4.3)
+script = ExtResource("2_xksh6")
+
+[node name="Visual" type="Polygon2D" parent="Pisos/Piso2/Hoja3"]
+position = Vector2(0.199999, 4.76837e-07)
+color = Color(0.0480691, 0.460396, 0.0519738, 1)
+polygon = PackedVector2Array(-4, -4, 4, -4, 7, 0, 4, 3, -4, 3, -6, 0)
+
+[node name="Hoja4" type="Marker2D" parent="Pisos/Piso2"]
+position = Vector2(-6.2, 4.6)
+script = ExtResource("2_xksh6")
+
+[node name="Visual" type="Polygon2D" parent="Pisos/Piso2/Hoja4"]
+position = Vector2(0.2, 0.2)
+color = Color(0.0480691, 0.460396, 0.0519738, 1)
+polygon = PackedVector2Array(-4, -4, 4, -4, 7, 0, 4, 3, -4, 3, -6, 0)
+
+[node name="Piso3" type="Node2D" parent="Pisos"]
+position = Vector2(-0.5, -43)
+
+[node name="Hoja1" type="Marker2D" parent="Pisos/Piso3"]
+position = Vector2(-8.7, 3.5)
+script = ExtResource("2_xksh6")
+
+[node name="Visual" type="Polygon2D" parent="Pisos/Piso3/Hoja1"]
+position = Vector2(-4.76837e-07, 0.1)
+color = Color(0.0480691, 0.460396, 0.0519738, 1)
+polygon = PackedVector2Array(-4, -4, 4, -4, 7, 0, 4, 3, -4, 3, -6, 0)
+
+[node name="Hoja2" type="Marker2D" parent="Pisos/Piso3"]
+position = Vector2(10.7, 4.1)
+script = ExtResource("2_xksh6")
+
+[node name="Visual" type="Polygon2D" parent="Pisos/Piso3/Hoja2"]
+position = Vector2(-0.0999994, 0.2)
+color = Color(0.0480691, 0.460396, 0.0519738, 1)
+polygon = PackedVector2Array(-4, -4, 4, -4, 7, 0, 4, 3, -4, 3, -6, 0)
+
+[node name="UISalir" type="CanvasLayer" parent="."]
+
+[node name="BotonSalir" type="Button" parent="UISalir"]
+offset_left = -787.0
+offset_top = -577.0
+offset_right = -745.0
+offset_bottom = -546.0
+text = "Salir"
+
+[node name="PuntoEntrada" type="Marker2D" parent="."]
+
+[node name="Escaladores" type="Node2D" parent="."]
+
+[connection signal="pressed" from="UISalir/BotonSalir" to="." method="_on_boton_salir_pressed"]

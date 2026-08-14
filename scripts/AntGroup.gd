@@ -16,8 +16,6 @@ const COLOR_COMBATE       = Color(1, 0, 0, 0.9)
 const COLOR_SUBIENDO = Color(0.6, 1, 0.2, 0.9)
 const COLOR_EN_ARBOL = Color(0.2, 0.8, 0.2, 0.9)
 const COLOR_BAJANDO  = Color(0.6, 1, 0.2, 0.9)
-const TIEMPO_SUBIR: float = 2.0
-const TIEMPO_BAJAR: float = 2.0
 var _estado_anterior_debug: int = -1
 #==================================================
 # ENUMS
@@ -97,9 +95,10 @@ var combat_timer: float = 0.0
 #RECOLECCION
 #=================================================
 
+const EscaladorScene = preload("res://scenes/EscaladorVisual.tscn")
+const VELOCIDAD_ESCALADOR_FACTOR: float = 0.6
+var escalador: Node2D = null
 var punto_hoja_objetivo: LeafPoint = null
-var timer_subida: float = 0.0
-var timer_bajada: float = 0.0
 
 func _ready():
 	
@@ -253,6 +252,8 @@ func recibir_daño(cantidad: float):
 			integrantes_actuales = 0
 			if punto_hoja_objetivo:
 				punto_hoja_objetivo.liberar_reserva()
+			if escalador and is_instance_valid(escalador):
+				escalador.queue_free()
 			queue_free()
 			return
 
@@ -286,13 +287,26 @@ func _tick_recolectando(delta):
 		
 func _iniciar_subida():
 	estado_actual = Estado.SUBIENDO
-	timer_subida = TIEMPO_SUBIR
 	sprite.visible = false
+	var interior = target_tree.interior
+	escalador = EscaladorScene.instantiate()
+	interior.contenedor_escaladores.add_child(escalador)
+	escalador.global_position = interior.punto_entrada.global_position
+	escalador.configurar(stats.sprite_frames if stats else null)
 	_actualizar_color_estado()
 
 func _tick_subiendo(delta):
-	timer_subida -= delta
-	if timer_subida <= 0.0:
+	if escalador == null or punto_hoja_objetivo == null or not is_instance_valid(punto_hoja_objetivo):
+		estado_actual = Estado.ESPERANDO
+		sprite.visible = true
+		if escalador:
+			escalador.queue_free()
+			escalador = null
+		_actualizar_color_estado()
+		return
+	_mover_escalador_hacia(punto_hoja_objetivo.global_position, delta)
+	if escalador.global_position.distance_to(punto_hoja_objetivo.global_position) < 4.0:
+		escalador.sprite.stop()
 		estado_actual = Estado.EN_ARBOL
 		timer_recoleccion = 0.0
 		_actualizar_color_estado()
@@ -300,25 +314,42 @@ func _tick_subiendo(delta):
 func _tick_en_arbol(delta):
 	if punto_hoja_objetivo == null or not is_instance_valid(punto_hoja_objetivo):
 		estado_actual = Estado.BAJANDO
-		timer_bajada = TIEMPO_BAJAR
 		_actualizar_color_estado()
 		return
 	timer_recoleccion += delta
 	if timer_recoleccion >= stats.tiempo_recoleccion:
 		timer_recoleccion = 0.0
-		hojas_cargadas = punto_hoja_objetivo.cortar()
+		hojas_cargadas = punto_hoja_objetivo.cortar() * (stats.capacidad_carga if stats else 1.0)
 		carga = true
 		punto_hoja_objetivo = null
 		estado_actual = Estado.BAJANDO
-		timer_bajada = TIEMPO_BAJAR
 		_actualizar_color_estado()
 
 func _tick_bajando(delta):
-	timer_bajada -= delta
-	if timer_bajada <= 0.0:
+	if escalador == null or target_tree == null or target_tree.interior == null:
+		sprite.visible = true
+		_iniciar_transporte()
+		return
+	var destino = target_tree.interior.punto_entrada.global_position
+	_mover_escalador_hacia(destino, delta)
+	if escalador.global_position.distance_to(destino) < 4.0:
+		escalador.queue_free()
+		escalador = null
 		sprite.visible = true
 		global_position = target_tree.global_position
 		_iniciar_transporte()
+		
+		
+func _mover_escalador_hacia(destino: Vector2, delta: float):
+	var velocidad = (stats.velocidad if stats else SPEED) * VELOCIDAD_ESCALADOR_FACTOR
+	var direccion = destino - escalador.global_position
+	var paso = direccion.normalized() * velocidad * delta
+	if paso.length() >= direccion.length():
+		escalador.global_position = destino
+	else:
+		escalador.global_position += paso
+	escalador.sprite.rotation = direccion.angle() - PI / 2
+	escalador.sprite.play("walk")
 		
 func _tick_transportando(delta):
 	if target_anthill == null:

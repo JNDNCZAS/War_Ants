@@ -7,6 +7,8 @@ signal salir_pedido
 
 @onready var camara: Camera2D = $CamaraArbol
 @onready var pisos: Node2D = $Pisos
+@onready var punto_entrada: Marker2D = $PuntoEntrada
+@onready var contenedor_escaladores: Node2D = $Escaladores
 
 var vista_activa: bool = false
 
