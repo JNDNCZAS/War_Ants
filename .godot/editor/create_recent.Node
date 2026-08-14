@@ -1,9 +1,10 @@
-AnimatedSprite2D
+Control
 Node2D
+CanvasLayer
+AnimatedSprite2D
 Marker2D
 ColorRect
 Button
-CanvasLayer
 Polygon2D
 Camera2D
 VBoxContainer

@@ -221,11 +221,11 @@ func _ver_interior_arbol(tree):
 	if arbol_interior_actual == tree:
 		return
 	if arbol_interior_actual and is_instance_valid(arbol_interior_actual):
-		arbol_interior_actual.interior.ocultar_vista(camera_principal)
+		arbol_interior_actual.interior.ocultar_vista()
 	arbol_interior_actual = tree
-	tree.interior.mostrar_vista(camera_principal)
+	tree.interior.mostrar_vista()
 
 func _cerrar_vista_arbol():
 	if arbol_interior_actual and is_instance_valid(arbol_interior_actual):
-		arbol_interior_actual.interior.ocultar_vista(camera_principal)
+		arbol_interior_actual.interior.ocultar_vista()
 	arbol_interior_actual = null

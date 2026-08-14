@@ -1,20 +1,17 @@
 class_name TreeInterior
-extends Node2D
-
-## Submapa interior del árbol: pisos + puntos de hoja + cámara propia.
+extends CanvasLayer
 
 signal salir_pedido
 
-@onready var camara: Camera2D = $CamaraArbol
-@onready var pisos: Node2D = $Pisos
-@onready var punto_entrada: Marker2D = $PuntoEntrada
-@onready var contenedor_escaladores: Node2D = $Escaladores
+@onready var pisos: Node2D = $Centro/Contenido/Pisos
+@onready var punto_entrada: Marker2D = $Centro/Contenido/PuntoEntrada
+@onready var contenedor_escaladores: Node2D = $Centro/Contenido/Escaladores
 
 var vista_activa: bool = false
 
 func _ready():
-	camara.enabled = false
 	visible = false
+	layer = 10
 
 func obtener_punto_libre() -> LeafPoint:
 	var candidatos: Array = []
@@ -34,16 +31,12 @@ func hojas_disponibles() -> int:
 				total += 1
 	return total
 
-func mostrar_vista(camara_anterior: Camera2D):
+func mostrar_vista():
 	visible = true
-	camara.enabled = true
-	camara.make_current()
 	vista_activa = true
 
-func ocultar_vista(camara_anterior: Camera2D):
+func ocultar_vista():
 	visible = false
-	camara.enabled = false
-	camara_anterior.make_current()
 	vista_activa = false
 
 func _on_boton_salir_pressed():

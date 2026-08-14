@@ -96,7 +96,7 @@ var combat_timer: float = 0.0
 #=================================================
 
 const EscaladorScene = preload("res://scenes/EscaladorVisual.tscn")
-const VELOCIDAD_ESCALADOR_FACTOR: float = 0.6
+const VELOCIDAD_ESCALADOR: float =30
 var escalador: Node2D = null
 var punto_hoja_objetivo: LeafPoint = null
 
@@ -217,6 +217,8 @@ func _tick_patrullando():
 		sprite.play("walk")
 
 func move_to(pos: Vector2):
+	if _esta_en_arbol():
+		return
 	estado_actual = Estado.ESPERANDO
 	patrol_points.clear()
 	moving = true
@@ -225,6 +227,8 @@ func move_to(pos: Vector2):
 	_actualizar_radio_deteccion()
 
 func set_patrol(points: Array):
+	if _esta_en_arbol():
+		return
 	if points.is_empty():
 		return
 	patrol_points = points
@@ -341,9 +345,8 @@ func _tick_bajando(delta):
 		
 		
 func _mover_escalador_hacia(destino: Vector2, delta: float):
-	var velocidad = (stats.velocidad if stats else SPEED) * VELOCIDAD_ESCALADOR_FACTOR
 	var direccion = destino - escalador.global_position
-	var paso = direccion.normalized() * velocidad * delta
+	var paso = direccion.normalized() * VELOCIDAD_ESCALADOR * delta
 	if paso.length() >= direccion.length():
 		escalador.global_position = destino
 	else:
@@ -425,6 +428,8 @@ func _iniciar_transporte():
 	_actualizar_color_estado()
 
 func iniciar_recoleccion(tree, anthill):
+	if _esta_en_arbol():
+		return
 	target_tree = tree
 	target_anthill = anthill
 	_iniciar_recoleccion()
@@ -497,3 +502,7 @@ func _on_body_exited(body):
 func aplicar_sprite_de_stats():
 	if stats and stats.sprite_frames:
 		sprite.sprite_frames = stats.sprite_frames
+
+
+func _esta_en_arbol() -> bool:
+	return estado_actual in [Estado.SUBIENDO, Estado.EN_ARBOL, Estado.BAJANDO]
