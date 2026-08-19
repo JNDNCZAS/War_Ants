@@ -10,3 +10,9 @@ res://scenes/TreeInterior.tscn
 res://scenes/tree.tscn
 res://scenes/EscaladorVisual.tscn
 res://scenes/Piso.tscn
+res://scripts/PisoDibujo.gd
+res://scripts/PisoManager.gd
+res://scripts/Piso.gd
+res://scripts/AntGroup.gd
+res://scripts/PuntoConexion.gd
+res://scenes/PuntoConexion.tscn

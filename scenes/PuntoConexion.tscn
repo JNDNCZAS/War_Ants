@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2yr5o7ljdcpv"]
+
+[ext_resource type="Script" uid="uid://q4x7uekif1qt" path="res://scripts/PuntoConexion.gd" id="1_1mleq"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_1mleq")
+
+[node name="Visual" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-33, -32, 0, -32, 32, -32, 32, 0, 32, 33, 0, 33, -33, 33, -33, 0)

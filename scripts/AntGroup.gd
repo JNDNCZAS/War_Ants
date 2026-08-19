@@ -100,6 +100,13 @@ const VELOCIDAD_ESCALADOR: float =30
 var escalador: Node2D = null
 var punto_hoja_objetivo: LeafPoint = null
 
+
+var camino_subterraneo: PackedVector2Array = []
+var indice_camino: int = 0
+var en_subterraneo: bool = false
+
+var conexion_objetivo: PuntoConexion = null
+
 func _ready():
 	
 	if sincronizar_con_especie_seleccionada and GameData.especie != "":
@@ -168,9 +175,15 @@ func _actualizar_color_estado():
 
 func _tick_esperando():
 	if moving:
+		if en_subterraneo:
+			_tick_movimiento_subterraneo()
+			return
 		if nav_agent.is_navigation_finished():
 			moving = false
 			sprite.stop()
+			if conexion_objetivo and is_instance_valid(conexion_objetivo) and conexion_objetivo.destino:
+				global_position = conexion_objetivo.destino.global_position
+			conexion_objetivo = null
 			return
 		var next = nav_agent.get_next_path_position()
 		var direction = (next - global_position).normalized()
@@ -181,6 +194,26 @@ func _tick_esperando():
 			sprite.play("walk")
 	else:
 		sprite.stop()
+		
+		
+func _tick_movimiento_subterraneo():
+	if indice_camino >= camino_subterraneo.size():
+		moving = false
+		en_subterraneo = false
+		sprite.stop()
+		if conexion_objetivo and is_instance_valid(conexion_objetivo) and conexion_objetivo.destino:
+			global_position = conexion_objetivo.destino.global_position
+		conexion_objetivo = null
+		return
+	var destino = camino_subterraneo[indice_camino]
+	var direction = (destino - global_position).normalized()
+	velocity = direction * _velocidad_actual()
+	move_and_slide()
+	if direction != Vector2.ZERO:
+		sprite.rotation = direction.angle() - PI / 2
+		sprite.play("walk")
+	if global_position.distance_to(destino) < ARRIVAL_THRESHOLD:
+		indice_camino += 1
 
 func _tick_patrullando():
 	if estado_actual != Estado.PATRULLANDO:
@@ -219,12 +252,33 @@ func _tick_patrullando():
 func move_to(pos: Vector2):
 	if _esta_en_arbol():
 		return
+	if PisoManager.piso_actual != 0:
+		_mover_por_piso(pos)
+		return
 	estado_actual = Estado.ESPERANDO
 	patrol_points.clear()
 	moving = true
+	en_subterraneo = false
 	nav_agent.target_position = pos
 	_actualizar_color_estado()
 	_actualizar_radio_deteccion()
+
+
+func _mover_por_piso(destino_mundo: Vector2, conexion: PuntoConexion = null):
+	var piso = PisoManager.piso_de_nodo(PisoManager.piso_actual)
+	if piso == null:
+		return
+	var camino = piso.camino_entre(global_position, destino_mundo)
+	if camino.size() == 0:
+		return
+	estado_actual = Estado.ESPERANDO
+	patrol_points.clear()
+	moving = true
+	en_subterraneo = true
+	camino_subterraneo = camino
+	indice_camino = 0
+	conexion_objetivo = conexion
+	_actualizar_color_estado()
 
 func set_patrol(points: Array):
 	if _esta_en_arbol():
@@ -506,3 +560,19 @@ func aplicar_sprite_de_stats():
 
 func _esta_en_arbol() -> bool:
 	return estado_actual in [Estado.SUBIENDO, Estado.EN_ARBOL, Estado.BAJANDO]
+	
+	
+func mover_a_conexion(punto: PuntoConexion):
+	if _esta_en_arbol():
+		return
+	if PisoManager.piso_actual == 0:
+		estado_actual = Estado.ESPERANDO
+		patrol_points.clear()
+		moving = true
+		en_subterraneo = false
+		conexion_objetivo = punto
+		nav_agent.target_position = punto.global_position
+		_actualizar_color_estado()
+		_actualizar_radio_deteccion()
+	else:
+		_mover_por_piso(punto.global_position, punto)

@@ -8,6 +8,7 @@ const TAMANO_CELDA: float = 64.0
 @export var indice: int = 1
 @export var ancho_celdas: int = 40
 @export var alto_celdas: int = 30
+var astar: AStar2D = AStar2D.new()
 
 var celdas: Dictionary = {}  # Vector2i -> Celda
 
@@ -42,6 +43,7 @@ func excavar_tunel(celda: Vector2i):
 		return
 	if celdas.get(celda, Celda.VACIO) == Celda.VACIO:
 		celdas[celda] = Celda.TUNEL
+		_agregar_celda_a_grafo(celda)
 		dibujo.queue_redraw()
 
 func excavar_camara(celda_inicio: Vector2i, ancho: int, alto: int):
@@ -50,4 +52,30 @@ func excavar_camara(celda_inicio: Vector2i, ancho: int, alto: int):
 			var c = celda_inicio + Vector2i(x, y)
 			if celda_valida(c):
 				celdas[c] = Celda.CAMARA
+				_agregar_celda_a_grafo(c)
 	dibujo.queue_redraw()
+	
+func _id_de_celda(celda: Vector2i) -> int:
+	return celda.y * ancho_celdas + celda.x
+
+func _vecinos(celda: Vector2i) -> Array:
+	return [celda + Vector2i(1, 0), celda + Vector2i(-1, 0), celda + Vector2i(0, 1), celda + Vector2i(0, -1)]
+
+func _agregar_celda_a_grafo(celda: Vector2i):
+	var id = _id_de_celda(celda)
+	if not astar.has_point(id):
+		astar.add_point(id, celda_a_mundo_centro(celda))
+	for vecino in _vecinos(celda):
+		if celda_valida(vecino) and celdas.get(vecino, Celda.VACIO) != Celda.VACIO:
+			var id_vecino = _id_de_celda(vecino)
+			if not astar.has_point(id_vecino):
+				astar.add_point(id_vecino, celda_a_mundo_centro(vecino))
+			if not astar.are_points_connected(id, id_vecino):
+				astar.connect_points(id, id_vecino)
+
+func camino_entre(desde_mundo: Vector2, hasta_mundo: Vector2) -> PackedVector2Array:
+	var id_desde = _id_de_celda(mundo_a_celda(desde_mundo))
+	var id_hasta = _id_de_celda(mundo_a_celda(hasta_mundo))
+	if not astar.has_point(id_desde) or not astar.has_point(id_hasta):
+		return PackedVector2Array()
+	return astar.get_point_path(id_desde, id_hasta)

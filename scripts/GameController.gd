@@ -15,6 +15,8 @@ const OrderMarkerScene = preload("res://scenes/OrderMarker.tscn")
 @onready var ui = $"../UI"
 @onready var anthill = get_tree().get_first_node_in_group("anthill")
 @onready var camera_principal: Camera2D = $"../Camera2D"
+@onready var piso_label = get_node("../UI/TextsContainer/PisoLabel")
+@onready var modo_label = get_node("../UI/TextsContainer/ModoLabel")
 
 var arbol_interior_actual: AntTree = null
 
@@ -40,6 +42,9 @@ var patrol_mode: bool = false
 
 var patrol_points: Array = []
 
+const PuntoConexionScene = preload("res://scenes/PuntoConexion.tscn")
+
+var modo_conexion: String = ""  # "" | "piso" | "superficie"
 
 
 var modo_construccion: String = ""  # "" | "tunel" | "camara"
@@ -49,6 +54,9 @@ var construccion_inicio: Vector2i = Vector2i.ZERO
 func _ready():
 	selection_rect_node.visible = false
 	call_deferred("_conectar_arboles")
+	PisoManager.piso_cambiado.connect(_on_piso_cambiado)
+	_actualizar_piso_label(PisoManager.piso_actual)
+	_actualizar_modo_label()
 
 func _conectar_arboles():
 	for tree in get_tree().get_nodes_in_group("trees"):
@@ -85,14 +93,40 @@ func _handle_key(event: InputEventKey):
 			n = event.keycode - KEY_0
 		if n >= 0:
 			PisoManager.cambiar_a_piso(n)
+			if n == 0:
+				modo_construccion = ""
 	if event.keycode == KEY_T and event.pressed:
 		modo_construccion = "tunel" if modo_construccion != "tunel" else ""
+		modo_conexion = ""
+		_actualizar_modo_label()
 	if event.keycode == KEY_C and event.pressed:
 		modo_construccion = "camara" if modo_construccion != "camara" else ""
+		modo_conexion = ""
+		_actualizar_modo_label()
+	if event.keycode == KEY_V and event.pressed:
+		modo_conexion = "abajo" if modo_conexion != "abajo" else ""
+		modo_construccion = ""
+		_actualizar_modo_label()
+	if event.keycode == KEY_B and event.pressed:
+		modo_conexion = "superficie" if modo_conexion != "superficie" else ""
+		modo_construccion = ""
+		_actualizar_modo_label()
+	if event.keycode == KEY_ESCAPE and not event.pressed:
+		if arbol_interior_actual:
+			_cerrar_vista_arbol()
+		elif modo_construccion != "":
+			modo_construccion = ""
+			_actualizar_modo_label()
+		elif modo_conexion != "":
+			modo_conexion = ""
+			_actualizar_modo_label()
 
 func _handle_mouse_button(event: InputEventMouseButton):
 	var world_pos = _to_world(event.position)
 	if event.button_index == MOUSE_BUTTON_LEFT:
+		if modo_conexion != "" and event.pressed:
+			_colocar_punto_conexion(world_pos)
+			return
 		if modo_construccion != "" and PisoManager.piso_actual != 0:
 			var piso = PisoManager.piso_de_nodo(PisoManager.piso_actual)
 			if event.pressed:
@@ -142,7 +176,7 @@ func _handle_mouse_button(event: InputEventMouseButton):
 func _handle_mouse_motion(event: InputEventMouseMotion):
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		return
-	if modo_construccion != "":
+	if modo_construccion != "" and PisoManager.piso_actual != 0:
 		return
 	var world_pos = _to_world(get_viewport().get_mouse_position())
 	if drag_start.distance_to(world_pos) > DRAG_THRESHOLD:
@@ -174,11 +208,24 @@ func _finish_drag_selection(end_pos: Vector2):
 	ui._actualizar_panel(selected_groups)
 
 func _issue_move_order(world_pos: Vector2):
+	var conexion = _buscar_conexion_cercana(world_pos)
 	var count = selected_groups.size()
 	for i in count:
 		if is_instance_valid(selected_groups[i]):
-			var offset = _formation_offset(i, count)
-			selected_groups[i].move_to(world_pos + offset)
+			if conexion:
+				selected_groups[i].mover_a_conexion(conexion)
+			else:
+				var offset = _formation_offset(i, count)
+				selected_groups[i].move_to(world_pos + offset)
+
+func _buscar_conexion_cercana(world_pos: Vector2) -> PuntoConexion:
+	var contenedor = anthill if PisoManager.piso_actual == 0 else PisoManager.piso_de_nodo(PisoManager.piso_actual)
+	if contenedor == null:
+		return null
+	for hijo in contenedor.get_children():
+		if hijo is PuntoConexion and world_pos.distance_to(hijo.global_position) < 30.0:
+			return hijo
+	return null
 
 func _call_all_groups(world_pos: Vector2):
 	var all_groups = ant_groups_container.get_children()
@@ -287,3 +334,95 @@ func _excavar_linea(piso, desde: Vector2i, hasta: Vector2i):
 		if e2 <= dx:
 			err += dx
 			y0 += sy
+
+
+func _colocar_punto_conexion(world_pos: Vector2):
+	var piso_idx = PisoManager.piso_actual
+	if piso_idx == 0:
+		return
+	var piso = PisoManager.piso_de_nodo(piso_idx)
+	if piso == null:
+		return
+	var celda = piso.mundo_a_celda(world_pos)
+	if not piso.celda_valida(celda) or piso.celdas.get(celda, Piso.Celda.VACIO) == Piso.Celda.VACIO:
+		return
+
+	if modo_conexion == "superficie":
+		_crear_conexion_superficie(piso, piso_idx, celda)
+	elif modo_conexion == "abajo":
+		_crear_conexion_hacia_abajo(piso, piso_idx, celda)
+
+func _crear_conexion_superficie(piso, piso_idx: int, celda: Vector2i):
+	if piso_idx != 1:
+		return # la conexión con la superficie solo se puede crear desde el Piso 1
+	for hijo in anthill.get_children():
+		if hijo is PuntoConexion:
+			return # ya existe una conexión con la superficie
+	var punto = PuntoConexionScene.instantiate()
+	piso.add_child(punto)
+	punto.global_position = piso.celda_a_mundo_centro(celda)
+	punto.piso = piso_idx
+	punto.celda = celda
+
+	var punto_superficie = PuntoConexionScene.instantiate()
+	anthill.add_child(punto_superficie)
+	punto_superficie.global_position = anthill.global_position
+	punto_superficie.piso = 0
+	punto_superficie.es_superficie = true
+
+	punto.destino = punto_superficie
+	punto_superficie.destino = punto
+	punto.actualizar_visual()
+	punto_superficie.actualizar_visual()
+
+func _crear_conexion_hacia_abajo(piso, piso_idx: int, celda: Vector2i):
+	var piso_abajo = PisoManager.piso_de_nodo(piso_idx + 1)
+	if piso_abajo == null:
+		return # ese piso todavía no existe en la escena
+	if not piso_abajo.celda_valida(celda):
+		return
+
+	for hijo in piso.get_children():
+		if hijo is PuntoConexion and hijo.celda == celda:
+			return # ya hay una conexión en esta celda
+
+	var punto_arriba = PuntoConexionScene.instantiate()
+	piso.add_child(punto_arriba)
+	punto_arriba.global_position = piso.celda_a_mundo_centro(celda)
+	punto_arriba.piso = piso_idx
+	punto_arriba.celda = celda
+
+	piso_abajo.excavar_tunel(celda)
+
+	var punto_abajo = PuntoConexionScene.instantiate()
+	piso_abajo.add_child(punto_abajo)
+	punto_abajo.global_position = piso_abajo.celda_a_mundo_centro(celda)
+	punto_abajo.piso = piso_idx + 1
+	punto_abajo.celda = celda
+
+	punto_arriba.destino = punto_abajo
+	punto_abajo.destino = punto_arriba
+	punto_arriba.actualizar_visual()
+	punto_abajo.actualizar_visual()
+
+
+func _on_piso_cambiado(nuevo_piso: int):
+	_actualizar_piso_label(nuevo_piso)
+
+func _actualizar_piso_label(piso: int):
+	if piso == 0:
+		piso_label.text = "Piso: Superficie"
+	else:
+		piso_label.text = "Piso: %d" % piso
+
+func _actualizar_modo_label():
+	if modo_construccion == "tunel":
+		modo_label.text = "Modo: Túnel"
+	elif modo_construccion == "camara":
+		modo_label.text = "Modo: Cámara"
+	elif modo_conexion == "abajo":
+		modo_label.text = "Modo: Conexión entre pisos"
+	elif modo_conexion == "superficie":
+		modo_label.text = "Modo: Conexión con la superficie"
+	else:
+		modo_label.text = "Modo: Ninguno"

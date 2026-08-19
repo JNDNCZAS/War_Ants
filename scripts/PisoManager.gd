@@ -1,12 +1,10 @@
 extends Node
 
-## Autoload: coordina qué piso se está viendo, mueve la cámara entre
-## pisos, y guarda el registro de los nodos Piso ya creados.
-
 signal piso_cambiado(nuevo_piso: int)
 
-var piso_actual: int = 0  # 0 = superficie
-var pisos: Dictionary = {}  # int -> nodo Piso
+var piso_actual: int = 0
+var pisos: Dictionary = {}
+var ultima_posicion: Dictionary = {}  # int -> Vector2
 
 var _camara: Camera2D = null
 
@@ -23,20 +21,27 @@ func cambiar_a_piso(indice: int):
 	if indice == piso_actual:
 		return
 	if indice != 0 and not pisos.has(indice):
-		return # ese piso todavía no existe
+		return
+	if _camara:
+		ultima_posicion[piso_actual] = _camara.position
 	piso_actual = indice
 	if _camara == null:
 		return
+	var centro: Vector2
+	var limites: Rect2
 	if indice == 0:
-		_camara.ir_a_region(SUPERFICIE_CENTRO, SUPERFICIE_LIMITES)
+		centro = SUPERFICIE_CENTRO
+		limites = SUPERFICIE_LIMITES
 	else:
 		var piso = pisos[indice]
-		var limites = Rect2(
+		limites = Rect2(
 			piso.limite_izq(), piso.limite_arriba(),
 			piso.limite_der() - piso.limite_izq(),
 			piso.limite_abajo() - piso.limite_arriba()
 		)
-		_camara.ir_a_region(piso.centro_region(), limites)
+		centro = piso.centro_region()
+	var pos_final = ultima_posicion.get(indice, centro)
+	_camara.ir_a_region(pos_final, limites)
 	piso_cambiado.emit(indice)
 
 func piso_de_nodo(indice: int) -> Node:
