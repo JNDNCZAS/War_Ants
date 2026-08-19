@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5puspaba02lc"]
+
+[ext_resource type="Script" uid="uid://bvs0nwjy8umsg" path="res://scripts/Piso.gd" id="1_l3mqw"]
+[ext_resource type="Script" uid="uid://bu41my5hii18p" path="res://scripts/PisoDibujo.gd" id="2_g4lfw"]
+
+[node name="Piso" type="Node2D"]
+script = ExtResource("1_l3mqw")
+
+[node name="Dibujo" type="Node2D" parent="."]
+script = ExtResource("2_g4lfw")

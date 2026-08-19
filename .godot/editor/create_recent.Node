@@ -1,5 +1,5 @@
-Control
 Node2D
+Control
 CanvasLayer
 AnimatedSprite2D
 Marker2D
@@ -12,4 +12,3 @@ Label
 CollisionShape2D
 NavigationAgent2D
 NavigationLink2D
-CharacterBody2D

@@ -41,6 +41,11 @@ var patrol_mode: bool = false
 var patrol_points: Array = []
 
 
+
+var modo_construccion: String = ""  # "" | "tunel" | "camara"
+var construccion_inicio: Vector2i = Vector2i.ZERO
+
+
 func _ready():
 	selection_rect_node.visible = false
 	call_deferred("_conectar_arboles")
@@ -72,10 +77,38 @@ func _handle_key(event: InputEventKey):
 	if event.keycode == KEY_ESCAPE and not event.pressed:
 		if arbol_interior_actual:
 			_cerrar_vista_arbol()
+	if event.pressed:
+		var n = -1
+		if event.keycode >= KEY_KP_0 and event.keycode <= KEY_KP_9:
+			n = event.keycode - KEY_KP_0
+		elif event.keycode >= KEY_0 and event.keycode <= KEY_9:
+			n = event.keycode - KEY_0
+		if n >= 0:
+			PisoManager.cambiar_a_piso(n)
+	if event.keycode == KEY_T and event.pressed:
+		modo_construccion = "tunel" if modo_construccion != "tunel" else ""
+	if event.keycode == KEY_C and event.pressed:
+		modo_construccion = "camara" if modo_construccion != "camara" else ""
 
 func _handle_mouse_button(event: InputEventMouseButton):
 	var world_pos = _to_world(event.position)
 	if event.button_index == MOUSE_BUTTON_LEFT:
+		if modo_construccion != "" and PisoManager.piso_actual != 0:
+			var piso = PisoManager.piso_de_nodo(PisoManager.piso_actual)
+			if event.pressed:
+				construccion_inicio = piso.mundo_a_celda(world_pos)
+			else:
+				var fin = piso.mundo_a_celda(world_pos)
+				if modo_construccion == "camara":
+					var origen = Vector2i(min(construccion_inicio.x, fin.x), min(construccion_inicio.y, fin.y))
+					var ancho = abs(fin.x - construccion_inicio.x) + 1
+					var alto = abs(fin.y - construccion_inicio.y) + 1
+					piso.excavar_camara(origen, ancho, alto)
+				else:
+					_excavar_linea(piso, construccion_inicio, fin)
+				selection_rect_node.visible = false
+				is_dragging = false
+			return
 		if event.pressed:
 			drag_start = world_pos
 			is_dragging = false
@@ -108,6 +141,8 @@ func _handle_mouse_button(event: InputEventMouseButton):
 
 func _handle_mouse_motion(event: InputEventMouseMotion):
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		return
+	if modo_construccion != "":
 		return
 	var world_pos = _to_world(get_viewport().get_mouse_position())
 	if drag_start.distance_to(world_pos) > DRAG_THRESHOLD:
@@ -229,3 +264,26 @@ func _cerrar_vista_arbol():
 	if arbol_interior_actual and is_instance_valid(arbol_interior_actual):
 		arbol_interior_actual.interior.ocultar_vista()
 	arbol_interior_actual = null
+	
+	
+func _excavar_linea(piso, desde: Vector2i, hasta: Vector2i):
+	var x0 = desde.x
+	var y0 = desde.y
+	var x1 = hasta.x
+	var y1 = hasta.y
+	var dx = abs(x1 - x0)
+	var sx = 1 if x0 < x1 else -1
+	var dy = -abs(y1 - y0)
+	var sy = 1 if y0 < y1 else -1
+	var err = dx + dy
+	while true:
+		piso.excavar_tunel(Vector2i(x0, y0))
+		if x0 == x1 and y0 == y1:
+			break
+		var e2 = 2 * err
+		if e2 >= dy:
+			err += dy
+			x0 += sx
+		if e2 <= dx:
+			err += dx
+			y0 += sy

@@ -39,6 +39,7 @@ func _ready():
 	_limit_top    = map_limit_top    + half_screen.y
 	_limit_right  = map_limit_right  - half_screen.x
 	_limit_bottom = map_limit_bottom - half_screen.y
+	PisoManager.registrar_camara(self)
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -74,3 +75,12 @@ func _process(delta):
 		position += move.normalized() * speed * delta
 		position.x = clamp(position.x, _limit_left, _limit_right)
 		position.y = clamp(position.y, _limit_top, _limit_bottom)
+		
+		
+func ir_a_region(centro: Vector2, limites: Rect2):
+	var half_screen = get_viewport().get_visible_rect().size / 2.0
+	_limit_left   = limites.position.x + half_screen.x
+	_limit_top    = limites.position.y + half_screen.y
+	_limit_right  = limites.position.x + limites.size.x - half_screen.x
+	_limit_bottom = limites.position.y + limites.size.y - half_screen.y
+	position = centro

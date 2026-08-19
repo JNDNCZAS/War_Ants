@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://cwpakpjdji7u1"]
+[gd_scene load_steps=18 format=4 uid="uid://cwpakpjdji7u1"]
 
 [ext_resource type="Texture2D" uid="uid://c3hp64lhsg8lj" path="res://assets/tiles/Arbustos .png" id="1_q8u5g"]
 [ext_resource type="PackedScene" uid="uid://cf7pk035e6ogr" path="res://scenes/AntGroup.tscn" id="1_rvslj"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://na31xh8fyot1" path="res://data/stats/atta_reina.tres" id="7_bjd11"]
 [ext_resource type="PackedScene" uid="uid://brqdbwlrrmerw" path="res://scenes/AntHill.tscn" id="12_qmy6f"]
 [ext_resource type="PackedScene" uid="uid://6wnafppble4s" path="res://scenes/tree.tscn" id="13_mwfav"]
+[ext_resource type="PackedScene" uid="uid://c5puspaba02lc" path="res://scenes/Piso.tscn" id="13_qmy6f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c01mt"]
 texture = ExtResource("2_lhr70")
@@ -527,3 +528,8 @@ scale = Vector2(0.6, 0.6)
 mouse_filter = 2
 color = Color(0.113725, 0.0156863, 1, 0.388235)
 metadata/_edit_use_anchors_ = true
+
+[node name="Pisos" type="Node2D" parent="."]
+
+[node name="Piso" parent="Pisos" instance=ExtResource("13_qmy6f")]
+position = Vector2(0, 20000)

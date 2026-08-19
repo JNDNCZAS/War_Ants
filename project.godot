@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 StatsLoader="*res://scripts/StatsLoader.gd"
 GameData="*res://scripts/GameData.gd"
 SpawnQueue="*res://scripts/SpawnQueue.gd"
+PisoManager="*res://scripts/PisoManager.gd"
 
 [display]
 
