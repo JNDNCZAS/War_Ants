@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1787268057
+::res://::1787346860
 editorconfig.txt::TextFile/TextFile::-1::1775524221::0::1::::<><><>0<>0<><>::
 export_presets.cfg::TextFile/TextFile::-1::1775955566::0::1::::<><><>0<>0<><>::
 gitattributes.txt::TextFile/TextFile::-1::1775524221::0::1::::<><><>0<>0<><>::
@@ -10,10 +10,10 @@ README.md::TextFile/TextFile::-1::1775620054::0::1::::<><><>0<>0<><>::
 Anthill.png::CompressedTexture2D/CompressedTexture2D::6461006376732371119::1775524224::1775524224::1::::<><><>0<>0<>453def9fdc0b8d815db9f505de09e3d8<>res://.godot/imported/Anthill.png-d46b744771c8043f713d30aee7537268.ctex::
 Backgroundcolor.tres::ColorPalette/ColorPalette::8308574974735974241::1775872035::0::1::::<><><>0<>0<><>::
 ::res://assets/Animations/::1775688620
-::res://assets/Animations/Ants/::1787166105
-Animation_1.tres::SpriteFrames::873978712463162265::1787166105::0::1::::<><><>0<>0<><>::uid://c2ogdpovi8513::::res://assets/tiles/combast/combats1.png<>uid://1ran2r5kiwbu::::res://assets/tiles/Ants.png
+::res://assets/Animations/Ants/::1787272250
+Animation_1.tres::SpriteFrames::873978712463162265::1787272250::0::1::::<><><>0<>0<><>::uid://c2ogdpovi8513::::res://assets/tiles/combast/combats1.png<>uid://1ran2r5kiwbu::::res://assets/tiles/Ants.png
 Animation_2.tres::SpriteFrames/SpriteFrames::9164741569933681704::1786410939::0::1::::<><><>0<>0<><>::uid://1ran2r5kiwbu::::res://assets/tiles/Ants.png<>uid://c3lcb81ok6ce0::::res://assets/tiles/combast/combats2.png
-Animation_3.tres::SpriteFrames::7998575418012156067::1787166105::0::1::::<><><>0<>0<><>::uid://p21vmxvmm485::::res://assets/tiles/combast/combats3.png<>uid://1ran2r5kiwbu::::res://assets/tiles/Ants.png
+Animation_3.tres::SpriteFrames::7998575418012156067::1787272249::0::1::::<><><>0<>0<><>::uid://p21vmxvmm485::::res://assets/tiles/combast/combats3.png<>uid://1ran2r5kiwbu::::res://assets/tiles/Ants.png
 Animation_4.tres::SpriteFrames/SpriteFrames::5473958059893225187::1786403375::0::1::::<><><>0<>0<><>::uid://1ran2r5kiwbu::::res://assets/tiles/Ants.png<>uid://djgsl6e8bw5nd::::res://assets/tiles/combast/combats4.png
 ::res://assets/fondos/::1776306467
 orig2.png::CompressedTexture2D/CompressedTexture2D::4218119695410885724::1775783531::1776306466::1::::<><><>0<>0<>0377c7bc7e50275da44adb8149dbf5a6<>res://.godot/imported/orig2.png-7a4bfcc3f95bd5af531739f634f33cb6.ctex::
@@ -32,12 +32,12 @@ origbig6.png::CompressedTexture2D/CompressedTexture2D::2695567763519065870::1775
 origbig7.png::CompressedTexture2D/CompressedTexture2D::2148513862729383506::1775783531::1776306466::1::::<><><>0<>0<>e3ae0e25a9d3784a40bb008cb1bd5401<>res://.godot/imported/origbig7.png-e3401e904d75edd7172017c51e8a46a2.ctex::
 origbig8.png::CompressedTexture2D/CompressedTexture2D::2509139906248565742::1775783531::1776306466::1::::<><><>0<>0<>3c15576f1b7971eaf9b441e9b22cbd83<>res://.godot/imported/origbig8.png-5ac8d5319faa36fdd9b6e6295c0536a3.ctex::
 origbig.png::CompressedTexture2D/CompressedTexture2D::5161849963248141077::1775783531::1776306466::1::::<><><>0<>0<>a02ac5ab0bf8963870842dfc69582dac<>res://.godot/imported/origbig.png-293638bbf8eedf5143ea00006900cad3.ctex::
-::res://assets/tiles/::1787166105
+::res://assets/tiles/::1787272249
 Ants.png::CompressedTexture2D/CompressedTexture2D::1860029017497516782::1775524224::1776303532::1::::<><><>0<>0<>36bcad933b2ade14d24af1374ddbc8e4<>res://.godot/imported/Ants.png-031fe31bb268ed7162442dd1832e44f7.ctex::
 Arbustos .png::CompressedTexture2D/CompressedTexture2D::6753547288544455155::1775524224::1775524224::1::::<><><>0<>0<>7c3433ff28a7d0f95cf8e9683aabd9f0<>res://.godot/imported/Arbustos .png-5d15d6fdd4c973ff0acd3293ad1bd6eb.ctex::
 bugs.png::CompressedTexture2D/CompressedTexture2D::384048606038646823::1775524224::1776303588::1::::<><><>0<>0<>c83a466e092bcd10c47d523d52ddb5e2<>res://.godot/imported/bugs.png-1afb4736bd43376a4411789d341f13ea.ctex::
 Cespe.png::CompressedTexture2D/CompressedTexture2D::756910323585270457::1775524224::1775524224::1::::<><><>0<>0<>f3fd78bec4019f20c448c17ce9624580<>res://.godot/imported/Cespe.png-420ab03cf43ddf96530c5a94040dae32.ctex::
-Fondos.tres::TileSet::8597386336237253510::1787166105::0::1::::<><><>0<>0<><>::uid://c3hp64lhsg8lj::::res://assets/tiles/Arbustos .png<>uid://k1wg5a3q1bg0::::res://assets/tiles/Cespe.png<>uid://lpohmd3jah01::::res://assets/tiles/Rocas.png<>uid://drflsq3g24l0c::::res://assets/tiles/Rocas_en_agua.png
+Fondos.tres::TileSet::8597386336237253510::1787272249::0::1::::<><><>0<>0<><>::uid://c3hp64lhsg8lj::::res://assets/tiles/Arbustos .png<>uid://k1wg5a3q1bg0::::res://assets/tiles/Cespe.png<>uid://lpohmd3jah01::::res://assets/tiles/Rocas.png<>uid://drflsq3g24l0c::::res://assets/tiles/Rocas_en_agua.png
 Rocas.png::CompressedTexture2D/CompressedTexture2D::803906120984160472::1775524224::1775524224::1::::<><><>0<>0<>c1daac7e4ee989d8aa81082d88790804<>res://.godot/imported/Rocas.png-5ff2b851988ea626f77323a0acbb6769.ctex::
 Rocas_en_agua.png::CompressedTexture2D/CompressedTexture2D::8363495196844844760::1775524224::1775524224::1::::<><><>0<>0<>abab20fbed306a76d20be8e00e21530d<>res://.godot/imported/Rocas_en_agua.png-3cb913930ae041d194c62ea84425f03e.ctex::
 Tree1.png::CompressedTexture2D/CompressedTexture2D::1796523054420404568::1775524224::1775524224::1::::<><><>0<>0<>19b830a4ff15972ab62baf2539214bc2<>res://.godot/imported/Tree1.png-00609a7fda1165d42fdf5d35fbe55a27.ctex::
@@ -53,7 +53,7 @@ combats4.png::CompressedTexture2D/CompressedTexture2D::7804462095853380757::1776
 ::res://data/::1775864827
 button_group_gamemode.tres::ButtonGroup/ButtonGroup::9108877090937253170::1775861554::0::1::::<><><>0<>0<><>::
 button_group_map.tres::ButtonGroup/ButtonGroup::3558919884538409144::1775861792::0::1::::<><><>0<>0<><>::
-::res://data/stats/::1787166105
+::res://data/stats/::1787272250
 atta_basurera.tres::Resource/AntStats::7284806209411667137::1786410939::0::1::::<><><>0<>0<><>::uid://hyfgvjeyutgd::::res://scripts/AntStats.gd<>uid://mpmki1gopdhh::::res://assets/Animations/Ants/Animation_1.tres
 atta_macho.tres::Resource/AntStats::1888114968907007270::1786410939::0::1::::<><><>0<>0<><>::uid://hyfgvjeyutgd::::res://scripts/AntStats.gd<>uid://mpmki1gopdhh::::res://assets/Animations/Ants/Animation_1.tres
 atta_obrera_mayor.tres::Resource/AntStats::2586398754795213072::1775950756::0::1::::<><><>0<>0<><>::uid://hyfgvjeyutgd::::res://scripts/AntStats.gd<>uid://mpmki1gopdhh::::res://assets/Animations/Ants/Animation_1.tres
@@ -69,7 +69,7 @@ cephalotes_reina.tres::Resource/AntStats::556873565625502132::1775950756::0::1::
 cephalotes_soldado_tapon.tres::Resource/AntStats::4004921971634249587::1786334558::0::1::::<><><>0<>0<><>::uid://hyfgvjeyutgd::::res://scripts/AntStats.gd<>uid://d3tp7punvu26o::::res://assets/Animations/Ants/Animation_2.tres
 oecophylla_macho.tres::Resource/AntStats::2260544487635853193::1775950756::0::1::::<><><>0<>0<><>::uid://hyfgvjeyutgd::::res://scripts/AntStats.gd<>uid://dl7tmsavprchv::::res://assets/Animations/Ants/Animation_3.tres
 oecophylla_obrera_intermedia.tres::Resource/AntStats::7583068436471309324::1775950756::0::1::::<><><>0<>0<><>::uid://hyfgvjeyutgd::::res://scripts/AntStats.gd<>uid://dl7tmsavprchv::::res://assets/Animations/Ants/Animation_3.tres
-oecophylla_obrera_mayor.tres::Resource/AntStats::5305948433041804259::1787166105::0::1::::<><><>0<>0<><>::uid://hyfgvjeyutgd::::res://scripts/AntStats.gd<>uid://dl7tmsavprchv::::res://assets/Animations/Ants/Animation_3.tres
+oecophylla_obrera_mayor.tres::Resource/AntStats::5305948433041804259::1787272250::0::1::::<><><>0<>0<><>::uid://hyfgvjeyutgd::::res://scripts/AntStats.gd<>uid://dl7tmsavprchv::::res://assets/Animations/Ants/Animation_3.tres
 oecophylla_obrera_menor.tres::Resource/AntStats::3569125834029174860::1775950756::0::1::::<><><>0<>0<><>::uid://hyfgvjeyutgd::::res://scripts/AntStats.gd<>uid://dl7tmsavprchv::::res://assets/Animations/Ants/Animation_3.tres
 oecophylla_reina.tres::Resource/AntStats::3462160717460327155::1776306465::0::1::::<><><>0<>0<><>::uid://hyfgvjeyutgd::::res://scripts/AntStats.gd<>uid://dl7tmsavprchv::::res://assets/Animations/Ants/Animation_3.tres
 solenopsis_hormiga_almacen.tres::Resource/AntStats::5959032693579763688::1775950756::0::1::::<><><>0<>0<><>::uid://hyfgvjeyutgd::::res://scripts/AntStats.gd<>uid://cj8vj3wfpuipv::::res://assets/Animations/Ants/Animation_4.tres
@@ -84,17 +84,17 @@ botton_theme.tres::Theme/Theme::2607810007261851770::1786730282::0::1::::<><><>0
 ARCHITECTURE.md::TextFile/TextFile::-1::1775620054::0::1::::<><><>0<>0<><>::
 GAMEPLAY.md::TextFile/TextFile::-1::1775620054::0::1::::<><><>0<>0<><>::
 SETUP.md::TextFile/TextFile::-1::1775620054::0::1::::<><><>0<>0<><>::
-::res://scenes/::1787198288
-AntGroup.tscn::PackedScene::5190775644244742925::1787198288::0::1::::<><><>0<>0<><>::uid://dk4v4ujn4nhwt::::res://scripts/AntGroup.gd<>uid://0aq4iv5uqa6x::::res://scripts/SelectionRing.gd<>uid://1ran2r5kiwbu::::res://assets/tiles/Ants.png<>uid://c2ogdpovi8513::::res://assets/tiles/combast/combats1.png
+::res://scenes/::1787287532
+AntGroup.tscn::PackedScene::5190775644244742925::1787287532::0::1::::<><><>0<>0<><>::uid://dk4v4ujn4nhwt::::res://scripts/AntGroup.gd<>uid://0aq4iv5uqa6x::::res://scripts/SelectionRing.gd<>uid://1ran2r5kiwbu::::res://assets/tiles/Ants.png<>uid://c2ogdpovi8513::::res://assets/tiles/combast/combats1.png
 AntHill.tscn::PackedScene/PackedScene::3612846179678960824::1775942367::0::1::::<><><>0<>0<><>::uid://bmnei8lsckhx1::::res://scripts/AntHill.gd<>uid://cyb03ix8kuksd::::res://assets/Anthill.png
-EscaladorVisual.tscn::PackedScene::8265045582827197002::1787198288::0::1::::<><><>0<>0<><>::uid://h22lrdx6n8li::::res://scripts/EscaladorVisual.gd
-Insect.tscn::PackedScene::3731510818709695382::1787176431::0::1::::<><><>0<>0<><>::uid://2vf4jskuwejg::::res://scripts/Insect.gd<>uid://fqbhvpbtewa6::::res://assets/tiles/bugs.png
-Main.tscn::PackedScene::6347980253575037490::1787198288::0::1::::<><><>0<>0<><>::uid://c3hp64lhsg8lj::::res://assets/tiles/Arbustos .png<>uid://cf7pk035e6ogr::::res://scenes/AntGroup.tscn<>uid://duqvxxtsnwwqo::::res://assets/tiles/Fondos.tres<>uid://npxj262gdt0f::::res://scripts/GameController.gd<>uid://k1wg5a3q1bg0::::res://assets/tiles/Cespe.png<>uid://csfytaon5khe8::::res://scripts/camera_2d.gd<>uid://btfto5lj8b8p3::::res://scenes/Insect.tscn<>uid://bsanlfib51a5q::::res://scripts/ui.gd<>uid://chuigv8jstanr::::res://data/stats/oecophylla_obrera_mayor.tres<>uid://na31xh8fyot1::::res://data/stats/atta_reina.tres<>uid://brqdbwlrrmerw::::res://scenes/AntHill.tscn<>uid://6wnafppble4s::::res://scenes/tree.tscn<>uid://c5puspaba02lc::::res://scenes/Piso.tscn
+EscaladorVisual.tscn::PackedScene::8265045582827197002::1787287532::0::1::::<><><>0<>0<><>::uid://h22lrdx6n8li::::res://scripts/EscaladorVisual.gd
+Insect.tscn::PackedScene::3731510818709695382::1787287532::0::1::::<><><>0<>0<><>::uid://2vf4jskuwejg::::res://scripts/Insect.gd<>uid://fqbhvpbtewa6::::res://assets/tiles/bugs.png
+Main.tscn::PackedScene::6347980253575037490::1787287531::0::1::::<><><>0<>0<><>::uid://c3hp64lhsg8lj::::res://assets/tiles/Arbustos .png<>uid://cf7pk035e6ogr::::res://scenes/AntGroup.tscn<>uid://duqvxxtsnwwqo::::res://assets/tiles/Fondos.tres<>uid://npxj262gdt0f::::res://scripts/GameController.gd<>uid://k1wg5a3q1bg0::::res://assets/tiles/Cespe.png<>uid://csfytaon5khe8::::res://scripts/camera_2d.gd<>uid://btfto5lj8b8p3::::res://scenes/Insect.tscn<>uid://bsanlfib51a5q::::res://scripts/ui.gd<>uid://chuigv8jstanr::::res://data/stats/oecophylla_obrera_mayor.tres<>uid://na31xh8fyot1::::res://data/stats/atta_reina.tres<>uid://brqdbwlrrmerw::::res://scenes/AntHill.tscn<>uid://6wnafppble4s::::res://scenes/tree.tscn<>uid://c5puspaba02lc::::res://scenes/Piso.tscn
 OrderMarker.tscn::PackedScene/PackedScene::2339854507921682982::1775942367::0::1::::<><><>0<>0<><>::uid://c7cp0uafq5dp8::::res://scripts/OrderMarker.gd
-Piso.tscn::PackedScene::6910719614880389452::1787198288::0::1::::<><><>0<>0<><>::uid://bvs0nwjy8umsg::::res://scripts/Piso.gd<>uid://bu41my5hii18p::::res://scripts/PisoDibujo.gd
-PuntoConexion.tscn::PackedScene::6718571759677268643::1787198288::0::1::::<><><>0<>0<><>::uid://q4x7uekif1qt::::res://scripts/PuntoConexion.gd
-tree.tscn::PackedScene::2222060070746405636::1787176432::0::1::::<><><>0<>0<><>::uid://ck8uay3o2nu8g::::res://scripts/Tree.gd<>uid://0uiqb5tj0u3y::::res://assets/tiles/Tree1.png<>uid://bjai78b40ghyy::::res://scenes/TreeInterior.tscn
-TreeInterior.tscn::PackedScene::3018664893949120516::1787176432::0::1::::<><><>0<>0<><>::uid://urv5ikcdsjtt::::res://scripts/TreeInterior.gd<>uid://cbxx25ucj6pyp::::res://scripts/LeafPoint.gd
+Piso.tscn::PackedScene::6910719614880389452::1787287532::0::1::::<><><>0<>0<><>::uid://bvs0nwjy8umsg::::res://scripts/Piso.gd<>uid://bu41my5hii18p::::res://scripts/PisoDibujo.gd
+PuntoConexion.tscn::PackedScene::6718571759677268643::1787287532::0::1::::<><><>0<>0<><>::uid://q4x7uekif1qt::::res://scripts/PuntoConexion.gd
+tree.tscn::PackedScene/PackedScene::2222060070746405636::1787176432::0::1::::<><><>0<>0<><>::uid://ck8uay3o2nu8g::::res://scripts/Tree.gd<>uid://0uiqb5tj0u3y::::res://assets/tiles/Tree1.png<>uid://bjai78b40ghyy::::res://scenes/TreeInterior.tscn
+TreeInterior.tscn::PackedScene/PackedScene::3018664893949120516::1787176432::0::1::::<><><>0<>0<><>::uid://urv5ikcdsjtt::::res://scripts/TreeInterior.gd<>uid://cbxx25ucj6pyp::::res://scripts/LeafPoint.gd
 ::res://scenes/menus/::1786679900
 Config.tscn::PackedScene/PackedScene::3389585134221974977::1775942367::0::1::::<><><>0<>0<><>::uid://bvi0rgvvulvn1::::res://scripts/Config.gd<>uid://bdfiiq1xftuko::::res://data/themes/botton_theme.tres
 Control.tscn::PackedScene/PackedScene::9207731614831382129::1775779395::0::1::::<><><>0<>0<><>::uid://bvi0rgvvulvn1::::res://scripts/Config.gd
@@ -106,32 +106,32 @@ Wiki.tscn::PackedScene/PackedScene::2044257482346143057::1775942367::0::1::::<><
 CastPanel.tscn::PackedScene/PackedScene::862837232295152490::1786679900::0::1::::<><><>0<>0<><>::uid://rr2xln2k0ons::::res://scripts/CastPanel.gd
 QueueCard.tscn::PackedScene/PackedScene::111482769805303251::1786679900::0::1::::<><><>0<>0<><>::uid://6ajoi6p6agcy::::res://scripts/QueueCard.gd
 UnitCard.tscn::PackedScene/PackedScene::4717252177339462634::1786679900::0::1::::<><><>0<>0<><>::uid://bc6e2piya3smi::::res://scripts/UnitCard.gd
-::res://scripts/::1787198160
-AntGroup.gd::GDScript::7922345352198874931::1787174114::0::1::::AntGroup<>CharacterBody2D<><>0<>0<><>::
+::res://scripts/::1787287531
+AntGroup.gd::GDScript/GDScript::7922345352198874931::1787174114::0::1::::AntGroup<>CharacterBody2D<><>0<>0<><>::
 AntHill.gd::GDScript/GDScript::3255782623558887348::1775524225::0::1::::Anthill<>Area2D<><>0<>0<><>::
 AntStats.gd::GDScript/GDScript::541182388399137787::1775950017::0::1::::AntStats<>Resource<><>0<>0<><>::
-Camara.gd::GDScript::2210816959960429669::1787194787::0::1::::Camara<>RefCounted<><>0<>0<><>::
+Camara.gd::GDScript/GDScript::2210816959960429669::1787194787::0::1::::Camara<>RefCounted<><>0<>0<><>::
 camera_2d.gd::GDScript/GDScript::6048053601810085781::1787108974::0::1::::<>Camera2D<><>0<>0<><>::
 CastPanel.gd::GDScript/GDScript::1229985794810501900::1775941099::0::1::::<>PanelContainer<><>0<>0<><>::
 Config.gd::GDScript/GDScript::3878450054002125472::1775960110::0::1::::<>Control<><>0<>0<><>::
 Credits.gd::GDScript/GDScript::7084505916275220741::1775960110::0::1::::<>Control<><>0<>0<><>::
 EscaladorVisual.gd::GDScript/GDScript::548720005981845370::1786679161::0::1::::EscaladorVisual<>Node2D<><>0<>0<><>::
-GameController.gd::GDScript::944834663838396347::1787198160::0::1::::<>Node<><>0<>0<><>::
+GameController.gd::GDScript::944834663838396347::1787287531::0::1::::<>Node<><>0<>0<><>::
 GameData.gd::GDScript/GDScript::6337590250256857027::1775939886::0::1::::<>Node<><>0<>0<><>::
 Insect.gd::GDScript/GDScript::1938806585047785336::1776131352::0::1::::Insect<>CharacterBody2D<><>0<>0<><>::
 LeafPoint.gd::GDScript/GDScript::4891957213337397315::1786417354::0::1::::LeafPoint<>Marker2D<><>0<>0<><>::
 MainMenu.gd::GDScript/GDScript::4151002159560653991::1775960152::0::1::::<>Control<><>0<>0<><>::
 ManiPlay.gd::GDScript/GDScript::257342136492168864::1775960110::0::1::::<>Control<><>0<>0<><>::
 OrderMarker.gd::GDScript/GDScript::7023969569767221819::1775620515::0::1::::<>Node2D<><>0<>0<><>::
-Piso.gd::GDScript::3899087510357075082::1787197740::0::1::::Piso<>Node2D<><>0<>0<><>::
-PisoDibujo.gd::GDScript::3851665889893889273::1787197740::0::1::::<>Node2D<><>0<>0<><>::
-PisoManager.gd::GDScript::5460877298849872129::1787197740::0::1::::<>Node<><>0<>0<><>::
-PuntoConexion.gd::GDScript::1184343146426329603::1787173750::0::1::::PuntoConexion<>Node2D<><>0<>0<><>::
+Piso.gd::GDScript::3899087510357075082::1787286561::0::1::::Piso<>Node2D<><>0<>0<><>::
+PisoDibujo.gd::GDScript/GDScript::3851665889893889273::1787197740::0::1::::<>Node2D<><>0<>0<><>::
+PisoManager.gd::GDScript/GDScript::5460877298849872129::1787197740::0::1::::<>Node<><>0<>0<><>::
+PuntoConexion.gd::GDScript/GDScript::1184343146426329603::1787173750::0::1::::PuntoConexion<>Node2D<><>0<>0<><>::
 QueueCard.gd::GDScript/GDScript::2176426075627273476::1775948732::0::1::::<>PanelContainer<><>0<>0<><>::
 SelectionRing.gd::GDScript/GDScript::1755744804876428277::1775524225::0::1::::<>Node2D<><>0<>0<><>::
 SpawnQueue.gd::GDScript/GDScript::460706518643925188::1775948526::0::1::::<>Node<><>0<>0<><>::
 StatsLoader.gd::GDScript/GDScript::4239464380422226973::1786403027::0::1::::<>Node<><>0<>0<><>::
-TiposCamara.gd::GDScript::3962521044414275471::1787194787::0::1::::<>Node<><>0<>0<><>::
+TiposCamara.gd::GDScript/GDScript::3962521044414275471::1787194787::0::1::::<>Node<><>0<>0<><>::
 Tree.gd::GDScript/GDScript::5544069913993467152::1786418088::0::1::::AntTree<>StaticBody2D<><>0<>0<><>::
 TreeInterior.gd::GDScript/GDScript::1440200360975350205::1786733294::0::1::::TreeInterior<>CanvasLayer<><>0<>0<><>::
 ui.gd::GDScript/GDScript::3650629108878336348::1786404469::0::1::::<>CanvasLayer<><>0<>0<><>::

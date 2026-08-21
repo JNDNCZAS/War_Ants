@@ -148,6 +148,13 @@ func _handle_key(event: InputEventKey):
 			panel_tipos.visible = false
 			tooltip_camara.visible = false
 			_actualizar_modo_label()
+	if event.keycode == KEY_E and event.pressed:
+		modo_construccion = "eliminar" if modo_construccion != "eliminar" else ""
+		modo_conexion = ""
+		PisoManager.desactivar_modo_tipos()
+		panel_tipos.visible = false
+		tooltip_camara.visible = false
+		_actualizar_modo_label()
 
 func _handle_mouse_button(event: InputEventMouseButton):
 	var world_pos = _to_world(event.position)
@@ -169,6 +176,8 @@ func _handle_mouse_button(event: InputEventMouseButton):
 					var ancho = abs(fin.x - construccion_inicio.x) + 1
 					var alto = abs(fin.y - construccion_inicio.y) + 1
 					piso.excavar_camara(origen, ancho, alto)
+				elif modo_construccion == "eliminar":
+					piso.eliminar_en(fin)
 				else:
 					_excavar_linea(piso, construccion_inicio, fin)
 				selection_rect_node.visible = false
@@ -203,6 +212,8 @@ func _handle_mouse_button(event: InputEventMouseButton):
 			_call_all_groups(world_pos)
 		elif selected_groups.size() > 0:
 			_issue_move_order(world_pos)
+			
+
 
 func _handle_mouse_motion(event: InputEventMouseMotion):
 	if PisoManager.modo_tipos_activo:
@@ -390,23 +401,40 @@ func _colocar_punto_conexion(world_pos: Vector2):
 	elif modo_conexion == "abajo":
 		_crear_conexion_hacia_abajo(piso, piso_idx, celda)
 
-func _crear_conexion_superficie(piso, piso_idx: int, celda: Vector2i):
-	if piso_idx != 1:
-		return # la conexión con la superficie solo se puede crear desde el Piso 1
-	for hijo in anthill.get_children():
-		if hijo is PuntoConexion:
-			return # ya existe una conexión con la superficie
+
+func _obtener_o_crear_punto_conexion(piso, piso_idx: int, celda: Vector2i) -> PuntoConexion:
+	for hijo in piso.get_children():
+		if hijo is PuntoConexion and hijo.celda == celda:
+			return hijo
 	var punto = PuntoConexionScene.instantiate()
 	piso.add_child(punto)
 	punto.global_position = piso.celda_a_mundo_centro(celda)
 	punto.piso = piso_idx
 	punto.celda = celda
+	return punto
 
-	var punto_superficie = PuntoConexionScene.instantiate()
-	anthill.add_child(punto_superficie)
-	punto_superficie.global_position = anthill.global_position
-	punto_superficie.piso = 0
-	punto_superficie.es_superficie = true
+func _crear_conexion_superficie(piso, piso_idx: int, celda: Vector2i):
+	if piso_idx != 1:
+		return
+
+	var punto = _obtener_o_crear_punto_conexion(piso, piso_idx, celda)
+	if punto.destino:
+		return # ya hay una conexión activa en esta celda
+
+	var punto_superficie: PuntoConexion = null
+	for hijo in anthill.get_children():
+		if hijo is PuntoConexion:
+			punto_superficie = hijo
+			break
+
+	if punto_superficie == null:
+		punto_superficie = PuntoConexionScene.instantiate()
+		anthill.add_child(punto_superficie)
+		punto_superficie.global_position = anthill.global_position
+		punto_superficie.piso = 0
+		punto_superficie.es_superficie = true
+	elif punto_superficie.destino:
+		return # ya existe una conexión con la superficie activa en otra celda
 
 	punto.destino = punto_superficie
 	punto_superficie.destino = punto
@@ -416,28 +444,19 @@ func _crear_conexion_superficie(piso, piso_idx: int, celda: Vector2i):
 func _crear_conexion_hacia_abajo(piso, piso_idx: int, celda: Vector2i):
 	var piso_abajo = PisoManager.piso_de_nodo(piso_idx + 1)
 	if piso_abajo == null:
-		return # ese piso todavía no existe en la escena
+		return
 	if not piso_abajo.celda_valida(celda):
 		return
 
-	for hijo in piso.get_children():
-		if hijo is PuntoConexion and hijo.celda == celda:
-			return # ya hay una conexión en esta celda
+	var punto_arriba = _obtener_o_crear_punto_conexion(piso, piso_idx, celda)
+	if punto_arriba.destino:
+		return # ya hay una conexión activa en esta celda
 
-	var punto_arriba = PuntoConexionScene.instantiate()
-	piso.add_child(punto_arriba)
-	punto_arriba.global_position = piso.celda_a_mundo_centro(celda)
-	punto_arriba.piso = piso_idx
-	punto_arriba.celda = celda
+	if piso_abajo.camara_en_celda(celda) == null:
+		if piso_abajo.excavar_camara(celda, 1, 1) == null:
+			return # esa celda choca con otra cámara distinta, no se puede
 
-	piso_abajo.excavar_camara(celda, 1, 1)
-
-	var punto_abajo = PuntoConexionScene.instantiate()
-	piso_abajo.add_child(punto_abajo)
-	punto_abajo.global_position = piso_abajo.celda_a_mundo_centro(celda)
-	punto_abajo.piso = piso_idx + 1
-	punto_abajo.celda = celda
-
+	var punto_abajo = _obtener_o_crear_punto_conexion(piso_abajo, piso_idx + 1, celda)
 	punto_arriba.destino = punto_abajo
 	punto_abajo.destino = punto_arriba
 	punto_arriba.actualizar_visual()
@@ -464,6 +483,8 @@ func _actualizar_modo_label():
 		modo_label.text = "Modo: Conexión entre pisos"
 	elif modo_conexion == "superficie":
 		modo_label.text = "Modo: Conexión con la superficie"
+	elif modo_construccion == "eliminar":
+		modo_label.text = "Modo: Eliminar"
 	else:
 		modo_label.text = "Modo: Ninguno"
 
@@ -516,3 +537,6 @@ func _actualizar_tooltip_camara(pos_pantalla: Vector2):
 	]
 	tooltip_camara.position = pos_pantalla + Vector2(16, 16)
 	tooltip_camara.visible = true
+	
+	
+	

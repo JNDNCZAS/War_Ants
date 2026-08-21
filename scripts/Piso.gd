@@ -48,6 +48,8 @@ func excavar_tunel(celda: Vector2i):
 		dibujo.queue_redraw()
 
 func excavar_camara(celda_inicio: Vector2i, ancho: int, alto: int) -> Camara:
+	if not puede_construir_camara(celda_inicio, ancho, alto):
+		return null
 	for x in range(ancho):
 		for y in range(alto):
 			var c = celda_inicio + Vector2i(x, y)
@@ -93,3 +95,56 @@ func camino_entre(desde_mundo: Vector2, hasta_mundo: Vector2) -> PackedVector2Ar
 	if not astar.has_point(id_desde) or not astar.has_point(id_hasta):
 		return PackedVector2Array()
 	return astar.get_point_path(id_desde, id_hasta)
+
+
+
+func puede_construir_camara(origen: Vector2i, ancho: int, alto: int) -> bool:
+	var nueva = Rect2i(origen.x - 1, origen.y - 1, ancho + 2, alto + 2)
+	for camara in camaras:
+		var existente = Rect2i(camara.origen.x, camara.origen.y, camara.ancho, camara.alto)
+		if nueva.intersects(existente):
+			return false
+	return true
+	
+	
+	
+func eliminar_en(celda: Vector2i):
+	if not celda_valida(celda):
+		return
+	var estado = celdas.get(celda, Celda.VACIO)
+	if estado == Celda.VACIO:
+		return
+	var camara = camara_en_celda(celda)
+	if camara:
+		_eliminar_camara(camara)
+	else:
+		_eliminar_celda_individual(celda)
+
+func _eliminar_celda_individual(celda: Vector2i):
+	celdas.erase(celda)
+	_quitar_celda_del_grafo(celda)
+	_eliminar_conexiones_en(celda)
+	dibujo.queue_redraw()
+
+func _eliminar_camara(camara: Camara):
+	for x in range(camara.ancho):
+		for y in range(camara.alto):
+			var c = camara.origen + Vector2i(x, y)
+			celdas.erase(c)
+			_quitar_celda_del_grafo(c)
+			_eliminar_conexiones_en(c)
+	camaras.erase(camara)
+	dibujo.queue_redraw()
+
+func _quitar_celda_del_grafo(celda: Vector2i):
+	var id = _id_de_celda(celda)
+	if astar.has_point(id):
+		astar.remove_point(id)
+
+func _eliminar_conexiones_en(celda: Vector2i):
+	for hijo in get_children():
+		if hijo is PuntoConexion and hijo.celda == celda:
+			if hijo.destino and is_instance_valid(hijo.destino):
+				hijo.destino.destino = null
+				hijo.destino.actualizar_visual()
+			hijo.queue_free()
