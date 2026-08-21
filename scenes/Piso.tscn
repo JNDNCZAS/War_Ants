@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://bu41my5hii18p" path="res://scripts/PisoDibujo.gd" id="2_g4lfw"]
 
 [node name="Piso" type="Node2D"]
-z_index = -10
 script = ExtResource("1_l3mqw")
 
 [node name="Dibujo" type="Node2D" parent="."]

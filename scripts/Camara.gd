@@ -6,6 +6,7 @@ var ancho: int = 1
 var alto: int = 1
 var tipo: String = "vacio"
 var piso: int = 0
+var tipo_bloqueado: bool = false
 
 func contiene(celda: Vector2i) -> bool:
 	return celda.x >= origen.x and celda.x < origen.x + ancho \

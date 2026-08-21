@@ -15,10 +15,10 @@ func _cargar_stats():
 				var stats = load("res://data/stats/" + archivo)
 				if stats:
 					todos_los_stats.append(stats)
-					print("cargado: ", archivo)
+					
 			archivo = dir.get_next()
 		dir.list_dir_end()
-	print("total stats cargados: ", todos_los_stats.size())
+	
 
 func stats_aleatorio() -> AntStats:
 	if todos_los_stats.is_empty():

@@ -8,8 +8,6 @@ var ultima_posicion: Dictionary = {}  # int -> Vector2
 
 var _camara: Camera2D = null
 
-const SUPERFICIE_CENTRO := Vector2(2048, 1024)
-const SUPERFICIE_LIMITES := Rect2(0, 0, 4096, 2048)
 
 
 signal modo_tipos_cambiado(activo: bool)
@@ -34,8 +32,8 @@ func cambiar_a_piso(indice: int):
 	var centro: Vector2
 	var limites: Rect2
 	if indice == 0:
-		centro = SUPERFICIE_CENTRO
-		limites = SUPERFICIE_LIMITES
+		limites = _camara.limites_superficie()
+		centro = limites.position + limites.size / 2.0
 	else:
 		var piso = pisos[indice]
 		limites = Rect2(
@@ -47,7 +45,8 @@ func cambiar_a_piso(indice: int):
 	var pos_final = ultima_posicion.get(indice, centro)
 	_camara.ir_a_region(pos_final, limites)
 	piso_cambiado.emit(indice)
-
+	
+	
 func piso_de_nodo(indice: int) -> Node:
 	return pisos.get(indice)
 	

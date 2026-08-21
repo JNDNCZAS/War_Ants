@@ -73,7 +73,7 @@ func _conectar_arboles():
 	for tree in get_tree().get_nodes_in_group("trees"):
 		tree.interior.salir_pedido.connect(_cerrar_vista_arbol)
 
-func _input(event):
+func _unhandled_input(event):
 	if event is InputEventKey:
 		_handle_key(event)
 	elif event is InputEventMouseButton:
@@ -204,15 +204,6 @@ func _handle_mouse_button(event: InputEventMouseButton):
 		elif selected_groups.size() > 0:
 			_issue_move_order(world_pos)
 
-	elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-		if Input.is_key_pressed(KEY_Z) and selected_groups.size() > 0:
-			patrol_points.append(world_pos)
-			print("punto agregado: ", world_pos, " total puntos: ", patrol_points.size())
-		elif event.double_click:
-			_call_all_groups(world_pos)
-		elif selected_groups.size() > 0:
-			_issue_move_order(world_pos)
-			
 
 
 func _handle_mouse_motion(event: InputEventMouseMotion):
@@ -221,11 +212,9 @@ func _handle_mouse_motion(event: InputEventMouseMotion):
 	elif tooltip_camara.visible:
 		tooltip_camara.visible = false
 
+	if modo_construccion != "" or modo_conexion != "" or PisoManager.modo_tipos_activo:
+		return
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		return
-	if modo_construccion != "":
-		return
-	if PisoManager.modo_tipos_activo:
 		return
 	var world_pos = _to_world(get_viewport().get_mouse_position())
 	if drag_start.distance_to(world_pos) > DRAG_THRESHOLD:
@@ -440,6 +429,7 @@ func _crear_conexion_superficie(piso, piso_idx: int, celda: Vector2i):
 	punto_superficie.destino = punto
 	punto.actualizar_visual()
 	punto_superficie.actualizar_visual()
+	_forzar_tipo_conexion(piso, celda)
 
 func _crear_conexion_hacia_abajo(piso, piso_idx: int, celda: Vector2i):
 	var piso_abajo = PisoManager.piso_de_nodo(piso_idx + 1)
@@ -461,6 +451,8 @@ func _crear_conexion_hacia_abajo(piso, piso_idx: int, celda: Vector2i):
 	punto_abajo.destino = punto_arriba
 	punto_arriba.actualizar_visual()
 	punto_abajo.actualizar_visual()
+	_forzar_tipo_conexion(piso, celda)
+	_forzar_tipo_conexion(piso_abajo, celda)
 
 
 func _on_piso_cambiado(nuevo_piso: int):
@@ -513,7 +505,7 @@ func _pintar_tipo_camara(world_pos: Vector2):
 		return
 	var celda = piso.mundo_a_celda(world_pos)
 	var camara = piso.camara_en_celda(celda)
-	if camara == null:
+	if camara == null or camara.tipo_bloqueado:
 		return
 	camara.tipo = tipo_seleccionado_para_pintar
 	piso.dibujo.queue_redraw()
@@ -540,3 +532,9 @@ func _actualizar_tooltip_camara(pos_pantalla: Vector2):
 	
 	
 	
+func _forzar_tipo_conexion(piso, celda: Vector2i):
+	var camara = piso.camara_en_celda(celda)
+	if camara:
+		camara.tipo = "conexion"
+		camara.tipo_bloqueado = true
+		piso.dibujo.queue_redraw()

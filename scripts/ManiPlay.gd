@@ -8,8 +8,7 @@ extends Control
 func _ready():
 	$ModoGameContainer/HistoriaButton.button_pressed = true
 	$MapContainer/Mapa1Button.button_pressed = true
-	print("ButtonGroup HistoriaButton: ", $ModoGameContainer/HistoriaButton.button_group)
-	print("ButtonGroup Mapa1Button: ", $MapContainer/Mapa1Button.button_group)
+
 
 func _obtener_selecciones():
 	var boton_modo = button_group_modo.get_pressed_button()
@@ -20,9 +19,7 @@ func _obtener_selecciones():
 	var mapa = boton_mapa.text if boton_mapa else "ninguno"
 	var especie_selec = especie_option.get_item_text(especie_option.selected)
 	
-	print("especie seleccionada: ", especie_selec)
-	print("Modo seleccionado: ", modo)
-	print("Mapa seleccionado: ", mapa)
+
 	
 	
 	return {
@@ -39,7 +36,6 @@ func _on_jugar_pressed():
 	var selecciones = _obtener_selecciones()
 	
 	if selecciones.especie == "Selecciona una especie" or selecciones.especie == "":
-		print("debes seleccionar una especie")
 		return
 	
 	GameData.modo_juego = selecciones.modo
@@ -53,3 +49,35 @@ func _on_jugar_pressed():
 			get_tree().change_scene_to_file("res://scenes/Main.tscn")
 		_:
 			get_tree().change_scene_to_file("res://scenes/Main.tscn")
+			
+			
+
+func _on_histo_pressed():
+	pass
+
+func _on_super_pressed():
+	pass
+
+func _on_rey_pressed():
+	pass
+
+func _on_dios_pressed():
+	pass
+
+func _on_mapa2_pressed():
+	pass
+
+func _on_mapa3_pressed():
+	pass
+
+func _on_mapa4_pressed():
+	pass
+
+func _on_opcion1_pressed():
+	pass
+
+func _on_opcion2_pressed():
+	pass
+
+func _obtener_modo_seleccionado():
+	pass

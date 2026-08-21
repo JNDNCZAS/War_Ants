@@ -84,3 +84,7 @@ func ir_a_region(centro: Vector2, limites: Rect2):
 	_limit_right  = limites.position.x + limites.size.x - half_screen.x
 	_limit_bottom = limites.position.y + limites.size.y - half_screen.y
 	position = centro
+	
+	
+func limites_superficie() -> Rect2:
+	return Rect2(map_limit_left, map_limit_top, map_limit_right - map_limit_left, map_limit_bottom - map_limit_top)

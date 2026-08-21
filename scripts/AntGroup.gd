@@ -129,10 +129,6 @@ func _ready():
 		integrantes_actuales = stats.integrantes_max
 		
 func _physics_process(delta):
-	if estado_actual != _estado_anterior_debug:
-		print("ESTADO CAMBIO DE ", _estado_anterior_debug, " A ", estado_actual)
-		print(get_stack())
-		_estado_anterior_debug = estado_actual
 	match estado_actual:
 		Estado.ESPERANDO:
 			#print("ejecutando ESPERANDO")
@@ -340,9 +336,9 @@ func _tick_recolectando(delta):
 				if punto.reservar():
 					punto_hoja_objetivo = punto
 					_iniciar_subida()
-	if carga == true:
-		_iniciar_transporte()
-		
+
+
+
 func _iniciar_subida():
 	estado_actual = Estado.SUBIENDO
 	sprite.visible = false
@@ -549,8 +545,6 @@ func _terminar_combate():
 	_actualizar_color_estado()
 	call_deferred("_actualizar_radio_deteccion")  # solo aqui
 	
-func _on_body_exited(body):
-	print("BODY EXITED: ", body.name)
 	
 	
 func aplicar_sprite_de_stats():
