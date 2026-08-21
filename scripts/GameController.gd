@@ -51,11 +51,22 @@ var modo_construccion: String = ""  # "" | "tunel" | "camara"
 var construccion_inicio: Vector2i = Vector2i.ZERO
 
 
+
+@onready var panel_tipos: Control = $"../UI/PanelTipos"
+@onready var boton_tipos: Button = $"../UI/BotonTipos"
+
+var tipo_seleccionado_para_pintar: String = "vacio"
+
+@onready var tooltip_camara: Label = $"../UI/TooltipCamara"
+
 func _ready():
 	selection_rect_node.visible = false
 	call_deferred("_conectar_arboles")
 	PisoManager.piso_cambiado.connect(_on_piso_cambiado)
 	_actualizar_piso_label(PisoManager.piso_actual)
+	boton_tipos.pressed.connect(_alternar_modo_tipos)
+	_construir_panel_tipos()
+	panel_tipos.visible = false
 	_actualizar_modo_label()
 
 func _conectar_arboles():
@@ -98,18 +109,30 @@ func _handle_key(event: InputEventKey):
 	if event.keycode == KEY_T and event.pressed:
 		modo_construccion = "tunel" if modo_construccion != "tunel" else ""
 		modo_conexion = ""
+		PisoManager.desactivar_modo_tipos()
+		panel_tipos.visible = false
+		tooltip_camara.visible = false
 		_actualizar_modo_label()
 	if event.keycode == KEY_C and event.pressed:
 		modo_construccion = "camara" if modo_construccion != "camara" else ""
 		modo_conexion = ""
+		PisoManager.desactivar_modo_tipos()
+		panel_tipos.visible = false
+		tooltip_camara.visible = false
 		_actualizar_modo_label()
 	if event.keycode == KEY_V and event.pressed:
 		modo_conexion = "abajo" if modo_conexion != "abajo" else ""
 		modo_construccion = ""
+		PisoManager.desactivar_modo_tipos()
+		panel_tipos.visible = false
+		tooltip_camara.visible = false
 		_actualizar_modo_label()
 	if event.keycode == KEY_B and event.pressed:
 		modo_conexion = "superficie" if modo_conexion != "superficie" else ""
 		modo_construccion = ""
+		PisoManager.desactivar_modo_tipos()
+		panel_tipos.visible = false
+		tooltip_camara.visible = false
 		_actualizar_modo_label()
 	if event.keycode == KEY_ESCAPE and not event.pressed:
 		if arbol_interior_actual:
@@ -120,10 +143,18 @@ func _handle_key(event: InputEventKey):
 		elif modo_conexion != "":
 			modo_conexion = ""
 			_actualizar_modo_label()
+		elif PisoManager.modo_tipos_activo:
+			PisoManager.desactivar_modo_tipos()
+			panel_tipos.visible = false
+			tooltip_camara.visible = false
+			_actualizar_modo_label()
 
 func _handle_mouse_button(event: InputEventMouseButton):
 	var world_pos = _to_world(event.position)
 	if event.button_index == MOUSE_BUTTON_LEFT:
+		if PisoManager.modo_tipos_activo and event.pressed and PisoManager.piso_actual != 0:
+			_pintar_tipo_camara(world_pos)
+			return
 		if modo_conexion != "" and event.pressed:
 			_colocar_punto_conexion(world_pos)
 			return
@@ -174,9 +205,16 @@ func _handle_mouse_button(event: InputEventMouseButton):
 			_issue_move_order(world_pos)
 
 func _handle_mouse_motion(event: InputEventMouseMotion):
+	if PisoManager.modo_tipos_activo:
+		_actualizar_tooltip_camara(event.position)
+	elif tooltip_camara.visible:
+		tooltip_camara.visible = false
+
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		return
-	if modo_construccion != "" and PisoManager.piso_actual != 0:
+	if modo_construccion != "":
+		return
+	if PisoManager.modo_tipos_activo:
 		return
 	var world_pos = _to_world(get_viewport().get_mouse_position())
 	if drag_start.distance_to(world_pos) > DRAG_THRESHOLD:
@@ -392,7 +430,7 @@ func _crear_conexion_hacia_abajo(piso, piso_idx: int, celda: Vector2i):
 	punto_arriba.piso = piso_idx
 	punto_arriba.celda = celda
 
-	piso_abajo.excavar_tunel(celda)
+	piso_abajo.excavar_camara(celda, 1, 1)
 
 	var punto_abajo = PuntoConexionScene.instantiate()
 	piso_abajo.add_child(punto_abajo)
@@ -416,7 +454,9 @@ func _actualizar_piso_label(piso: int):
 		piso_label.text = "Piso: %d" % piso
 
 func _actualizar_modo_label():
-	if modo_construccion == "tunel":
+	if PisoManager.modo_tipos_activo:
+		modo_label.text = "Modo: Tipos de cámara (pintando: %s)" % TiposCamara.nombre_de(tipo_seleccionado_para_pintar)
+	elif modo_construccion == "tunel":
 		modo_label.text = "Modo: Túnel"
 	elif modo_construccion == "camara":
 		modo_label.text = "Modo: Cámara"
@@ -426,3 +466,53 @@ func _actualizar_modo_label():
 		modo_label.text = "Modo: Conexión con la superficie"
 	else:
 		modo_label.text = "Modo: Ninguno"
+
+func _construir_panel_tipos():
+	for tipo in TiposCamara.lista_tipos():
+		var boton = Button.new()
+		boton.text = TiposCamara.nombre_de(tipo)
+		boton.pressed.connect(func():
+			tipo_seleccionado_para_pintar = tipo
+			_actualizar_modo_label()
+		)
+		panel_tipos.add_child(boton)
+
+func _alternar_modo_tipos():
+	PisoManager.alternar_modo_tipos()
+	if PisoManager.modo_tipos_activo:
+		modo_construccion = ""
+		modo_conexion = ""
+	panel_tipos.visible = PisoManager.modo_tipos_activo
+	_actualizar_modo_label()
+	
+	
+func _pintar_tipo_camara(world_pos: Vector2):
+	var piso = PisoManager.piso_de_nodo(PisoManager.piso_actual)
+	if piso == null:
+		return
+	var celda = piso.mundo_a_celda(world_pos)
+	var camara = piso.camara_en_celda(celda)
+	if camara == null:
+		return
+	camara.tipo = tipo_seleccionado_para_pintar
+	piso.dibujo.queue_redraw()
+
+func _actualizar_tooltip_camara(pos_pantalla: Vector2):
+	if PisoManager.piso_actual == 0:
+		tooltip_camara.visible = false
+		return
+	var piso = PisoManager.piso_de_nodo(PisoManager.piso_actual)
+	if piso == null:
+		tooltip_camara.visible = false
+		return
+	var world_pos = _to_world(pos_pantalla)
+	var celda = piso.mundo_a_celda(world_pos)
+	var camara = piso.camara_en_celda(celda)
+	if camara == null:
+		tooltip_camara.visible = false
+		return
+	tooltip_camara.text = "%s — %dx%d (%d celdas)" % [
+		TiposCamara.nombre_de(camara.tipo), camara.ancho, camara.alto, camara.total_celdas()
+	]
+	tooltip_camara.position = pos_pantalla + Vector2(16, 16)
+	tooltip_camara.visible = true

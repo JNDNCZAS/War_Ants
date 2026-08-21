@@ -526,6 +526,24 @@ text = "Piso : superficie"
 layout_mode = 2
 text = "Modo: ninguno"
 
+[node name="BotonTipos" type="Button" parent="UI"]
+offset_left = 1589.0
+offset_top = 16.0
+offset_right = 1724.0
+offset_bottom = 47.0
+text = "Tipos de camara"
+
+[node name="PanelTipos" type="GridContainer" parent="UI"]
+offset_left = 23.0
+offset_top = 168.0
+offset_right = 63.0
+offset_bottom = 208.0
+
+[node name="TooltipCamara" type="Label" parent="UI"]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="Anthill" parent="." groups=["anthill"] instance=ExtResource("12_qmy6f")]
 position = Vector2(159, 513)
 scale = Vector2(0.5, 0.5)

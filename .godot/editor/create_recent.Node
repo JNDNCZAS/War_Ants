@@ -1,4 +1,6 @@
 Label
+GridContainer
+Button
 Polygon2D
 Node2D
 Control
@@ -6,9 +8,7 @@ CanvasLayer
 AnimatedSprite2D
 Marker2D
 ColorRect
-Button
 Camera2D
 VBoxContainer
 CollisionShape2D
 NavigationAgent2D
-NavigationLink2D

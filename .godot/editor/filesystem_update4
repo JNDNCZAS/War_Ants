@@ -3,16 +3,8 @@ res://assets/tiles/Fondos.tres
 res://assets/Animations/Ants/Animation_3.tres
 res://data/stats/oecophylla_obrera_mayor.tres
 res://assets/Animations/Ants/Animation_1.tres
-res://scripts/GameController.gd
 res://scenes/AntGroup.tscn
-res://scenes/Insect.tscn
-res://scenes/TreeInterior.tscn
-res://scenes/tree.tscn
 res://scenes/EscaladorVisual.tscn
 res://scenes/Piso.tscn
-res://scripts/PisoDibujo.gd
-res://scripts/PisoManager.gd
-res://scripts/Piso.gd
-res://scripts/AntGroup.gd
-res://scripts/PuntoConexion.gd
 res://scenes/PuntoConexion.tscn
+res://scripts/GameController.gd

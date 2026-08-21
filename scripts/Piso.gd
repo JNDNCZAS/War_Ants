@@ -13,6 +13,7 @@ var astar: AStar2D = AStar2D.new()
 var celdas: Dictionary = {}  # Vector2i -> Celda
 
 @onready var dibujo: Node2D = $Dibujo
+var camaras: Array = []  # Array[Camara]
 
 func _ready():
 	PisoManager.registrar_piso(indice, self)
@@ -46,14 +47,27 @@ func excavar_tunel(celda: Vector2i):
 		_agregar_celda_a_grafo(celda)
 		dibujo.queue_redraw()
 
-func excavar_camara(celda_inicio: Vector2i, ancho: int, alto: int):
+func excavar_camara(celda_inicio: Vector2i, ancho: int, alto: int) -> Camara:
 	for x in range(ancho):
 		for y in range(alto):
 			var c = celda_inicio + Vector2i(x, y)
 			if celda_valida(c):
 				celdas[c] = Celda.CAMARA
 				_agregar_celda_a_grafo(c)
+	var camara = Camara.new()
+	camara.origen = celda_inicio
+	camara.ancho = ancho
+	camara.alto = alto
+	camara.piso = indice
+	camaras.append(camara)
 	dibujo.queue_redraw()
+	return camara
+	
+func camara_en_celda(celda: Vector2i) -> Camara:
+	for c in camaras:
+		if c.contiene(celda):
+			return c
+	return null
 	
 func _id_de_celda(celda: Vector2i) -> int:
 	return celda.y * ancho_celdas + celda.x

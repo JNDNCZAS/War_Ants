@@ -11,6 +11,10 @@ var _camara: Camera2D = null
 const SUPERFICIE_CENTRO := Vector2(2048, 1024)
 const SUPERFICIE_LIMITES := Rect2(0, 0, 4096, 2048)
 
+
+signal modo_tipos_cambiado(activo: bool)
+var modo_tipos_activo: bool = false
+
 func registrar_piso(indice: int, piso_node: Node):
 	pisos[indice] = piso_node
 
@@ -46,3 +50,12 @@ func cambiar_a_piso(indice: int):
 
 func piso_de_nodo(indice: int) -> Node:
 	return pisos.get(indice)
+	
+func alternar_modo_tipos():
+	modo_tipos_activo = not modo_tipos_activo
+	modo_tipos_cambiado.emit(modo_tipos_activo)
+
+func desactivar_modo_tipos():
+	if modo_tipos_activo:
+		modo_tipos_activo = false
+		modo_tipos_cambiado.emit(false)
