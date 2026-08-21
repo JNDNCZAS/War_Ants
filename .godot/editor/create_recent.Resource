@@ -1,4 +1,0 @@
-Theme
-ColorPalette
-SpriteFrames
-AntStats
